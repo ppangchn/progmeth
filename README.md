@@ -15,7 +15,16 @@
         - Brief introduction about your project.
         - User Manual (How to use your program or How to play if your project is a game).
         - Implementation Detail (UML class diagram and description of all classes and methods you implemented)
-    - The document of each lab or exercise is a great example of how your document should look like
+    - The document of each lab or exercise is a great example of how your document should look like.
 7. Ensure that you push all commits of your project within **14 December 2017**.
 8. **On your presentation day (15 December 2017)**, bring a printed version of your document and your own laptop for showing a demo of your project.
     - **You only have 5 minutes for showing a demo of your project. So make sure that your laptop is ready for presentation beforehand.**
+    
+# Support
+
+* If you need any kind of help or advice about your project
+    1. You can meet and ask TAs directly at Lab Game 18th floor Engineering 4 Building (Charoenvidsavakham) every Friday between 1pm and 4pm.
+        - Please make an appointment if you want to meet at some other time.
+    2. You can ask in channel #project of our Slack.
+        - If you have never joined our Slack before, go to https://goo.gl/FmKbMY.
+        - Otherwise, go to https://progmeth2017.slack.com and sign in with your account.
