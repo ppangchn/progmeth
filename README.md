@@ -8,7 +8,7 @@
     - You should create a commit when you finish each function of your project. 
     - Don't wait until you finish the whole project to create a commit.
 5. Export your project into a runnable jar file named **`Project_2017_{GroupName}.jar`**
-    - Example: If your group name is **`Rockman`**, your jar name should be **`Project_2017_Rockman`**.
+    - Example: If your group name is **`Rockman`**, your jar name should be **`Project_2017_Rockman.jar`**.
     - Your jar file must include all your resources (images or audios) and it must be runnable from anywhere.
 6. Create a document for your project. 
     - Your document should contain:
