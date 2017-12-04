@@ -62,7 +62,7 @@ public class StartWindow{
 		Scene scene = new Scene(root);
 		bg.requestFocus();
 		primaryStage.setScene(scene);
-		primaryStage.setTitle("GAME");
+		primaryStage.setTitle("pang");
 		a = new AnimationTimer() {
 			public void handle(long now) {
 				frame++;
