@@ -47,7 +47,7 @@ public class StartWindow{
 		Label gamename = new Label("CLOUDY PEWPEW");
 		gamename.setTextFill(Color.DEEPPINK);
 		gamename.setFont(TEXT_FONT);
-		Button start = new Button("START");
+		Button start = new Button("START by noob toei");
 		start.setPrefSize(150, 30);
 		Button exit = new Button("EXIT");
 		exit.setPrefSize(150, 30);
