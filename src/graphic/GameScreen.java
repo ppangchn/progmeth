@@ -1,6 +1,5 @@
 package graphic;
 
-import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -27,7 +26,7 @@ public class GameScreen implements IRenderable {
 	}
 
 	@Override
-	public void static draw(GraphicsContext gc) {
+	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		//bggame = new Image("bggame.png");
 		gc.drawImage(bggame, 0, 0);

@@ -39,7 +39,6 @@ public class GameWindow extends Canvas{
 		gamescreen = new GameScreen();
 		monster = new Monster();
 		this.primaryStage.setScene(scene);
-		System.out.println("pang noob");
 		RenderableHolder.getinstance().add(gamescreen);
 		RenderableHolder.getinstance().add(hero);
 		RenderableHolder.getinstance().add(monster);
