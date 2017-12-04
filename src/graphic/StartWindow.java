@@ -62,7 +62,7 @@ public class StartWindow{
 		Scene scene = new Scene(root);
 		bg.requestFocus();
 		primaryStage.setScene(scene);
-		primaryStage.setTitle("PANG");
+		primaryStage.setTitle("PANGandEarthGamming not toei");
 		a = new AnimationTimer() {
 			public void handle(long now) {
 				frame++;
