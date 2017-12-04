@@ -10,6 +10,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		StartWindow s = new StartWindow(primaryStage);
 		s.drawStartWindow();
+		primaryStage.show();
 	}
 	
 	public static void main(String[] args) {

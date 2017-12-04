@@ -2,8 +2,7 @@ package item;
 
 public class EraseAllMonster extends Item {
 
-	public EraseAllMonster(double x, double y) {
-		super(x, y);
+	public EraseAllMonster() {
 		// TODO Auto-generated constructor stub
 	}
 

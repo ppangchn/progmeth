@@ -40,21 +40,12 @@ public class Bullet implements IRenderable {
 	}
 
 	@Override
-	public int getZ() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		gc.drawImage(bulletpic, x, y);
 		//System.out.println("BOMP");
 	}
-	@Override
-	public boolean isVisible() {
-		// TODO Auto-generated method stub
-		return isVisible;
-	}
+
 
 	public void setIsvisible(boolean isVisible) {
 		this.isVisible = isVisible;
@@ -67,6 +58,11 @@ public class Bullet implements IRenderable {
 			if (c=='s') y+=5;
 		
 		
+	}
+	@Override
+	public boolean isVisible() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

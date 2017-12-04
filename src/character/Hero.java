@@ -56,11 +56,6 @@ public class Hero implements IRenderable {
 		heropic = new Image("cloudleft.png");
 	}
 
-	@Override
-	public int getZ() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public void draw(GraphicsContext gc) {

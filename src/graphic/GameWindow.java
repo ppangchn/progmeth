@@ -5,6 +5,7 @@ import java.util.Random;
 import character.Bullet;
 import character.Hero;
 import character.Monster;
+import item.Item;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -15,10 +16,11 @@ import javafx.stage.Stage;
 import sharedObject.RenderableHolder;
 
 public class GameWindow extends Canvas{
-	public Hero hero;
-	public Bullet bullet;
-	public GameScreen gamescreen;
-	public Monster monster;
+	private Hero hero;
+	private Bullet bullet;
+	private GameScreen gamescreen;
+	private Monster monster;
+	private Item item;
 	public String control = "";
 	public GraphicsContext gc;
 	public Scene scene;
@@ -42,6 +44,7 @@ public class GameWindow extends Canvas{
 		RenderableHolder.getinstance().add(gamescreen);
 		RenderableHolder.getinstance().add(hero);
 		RenderableHolder.getinstance().add(monster);
+		RenderableHolder.getinstance().add(item);
 		requestFocus();
 	}
 	public void drawGameWinDow() {
@@ -137,6 +140,10 @@ public class GameWindow extends Canvas{
 	public void addMonster() {
 		monster = new Monster();
 		RenderableHolder.getinstance().add(monster);
+	}
+	public void addItem() {
+		//จะสร้างตัวแปรไอเท็มขึ้นมาใหม่
+		RenderableHolder.getinstance().add(item);
 	}
 }
 	
