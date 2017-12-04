@@ -49,7 +49,7 @@ public class StartWindow{
 		gamename.setFont(TEXT_FONT);
 		Button start = new Button("START by noob toei");
 		start.setPrefSize(150, 30);
-		Button exit = new Button("EXIT");
+		Button exit = new Button("EXIT by pang");
 		exit.setPrefSize(150, 30);
 		Button highscore = new Button("HIGHSCORE by Earth");
 		highscore.setPrefSize(150, 30);
