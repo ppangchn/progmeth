@@ -24,9 +24,9 @@ public class StartWindow{
 	private Stage primaryStage;
 	private Canvas bg;
 	private AnimationTimer a;
-	public String[] image = {"bg1.jpg","bg2.jpg","bg3.jpg","bg4.jpg"};
 	public int imageorder = 0;
 	private int frame = 0;
+	private Image background;
 //	public AudioClip audio;
 	
 	public StartWindow(Stage primaryStage) {
@@ -44,14 +44,14 @@ public class StartWindow{
 		title.setAlignment(Pos.CENTER);
 		root.setPrefSize(800, 450);
 		vbox.setAlignment(Pos.CENTER);
-		Label gamename = new Label("CLOUDY PEWPEW");
+		Label gamename = new Label("PEWPEW PROGMETH");
 		gamename.setTextFill(Color.DEEPPINK);
 		gamename.setFont(TEXT_FONT);
-		Button start = new Button("START by noob toei");
+		Button start = new Button("START");
 		start.setPrefSize(150, 30);
-		Button exit = new Button("EXIT by pangearth");
+		Button exit = new Button("EXIT");
 		exit.setPrefSize(150, 30);
-		Button highscore = new Button("HIGHSCORE by Earth");
+		Button highscore = new Button("HIGHSCORE");
 		highscore.setPrefSize(150, 30);
 		vbox.setSpacing(15);
 		title.getChildren().addAll(gamename,vbox);
@@ -62,7 +62,7 @@ public class StartWindow{
 		Scene scene = new Scene(root);
 		bg.requestFocus();
 		primaryStage.setScene(scene);
-		primaryStage.setTitle("PANGandEarthGamming not toei but toei is noob la pang so lnw la");
+		primaryStage.setTitle("PEWPEW_Progmeth");
 		a = new AnimationTimer() {
 			public void handle(long now) {
 				frame++;
@@ -74,10 +74,8 @@ public class StartWindow{
 	
 	public void setBackground(Canvas bg) {
 		GraphicsContext gc = bg.getGraphicsContext2D();
-		Image background = new Image(image[imageorder]);
+		background = new Image("bg.jpg");
 		gc.drawImage(background, 0,0);
-		imageorder++;
-		if (imageorder==image.length) imageorder=0;
 		
 	}
 	public void addAction(Button b) {

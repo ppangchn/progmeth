@@ -12,7 +12,6 @@ public class Block implements IRenderable{
 	private Random rand;
 	private int num;
 	public Image blockimage;
-	public String[] blockURL = {"block1.png","block2.png","block3.png","block4.png","block5.png","block6.png","block7.png","block8.png","block9.png","block10.png","block11.png","block12.png","block13.png","block14.png","block15.png","block16.png","block17.png"};
 	public Block() {
 		x = rand.nextDouble()*800;
 		y = rand.nextDouble()*450;
@@ -22,14 +21,13 @@ public class Block implements IRenderable{
 		y =rand.nextDouble()*450;
 	}
 	public void setBlockImage() {
-		blockimage = new Image(blockURL[0]);
+
+		blockimage = new Image("block.png");
 	}
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		for (String x : blockURL) {
-			blockimage = new Image(x);
-		}
+		gc.drawImage(blockimage, x, y);
 		
 	}
 	@Override
