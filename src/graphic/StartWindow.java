@@ -51,7 +51,7 @@ public class StartWindow{
 		start.setPrefSize(150, 30);
 		Button exit = new Button("EXIT");
 		exit.setPrefSize(150, 30);
-		Button highscore = new Button("HIGHSCORE");
+		Button highscore = new Button("HIGHSCORE by Earth");
 		highscore.setPrefSize(150, 30);
 		vbox.setSpacing(15);
 		title.getChildren().addAll(gamename,vbox);
