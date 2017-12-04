@@ -26,15 +26,21 @@ public class StartWindow{
 	private AnimationTimer a;
 	public int imageorder = 0;
 	private int frame = 0;
+<<<<<<< HEAD
 	private Image background;
 //	public AudioClip audio;
+||||||| merged common ancestors
+//	public AudioClip audio;
+=======
+	public AudioClip sound;
+>>>>>>> c9bafbf209c4b0d7176fd7636f45ea37db38c795
 	
 	public StartWindow(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		bg = new Canvas(800,450);
-//		audio = new AudioClip("Hello.mp3");
-//		audio.play();
-//		audio.setCycleCount(MediaPlayer.INDEFINITE);
+		AudioClip sound = new AudioClip(ClassLoader.getSystemResource("Hello.mp3").toString());
+		sound.play();
+		sound.setCycleCount(MediaPlayer.INDEFINITE);
 	}
 	public void drawStartWindow() {
 		StackPane root = new StackPane();
