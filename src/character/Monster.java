@@ -38,11 +38,7 @@ public class Monster implements IRenderable {
 		}
 		setImage();
 	}
-	@Override
-	public int getZ() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 	@Override
 	public void draw(GraphicsContext gc) {
 		System.out.println("monster");

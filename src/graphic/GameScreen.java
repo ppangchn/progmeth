@@ -19,11 +19,7 @@ public class GameScreen implements IRenderable {
 	public GameScreen() {
 		setImage();
 	}
-	@Override
-	public int getZ() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 	@Override
 	public void draw(GraphicsContext gc) {

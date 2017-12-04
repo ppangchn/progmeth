@@ -39,11 +39,7 @@ public class Bullet implements IRenderable {
 		this.y = y;
 	}
 
-	@Override
-	public int getZ() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
