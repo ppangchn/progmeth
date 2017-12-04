@@ -27,14 +27,14 @@ public class StartWindow{
 	public String[] image = {"bg1.jpg","bg2.jpg","bg3.jpg","bg4.jpg"};
 	public int imageorder = 0;
 	private int frame = 0;
-//	public AudioClip audio;
+	public AudioClip sound;
 	
 	public StartWindow(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		bg = new Canvas(800,450);
-//		audio = new AudioClip("Hello.mp3");
-//		audio.play();
-//		audio.setCycleCount(MediaPlayer.INDEFINITE);
+		AudioClip sound = new AudioClip(ClassLoader.getSystemResource("Hello.mp3").toString());
+		sound.play();
+		sound.setCycleCount(MediaPlayer.INDEFINITE);
 	}
 	public void drawStartWindow() {
 		StackPane root = new StackPane();
