@@ -29,8 +29,9 @@ public class StartWindow{
 
 	private Image background;
 
-
 	public AudioClip sound;
+
+
 
 	
 	public StartWindow(Stage primaryStage) {
