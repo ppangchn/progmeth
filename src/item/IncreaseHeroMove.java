@@ -7,8 +7,7 @@ import javafx.scene.paint.Color;
 
 public class IncreaseHeroMove extends Item {
 	private Random rand = new Random();
-	public IncreaseHeroMove(double x,double y) {
-		super(x,y);
+	public IncreaseHeroMove() {
 //	x = rand.nextDouble();
 //		this.y = rand.nextDouble();
 		// TODO Auto-generated constructor stub

@@ -58,6 +58,19 @@ public class Hero implements IRenderable {
 	public void setHero() {
 		heropic = new Image("front.png");
 	}
+<<<<<<< HEAD
+||||||| merged common ancestors
+
+	@Override
+	public int getZ() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+=======
+
+
+>>>>>>> c2650ba8d6714896cf0c015c69a317ddd5fe9f91
 	@Override
 	public void draw(GraphicsContext gc) {
 		System.out.println("hero");

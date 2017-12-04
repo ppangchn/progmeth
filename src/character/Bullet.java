@@ -39,18 +39,25 @@ public class Bullet implements IRenderable {
 		this.y = y;
 	}
 
+<<<<<<< HEAD
 
 	@Override
+||||||| merged common ancestors
+	@Override
+	public int getZ() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+=======
+	@Override
+>>>>>>> c2650ba8d6714896cf0c015c69a317ddd5fe9f91
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		gc.drawImage(bulletpic, x, y);
 		//System.out.println("BOMP");
 	}
-	@Override
-	public boolean isVisible() {
-		// TODO Auto-generated method stub
-		return isVisible;
-	}
+
 
 	public void setIsvisible(boolean isVisible) {
 		this.isVisible = isVisible;
@@ -63,6 +70,11 @@ public class Bullet implements IRenderable {
 			if (c=='s') y+=5;
 		
 		
+	}
+	@Override
+	public boolean isVisible() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }
