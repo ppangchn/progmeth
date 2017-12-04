@@ -18,6 +18,5 @@ public abstract class Item implements IRenderable{
 		x = rand.nextDouble()*800;
 		y = rand.nextDouble()*450;
 	}
-	public void 
 	
 }

@@ -44,7 +44,7 @@ public class GameWindow extends Canvas{
 		RenderableHolder.getinstance().add(gamescreen);
 		RenderableHolder.getinstance().add(hero);
 		RenderableHolder.getinstance().add(monster);
-		RenderableHolder.getinstance().add(item);
+//		RenderableHolder.getinstance().add(item);
 		requestFocus();
 	}
 	public void drawGameWinDow() {
@@ -142,7 +142,7 @@ public class GameWindow extends Canvas{
 		RenderableHolder.getinstance().add(monster);
 	}
 	public void addItem() {
-		//จะสร้างตัวแปรไอเท็มขึ้นมาใหม่
+		//เธ�เธฐเธชเธฃเน�เธฒเธ�เธ•เธฑเธงเน�เธ�เธฃเน�เธญเน€เธ—เน�เธกเธ�เธถเน�เธ�เธกเธฒเน�เธซเธกเน�
 		RenderableHolder.getinstance().add(item);
 	}
 }

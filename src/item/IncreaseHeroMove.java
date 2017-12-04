@@ -16,11 +16,17 @@ public class IncreaseHeroMove extends Item {
 	public void draw(GraphicsContext gc) {
 			gc.setFill(Color.AQUA);
 			Random rand = new  Random();
-			double x = rand.nextDouble();//ให้อยู่ช้วงที่กำหนดยังไง
+			double x = rand.nextDouble();//เน�เธซเน�เธญเธขเธนเน�เธ�เน�เธงเธ�เธ—เธตเน�เธ�เธณเธซเธ�เธ”เธขเธฑเธ�เน�เธ�
 			double y = rand.nextDouble();
 			gc.fillRect(0, 0, x, y);
 			
 			
+	}
+
+	@Override
+	public boolean isVisible() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

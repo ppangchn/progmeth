@@ -38,20 +38,6 @@ public class Bullet implements IRenderable {
 	public void setY(double y) {
 		this.y = y;
 	}
-
-<<<<<<< HEAD
-
-	@Override
-||||||| merged common ancestors
-	@Override
-	public int getZ() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-=======
-	@Override
->>>>>>> c2650ba8d6714896cf0c015c69a317ddd5fe9f91
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		gc.drawImage(bulletpic, x, y);
@@ -74,7 +60,7 @@ public class Bullet implements IRenderable {
 	@Override
 	public boolean isVisible() {
 		// TODO Auto-generated method stub
-		return false;
+		return isVisible;
 	}
 	
 }
