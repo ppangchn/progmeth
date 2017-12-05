@@ -25,15 +25,16 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class StartWindow{
-	private static final Font TITLE_FONT = new Font("Courier New", 70);
-	private static final Font MENU_FONT = new Font("Courier New", 50);
+	private static final Font TITLE_FONT = new Font("AvenueX", 70);
+	private static final Font MENU_FONT = new Font("Courier New", 40);
 	private static final Font SPACE_FONT = new Font("Courier New", 25);
 	private Stage primaryStage;
 	private Canvas bg;
 	private GraphicsContext gc;
 	private AnimationTimer a;
 	public int imageorder = 0;
-	private int frame = 0;
+	private int framebg = 0;
+	private int framespace = 0;
 	private Image background;
 	private int numberselected = 0;
 
@@ -58,13 +59,6 @@ public class StartWindow{
 	}
 	public void drawStartWindow() {
 		StackPane root = new StackPane();
-//		root.setLayoutX(40);
-//		root.setLayoutY(40);
-//		VBox title = new VBox();
-//		title.setVgrow(bg, Priority.ALWAYS);
-//		title.setPadding(new Insets(40,40,40,100));
-//		title.setSpacing(70);
-//		title.setAlignment(Pos.TOP_RIGHT);
 		root.setPrefSize(800, 450);
 		//vbox.setAlignment(Pos.CENTER_RIGHT);
 		Label gamename = new Label("PEWPEW\nPROGMETH");
@@ -100,6 +94,7 @@ public class StartWindow{
 //		gamename.setTextFill(Color.DEEPPINK);
 //		gamename.setFont(TITLE_FONT);
 //		title.getChildren().addAll(gamename);
+
 		setBackground();
 		setPressSpace();
 		addAction();
@@ -107,18 +102,25 @@ public class StartWindow{
 		Scene scene = new Scene(root);
 		bg.requestFocus();
 		primaryStage.setScene(scene);
-		bg.requestFocus();
-		primaryStage.setTitle("PEWPEW_qaaaaaProgmeth");
+
+		primaryStage.setTitle("PEWPEW_aaaaProgmeth");
+
 		a = new AnimationTimer() {
 			public void handle(long now) {
-//				ActionSelected();
+				if (framebg == 50) {
+					setBackground();
+				}
+				if (framespace == 110) {
+					setPressSpace();
+					framebg=0;
+					framespace=0;
+				}
+				framebg++;
+				framespace++;
 			}
+			
 		};
 		a.start();
-		primaryStage.setTitle("PEWPEW_Progmeth");
-		bg.requestFocus();
-		primaryStage.setTitle("PEWPEW_Progmeth");
-		primaryStage.setTitle("PEWPEW_aaaaProgmeth");
 	}
 	
 	public void setBackground() {
@@ -127,7 +129,11 @@ public class StartWindow{
 		gc.fillRect(0, 0, bg.getWidth(), bg.getHeight());
 		background = new Image("bg.jpg");
 		gc.drawImage(background, 0,0);
-		gc.fillText("PEWPEW\nPROGMETH", 600, 100);
+		gc.setFill(Color.LIGHTSLATEGREY);
+		gc.setFont(TITLE_FONT);
+		gc.fillText("PEWPEW\nPROGMETH", 400, 100);
+		Image wink = new Image("wink.png");
+		gc.drawImage(wink, 400, 80);
 		
 	}
 	public void addAction() {
@@ -137,14 +143,22 @@ public class StartWindow{
 			}
 			if (KeyEvent.getCode() == KeyCode.UP) {
 				if (numberselected !=0) numberselected--;
+				drawSelectedColor();
+				undrawSelectedColor();
 			}
 			if (KeyEvent.getCode() == KeyCode.DOWN) {
 				if (numberselected!=2) numberselected++;
+				drawSelectedColor();
+				undrawSelectedColor();
 			}
 			if (KeyEvent.getCode() == KeyCode.ENTER) {
 					Main.stopMusic = true;
 					GameWindow game = new GameWindow(primaryStage);
 					game.drawGameWinDow();
+			}
+			if (KeyEvent.getCode() == KeyCode.SPACE) {
+				a.stop();
+				drawSelectedColor();
 			}
 		});
 	}
@@ -152,38 +166,56 @@ public class StartWindow{
 		gc.setFill(Color.DIMGREY);
 		gc.setFont(SPACE_FONT);
 		gc.fillText("  Press Space to\nEnter the Main Menu", 440, 270); //508 270
+		
 	}
 	public void setMenu() {
 		setStart();
 		setExit();
+		setHighScore();
 	}
 	public void setStart() {
-		Image start = new Image("start.png");
-		gc.drawImage(start, 508, 270);
+		gc.setFill(Color.GREY);
+		gc.setFont(MENU_FONT);
+		gc.fillText("START", 515, 260);
 	}
 	public void setExit() {
-		GraphicsContext gc = bg.getGraphicsContext2D();
-		gc.setFill(Color.HOTPINK);
+		gc.setFill(Color.GREY);
 		gc.setFont(MENU_FONT);
-		gc.fillText("EXIT", 520, 350);
+		gc.fillText("EXIT", 525, 320);
+	}
+	public void setHighScore() {
+		gc.setFill(Color.GREY);
+		gc.setFont(MENU_FONT);
+		gc.fillText("HIGHSCORE",468, 380);
 	}
 	
-	public void drawSelectedColor(GraphicsContext gc) {
+	public void drawSelectedColor() {
 		setBackground();
+		setMenu();
 		if (numberselected==0) {
-			gc.setFill(Color.INDIANRED);
-			gc.fillRect(500, 265, 70, 80);
-			setStart();
+			gc.setStroke(Color.DARKSLATEGREY);
+			gc.setLineWidth(5);
+			gc.strokeRect(500, 223, 150, 50);
+		}
+		if (numberselected==1) {
+			gc.setStroke(Color.DARKSLATEGREY);
+			gc.setLineWidth(5);
+			gc.strokeRect(500, 283, 130, 50);
+		}
+		if (numberselected==2) {
+			gc.setStroke(Color.DARKSLATEGREY);
+			gc.setLineWidth(5);
+			gc.strokeRect(460, 343, 250, 50);
 		}
 	}
-//	public void undrawSelectedColor() {
-//		
-//	}
-//	public void ActionSelected() {
-//		if (numberselected == 0) {
-//			
-//		}
-//	}
+	public void undrawSelectedColor() {
+		
+	}
+	public void ActionSelected() {
+		if (numberselected == 0) {
+			
+		}
+	}
 	
 	
 }
