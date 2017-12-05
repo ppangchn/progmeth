@@ -15,7 +15,6 @@ public class Main extends Application {
 		AudioClip sound = new AudioClip(ClassLoader.getSystemResource("Hello.mp3").toString());
 		sound.play();
 		s.drawStartWindow();
-		//primaryStage.setTitle("SEDDFSF");
 		primaryStage.show();
 		if(stopMusic) sound.stop();
 		
