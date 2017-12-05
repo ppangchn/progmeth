@@ -27,6 +27,7 @@ import javafx.stage.Stage;
 public class StartWindow{
 	private static final Font TITLE_FONT = new Font("Courier New", 70);
 	private static final Font MENU_FONT = new Font("Courier New", 50);
+	private static final Font SPACE_FONT = new Font("Courier New", 25);
 	private Stage primaryStage;
 	private Canvas bg;
 	private GraphicsContext gc;
@@ -43,7 +44,6 @@ public class StartWindow{
 		AudioClip sound = new AudioClip(ClassLoader.getSystemResource("Hello.mp3").toString());
 		sound.play();
 		sound.setCycleCount(MediaPlayer.INDEFINITE);
-		bg.requestFocus();
 	}
 	public void drawStartWindow() {
 		StackPane root = new StackPane();
@@ -61,12 +61,12 @@ public class StartWindow{
 //		title.getChildren().addAll(gamename);
 		setBackground();
 		setPressSpace();
+		addAction();
 		root.getChildren().addAll(bg);
 		Scene scene = new Scene(root);
 		bg.requestFocus();
 		primaryStage.setScene(scene);
-		bg.requestFocus();
-		primaryStage.setTitle("PEWPEW_Progmeth");
+		primaryStage.setTitle("PEWPEW_aaaaProgmeth");
 	}
 	
 	public void setBackground() {
@@ -78,20 +78,8 @@ public class StartWindow{
 		gc.fillText("PEWPEW\nPROGMETH", 600, 100);
 		
 	}
-	public void addAction(Button b) {
-		b.setOnMouseClicked((MouseEvent) -> {
-			    Main.stopMusic = true;
-				GameWindow game = new GameWindow(primaryStage);
-				game.drawGameWinDow();
-				
-			
-		});
+	public void addAction() {
 		bg.setOnKeyPressed((KeyEvent) -> {
-			if (KeyEvent.getCode() == KeyCode.SPACE) {
-				setBackground();
-				setMenu();
-				//disable space and go to menu
-			}
 			if (KeyEvent.getCode() == KeyCode.ESCAPE) {
 				Platform.exit();
 			}
@@ -101,12 +89,17 @@ public class StartWindow{
 			if (KeyEvent.getCode() == KeyCode.DOWN) {
 				if (numberselected!=2) numberselected++;
 			}
+			if (KeyEvent.getCode() == KeyCode.ENTER) {
+					Main.stopMusic = true;
+					GameWindow game = new GameWindow(primaryStage);
+					game.drawGameWinDow();
+			}
 		});
 	}
 	public void setPressSpace() {
 		gc.setFill(Color.DIMGREY);
-		gc.setFont(MENU_FONT);
-		gc.fillText("Press Space to Enter the Main Menu", 50	, 50); //508 270
+		gc.setFont(SPACE_FONT);
+		gc.fillText("  Press Space to\nEnter the Main Menu", 440, 270); //508 270
 	}
 	public void setMenu() {
 		setStart();
