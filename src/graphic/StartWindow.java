@@ -31,42 +31,28 @@ public class StartWindow{
 	public int imageorder = 0;
 	private int frame = 0;
 	private Image background;
-<<<<<<< HEAD
-||||||| merged common ancestors
+
 
 	public AudioClip sound;
 
 
-
-=======
-
-	public AudioClip sound;
-<<<<<<< HEAD
 	private int numberselected;
-||||||| merged common ancestors
-=======
 
 
-
->>>>>>> 5ab2f7bb22be4c88a108cbc44a8a3d1bfc9cb39d
->>>>>>> 39085c35f95523471cbc860dddf79aac67825512
 	
 	public StartWindow(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		bg = new Canvas(800,450);
-<<<<<<< HEAD
-		
-		
-||||||| merged common ancestors
+
 		AudioClip sound = new AudioClip(ClassLoader.getSystemResource("Hello.mp3").toString());
 		sound.play();
 		sound.setCycleCount(MediaPlayer.INDEFINITE);
-=======
+
 		bg.requestFocus();
-		AudioClip sound = new AudioClip(ClassLoader.getSystemResource("Hello.mp3").toString());
+		
 		sound.play();
 		sound.setCycleCount(MediaPlayer.INDEFINITE);
->>>>>>> 39085c35f95523471cbc860dddf79aac67825512
+
 	}
 	public void drawStartWindow() {
 		StackPane root = new StackPane();
@@ -79,23 +65,23 @@ public class StartWindow{
 		Label gamename = new Label("PEWPEW\nPROGMETH");
 		gamename.setTextFill(Color.DEEPPINK);
 		gamename.setFont(TITLE_FONT);
-//		Button start = new Button("START");
-//		start.setPrefSize(150, 30);
-//		Button exit = new Button("EXIT");
-//		exit.setPrefSize(150, 30);
-//		Button highscore = new Button("HIGHSCORE");
-//		highscore.setPrefSize(150, 30);
-//		vbox.setSpacing(15);
+		Button start = new Button("START");
+		start.setPrefSize(150, 30);
+		Button exit = new Button("EXIT");
+		exit.setPrefSize(150, 30);
+		Button highscore = new Button("HIGHSCORE");
+		highscore.setPrefSize(150, 30);
+		vbox.setSpacing(15);
 		title.getChildren().addAll(gamename,vbox);
-//		vbox.getChildren().addAll(start,exit,highscore);
-//		addAction(start);
+		vbox.getChildren().addAll(start,exit,highscore);
+		addAction(start);
 		setBackground(bg);
 		root.getChildren().addAll(bg,title);
 		Scene scene = new Scene(root);
 		bg.requestFocus();
 		primaryStage.setScene(scene);
 		bg.requestFocus();
-		primaryStage.setTitle("PEWPEW_Progmeth");
+		primaryStage.setTitle("PEWPEW_qaaaaaProgmeth");
 		a = new AnimationTimer() {
 			public void handle(long now) {
 				ActionSelected();
