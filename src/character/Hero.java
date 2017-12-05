@@ -19,6 +19,8 @@ public class Hero implements IRenderable {
 	private String[] right = {"right.png","right2.png","right3.png"};
 	private String[] front = {"front.png","front2.png","front3.png"};
 	private String[] back = {"back.png","back2.png","back3.png"};
+	private boolean isBariaOn =  false;
+	private int BariaCount;
 	
 	
 	public Hero() {
@@ -89,6 +91,7 @@ public class Hero implements IRenderable {
 			y+=4;
 			heropic = new Image(front[time/10]);
 		}
+		
 	}
 	@Override
 	public boolean isVisible() {
@@ -141,13 +144,22 @@ public class Hero implements IRenderable {
 	}
 	
 	public boolean isAttacked(double x, double y) {
-		if(Math.abs(this.x-x)<=25 && Math.abs(this.y-y)<=25) {
-			life--;
+		
+		if(Math.abs(this.x-x)<=25 && Math.abs(this.y-y)<=25 ) {
+			if(isBariaOn) {
+				BariaCount --;
+				if(BariaCount == 0) isBariaOn = false;
+			}
+			
+			else life--;
 			return true;
 		}
 		return false;
 	}
-
+	public void baria() {
+		isBariaOn = true;
+		BariaCount = 3;
+	}
 	
 	
 	

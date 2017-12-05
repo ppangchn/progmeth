@@ -118,6 +118,16 @@ public class GameWindow extends Canvas{
 				bullet = hero.attack(c);
 				
 			}
+			if(KeyEvent.getCode() == KeyCode.D) {
+				bullet = hero.attack('s');
+				bullet = hero.attack('w');
+				bullet = hero.attack('d');
+				bullet = hero.attack('a');
+			}
+			if(KeyEvent.getCode() == KeyCode.S) {
+				hero.baria();
+			}
+			
 		});
 		this.setOnKeyReleased((KeyEvent) -> {
 			if (KeyEvent.getCode() == KeyCode.LEFT) {

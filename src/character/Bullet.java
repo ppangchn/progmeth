@@ -10,6 +10,8 @@ public class Bullet implements IRenderable {
 	public Image bulletpic;
 	public char c;
 	public boolean isVisible = true;
+	
+	
 	public Bullet(double x,double y,char c) {
 		this.x = x;
 		this.y = y;
@@ -22,7 +24,7 @@ public class Bullet implements IRenderable {
 //	}
 	public void setBullet() {
 		
-		String image_path = "cherry.png";
+		String image_path = "bullet.png";
 		Image bullet = new Image(image_path);
 		bulletpic = bullet;	
 	}
@@ -50,7 +52,7 @@ public class Bullet implements IRenderable {
 	}
 	public void updatePos() {
 		// TODO Auto-generated method stub
-			if(c=='a') x-=10;
+			if (c=='a') x-=10;
 			if (c=='d') x+=10;
 			if (c=='w') y-=10;
 			if (c=='s') y+=10;
@@ -63,4 +65,5 @@ public class Bullet implements IRenderable {
 		return isVisible;
 	}
 	
+
 }

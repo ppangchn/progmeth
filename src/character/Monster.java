@@ -9,12 +9,16 @@ import sharedObject.IRenderable;
 public class Monster implements IRenderable {
 	private double x;
 	private double y;
-	private int way;
+	private int way; 
 	public Random rand = new Random();
-	public Image monsterpic;
+	public Image monsterUp = new Image("monsterup.png");
+	public Image monsterDown = new Image("monsterdown.png");
+	public Image monsterDie = new Image("monsterDie.png");
+	public Image monsterPic;
 	public int exp;
 	public boolean isVisible = true;
 	public Hero hero;
+	public int tick;
 	
 	public Monster(Hero hero) {
 		x = (double)rand.nextInt(800);
@@ -45,12 +49,15 @@ public class Monster implements IRenderable {
 	@Override
 	public void draw(GraphicsContext gc) {
 		System.out.println("monster");
-		gc.drawImage(monsterpic, x, y);
-		// TODO Auto-generated method stub
+		if((tick/20)%2==0)monsterPic = monsterUp;
+		else monsterPic = monsterDown;
+		gc.drawImage(monsterPic, x, y);
+		tick++;
+		
 		
 	}
 	public void setImage() {
-		monsterpic = new Image("1424749313.png");
+		monsterPic = monsterUp;
 	}
 	@Override
 	public boolean isVisible() {
