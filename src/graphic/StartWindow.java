@@ -66,7 +66,7 @@ public class StartWindow{
 		bg.requestFocus();
 		primaryStage.setScene(scene);
 		bg.requestFocus();
-		primaryStage.setTitle("PEWPEW_aaaaProgmeth");
+		primaryStage.setTitle("PEWPEW_Progmeth");
 	}
 	
 	public void setBackground() {
