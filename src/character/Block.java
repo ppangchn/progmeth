@@ -13,8 +13,8 @@ public class Block implements IRenderable{
 	private int num;
 	public Image blockimage;
 	public Block() {
-		x = rand.nextDouble()*800;
-		y = rand.nextDouble()*450;
+//		x = rand.nextDouble()*800;
+//		y = rand.nextDouble()*450;
 	}
 	public void Random() {
 		x = rand.nextDouble()*800;
