@@ -1,27 +1,18 @@
 package graphic;
 
-import application.Main;
+import java.util.Random;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseButton;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class StartWindow{
@@ -34,6 +25,8 @@ public class StartWindow{
 	private AnimationTimer a;
 	public int imageorder = 0;
 	public AudioClip sound;
+	public String[] soundURL = {"Hello.mp3","Coward.mp3","JustBeFriend.mp3","TellYourWorld.mp3"};
+	public Random rand;
 	private int framebg = 0;
 	private int framespace = 0;
 	private Image background;
@@ -41,12 +34,13 @@ public class StartWindow{
 	private boolean isPressSpace = false;
 
 	public StartWindow(Stage primaryStage) {
+		rand = new Random();
+		int x = rand.nextInt(soundURL.length);
 		this.primaryStage = primaryStage;
 		bg = new Canvas(800,450);
 		gc = bg.getGraphicsContext2D();
-		sound = new AudioClip(ClassLoader.getSystemResource("Hello.mp3").toString());
+		sound = new AudioClip(ClassLoader.getSystemResource(soundURL[x]).toString());
 		sound.play();
-		sound.setCycleCount(MediaPlayer.INDEFINITE);
 	}
 	public void drawStartWindow() {
 		StackPane root = new StackPane();
@@ -73,6 +67,7 @@ public class StartWindow{
 				}
 				framebg++;
 				framespace++;
+//				if (sound.isPlaying()==false) playSong();
 			}
 			
 		};
@@ -162,18 +157,23 @@ public class StartWindow{
 		if (numberselected==0) {
 			gc.setStroke(Color.DARKSLATEGREY);
 			gc.setLineWidth(5);
-			gc.strokeRect(498, 223, 150, 50);
+			gc.strokeRect(500, 223, 150, 50);
 		}
 		if (numberselected==1) {
 			gc.setStroke(Color.DARKSLATEGREY);
 			gc.setLineWidth(5);
-			gc.strokeRect(515, 283, 130, 50);
+			gc.strokeRect(506, 283, 130, 50);
 		}
 		if (numberselected==2) {
 			gc.setStroke(Color.DARKSLATEGREY);
 			gc.setLineWidth(5);
-			gc.strokeRect(460, 343, 250, 50);
+			gc.strokeRect(450, 343, 250, 50);
 		}
+	}
+	public void playSong() {
+		int x = rand.nextInt(soundURL.length);
+		sound = new AudioClip(ClassLoader.getSystemResource(soundURL[1]).toString());
+		sound.play();
 	}
 	
 	

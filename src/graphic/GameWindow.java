@@ -2,7 +2,6 @@ package graphic;
 
 import java.util.Random;
 
-import application.Main;
 import character.Bullet;
 import character.Hero;
 import character.Monster;
@@ -31,10 +30,14 @@ public class GameWindow extends Canvas{
 	public boolean hasBullet = false;
 	public int frame = 0;
 	private AudioClip soundgame;
+	public String[] soundgameURL = {"Caramelldansen.mp3","PonPonPon.mp3","Senbonzakura.mp3","Melancholic.mp3"};
+	private Random rand;
 	
 
 	
 	public GameWindow(Stage primaryStage) {
+		rand = new Random();
+		int x = rand.nextInt(soundgameURL.length);
 		setWidth(800);
 		setHeight(450);
 		this.primaryStage = primaryStage;
@@ -49,8 +52,8 @@ public class GameWindow extends Canvas{
 		RenderableHolder.getinstance().add(gamescreen);
 		RenderableHolder.getinstance().add(hero);
 		RenderableHolder.getinstance().add(monster);
-		soundgame = new AudioClip(ClassLoader.getSystemResource("Caramelldansen.mp3").toString());
-		//sound.play();
+		soundgame = new AudioClip(ClassLoader.getSystemResource(soundgameURL[x]).toString());
+		soundgame.play();
 		
 //		RenderableHolder.getinstance().add(item);
 		requestFocus();
@@ -85,6 +88,7 @@ public class GameWindow extends Canvas{
 				gamescreen.setHeroData(hero.getLv(),hero.getExp(),hero.getMaxexp(),hero.getLife(),gc);
 				gamescreen.setScore(score);
 				RenderableHolder.getinstance().update(control);
+				if (soundgame.isPlaying()==false) playSong();
 				}
 			};
 			a.start();
@@ -155,6 +159,11 @@ public class GameWindow extends Canvas{
 	public void addItem() {
 		
 		RenderableHolder.getinstance().add(item);
+	}
+	public void playSong() {
+		int x = rand.nextInt(soundgameURL.length);
+		soundgame = new AudioClip(ClassLoader.getSystemResource(soundgameURL[x]).toString());
+		soundgame.play();
 	}
 }
 	
