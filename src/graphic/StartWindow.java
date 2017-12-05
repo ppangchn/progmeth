@@ -29,9 +29,18 @@ public class StartWindow{
 	private AnimationTimer a;
 	public int imageorder = 0;
 	private int frame = 0;
+
 	private Image background;
+
 	public AudioClip sound;
+<<<<<<< HEAD
 	private int numberselected;
+||||||| merged common ancestors
+=======
+
+
+
+>>>>>>> 5ab2f7bb22be4c88a108cbc44a8a3d1bfc9cb39d
 	
 	public StartWindow(Stage primaryStage) {
 		this.primaryStage = primaryStage;
