@@ -30,7 +30,7 @@ public class GameWindow extends Canvas{
 	public char c = 'a';
 	public boolean hasBullet = false;
 	public int frame = 0;
-	private AudioClip sound;
+	private AudioClip soundgame;
 	
 
 	
@@ -49,7 +49,7 @@ public class GameWindow extends Canvas{
 		RenderableHolder.getinstance().add(gamescreen);
 		RenderableHolder.getinstance().add(hero);
 		RenderableHolder.getinstance().add(monster);
-		sound = new AudioClip(ClassLoader.getSystemResource("Caramelldansen 8 Bit.mp3").toString());
+		soundgame = new AudioClip(ClassLoader.getSystemResource("Caramelldansen.mp3").toString());
 		//sound.play();
 		
 //		RenderableHolder.getinstance().add(item);

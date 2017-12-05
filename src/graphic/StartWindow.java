@@ -33,68 +33,24 @@ public class StartWindow{
 	private GraphicsContext gc;
 	private AnimationTimer a;
 	public int imageorder = 0;
+	public AudioClip sound;
 	private int framebg = 0;
 	private int framespace = 0;
 	private Image background;
 	private int numberselected = 0;
-
+	private boolean isPressSpace = false;
 
 	public StartWindow(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		bg = new Canvas(800,450);
-
-
 		gc = bg.getGraphicsContext2D();
-
-		AudioClip sound = new AudioClip(ClassLoader.getSystemResource("Hello.mp3").toString());
+		sound = new AudioClip(ClassLoader.getSystemResource("Hello.mp3").toString());
 		sound.play();
 		sound.setCycleCount(MediaPlayer.INDEFINITE);
-
-		bg.requestFocus();
-
-		
-		sound.play();
-		sound.setCycleCount(MediaPlayer.INDEFINITE);
-
 	}
 	public void drawStartWindow() {
 		StackPane root = new StackPane();
 		root.setPrefSize(800, 450);
-		//vbox.setAlignment(Pos.CENTER_RIGHT);
-		Label gamename = new Label("PEWPEW\nPROGMETH");
-		gamename.setTextFill(Color.DEEPPINK);
-		gamename.setFont(TITLE_FONT);
-		Button start = new Button("START");
-		start.setPrefSize(150, 30);
-		Button exit = new Button("EXIT");
-		exit.setPrefSize(150, 30);
-		Button highscore = new Button("HIGHSCORE");
-		highscore.setPrefSize(150, 30);
-		//vbox.setSpacing(15);
-		//title.getChildren().addAll(gamename,vbox);
-		//vbox.getChildren().addAll(start,exit,highscore);
-		//addAction(start);
-		//setBackground(bg);
-	//	root.getChildren().addAll(bg,title);
-		//vbox.setAlignment(Pos.CENTER_RIGHT);
-		//Label gamename = new Label("PEWPEW\nPROGMETH");
-		//gamename.setTextFill(Color.DEEPPINK);
-		//gamename.setFont(TITLE_FONT);
-//		Button start = new Button("START");
-//		start.setPrefSize(150, 30);
-//		Button exit = new Button("EXIT");
-//		exit.setPrefSize(150, 30);
-//		Button highscore = new Button("HIGHSCORE");
-//		highscore.setPrefSize(150, 30);
-//		vbox.setSpacing(15);
-//		title.getChildren().addAll(gamename,vbox);
-//		vbox.getChildren().addAll(start,exit,highscore);
-//		addAction(start);
-//		Label gamename = new Label("PEWPEW\nPROGMETH");
-//		gamename.setTextFill(Color.DEEPPINK);
-//		gamename.setFont(TITLE_FONT);
-//		title.getChildren().addAll(gamename);
-
 		setBackground();
 		setPressSpace();
 		addAction();
@@ -103,7 +59,7 @@ public class StartWindow{
 		bg.requestFocus();
 		primaryStage.setScene(scene);
 
-		primaryStage.setTitle("PEWPEW_aaaaProgmeth");
+		primaryStage.setTitle("PEWPEW_Progmeth");
 
 		a = new AnimationTimer() {
 			public void handle(long now) {
@@ -138,25 +94,36 @@ public class StartWindow{
 	}
 	public void addAction() {
 		bg.setOnKeyPressed((KeyEvent) -> {
+			if (isPressSpace) {
+				if (KeyEvent.getCode() == KeyCode.UP) {
+					if (numberselected !=0) numberselected--;
+					drawSelectedColor();
+				}
+				if (KeyEvent.getCode() == KeyCode.DOWN) {
+					if (numberselected!=2) numberselected++;
+					drawSelectedColor();
+				}
+				if (KeyEvent.getCode() == KeyCode.SPACE) {
+						if (numberselected==0) {
+							GameWindow game = new GameWindow(primaryStage);
+							game.drawGameWinDow();
+							a.stop();
+							sound.stop();
+						}
+						if (numberselected==1) {
+							Platform.exit();
+						}
+						if (numberselected==2) {
+							
+						}
+						
+				}
+			}
 			if (KeyEvent.getCode() == KeyCode.ESCAPE) {
 				Platform.exit();
 			}
-			if (KeyEvent.getCode() == KeyCode.UP) {
-				if (numberselected !=0) numberselected--;
-				drawSelectedColor();
-				undrawSelectedColor();
-			}
-			if (KeyEvent.getCode() == KeyCode.DOWN) {
-				if (numberselected!=2) numberselected++;
-				drawSelectedColor();
-				undrawSelectedColor();
-			}
-			if (KeyEvent.getCode() == KeyCode.ENTER) {
-					Main.stopMusic = true;
-					GameWindow game = new GameWindow(primaryStage);
-					game.drawGameWinDow();
-			}
 			if (KeyEvent.getCode() == KeyCode.SPACE) {
+				isPressSpace = true;
 				a.stop();
 				drawSelectedColor();
 			}
@@ -195,25 +162,17 @@ public class StartWindow{
 		if (numberselected==0) {
 			gc.setStroke(Color.DARKSLATEGREY);
 			gc.setLineWidth(5);
-			gc.strokeRect(500, 223, 150, 50);
+			gc.strokeRect(498, 223, 150, 50);
 		}
 		if (numberselected==1) {
 			gc.setStroke(Color.DARKSLATEGREY);
 			gc.setLineWidth(5);
-			gc.strokeRect(500, 283, 130, 50);
+			gc.strokeRect(515, 283, 130, 50);
 		}
 		if (numberselected==2) {
 			gc.setStroke(Color.DARKSLATEGREY);
 			gc.setLineWidth(5);
 			gc.strokeRect(460, 343, 250, 50);
-		}
-	}
-	public void undrawSelectedColor() {
-		
-	}
-	public void ActionSelected() {
-		if (numberselected == 0) {
-			
 		}
 	}
 	
