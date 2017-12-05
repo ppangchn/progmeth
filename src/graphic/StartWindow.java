@@ -1,5 +1,6 @@
 package graphic;
 
+import application.Main;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -26,20 +27,13 @@ public class StartWindow{
 	private AnimationTimer a;
 	public int imageorder = 0;
 	private int frame = 0;
-
 	private Image background;
-
-	public AudioClip sound;
-
-
-
 	
 	public StartWindow(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		bg = new Canvas(800,450);
-		AudioClip sound = new AudioClip(ClassLoader.getSystemResource("Hello.mp3").toString());
-		sound.play();
-		sound.setCycleCount(MediaPlayer.INDEFINITE);
+		
+		
 	}
 	public void drawStartWindow() {
 		StackPane root = new StackPane();
@@ -75,6 +69,7 @@ public class StartWindow{
 			}
 		};
 		a.start();
+		
 	}
 	
 	public void setBackground(Canvas bg) {
@@ -85,10 +80,12 @@ public class StartWindow{
 	}
 	public void addAction(Button b) {
 		b.setOnMouseClicked((MouseEvent) -> {
-				a.stop();
-//				audio.stop();
+			    
+			    a.stop();
+			    Main.stopMusic = true;
 				GameWindow game = new GameWindow(primaryStage);
 				game.drawGameWinDow();
+				
 			
 		});
 		bg.setOnKeyPressed((KeyEvent) -> {

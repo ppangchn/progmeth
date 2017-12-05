@@ -2,6 +2,7 @@ package graphic;
 
 import java.util.Random;
 
+import application.Main;
 import character.Bullet;
 import character.Hero;
 import character.Monster;
@@ -12,6 +13,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import sharedObject.RenderableHolder;
 
@@ -28,6 +30,9 @@ public class GameWindow extends Canvas{
 	public char c = 'a';
 	public boolean hasBullet = false;
 	public int frame = 0;
+	private AudioClip sound;
+	
+
 	
 	public GameWindow(Stage primaryStage) {
 		setWidth(800);
@@ -39,11 +44,14 @@ public class GameWindow extends Canvas{
 		scene = new Scene(s);
 		hero = new Hero();
 		gamescreen = new GameScreen();
-		monster = new Monster();
+		monster = new Monster(hero);
 		this.primaryStage.setScene(scene);
 		RenderableHolder.getinstance().add(gamescreen);
 		RenderableHolder.getinstance().add(hero);
 		RenderableHolder.getinstance().add(monster);
+		sound = new AudioClip(ClassLoader.getSystemResource("Caramelldansen 8 Bit.mp3").toString());
+		//sound.play();
+		
 //		RenderableHolder.getinstance().add(item);
 		requestFocus();
 	}
@@ -138,11 +146,11 @@ public class GameWindow extends Canvas{
 		
 	}
 	public void addMonster() {
-		monster = new Monster();
+		monster = new Monster(hero);
 		RenderableHolder.getinstance().add(monster);
 	}
 	public void addItem() {
-		//เธ�เธฐเธชเธฃเน�เธฒเธ�เธ•เธฑเธงเน�เธ�เธฃเน�เธญเน€เธ—เน�เธกเธ�เธถเน�เธ�เธกเธฒเน�เธซเธกเน�
+		
 		RenderableHolder.getinstance().add(item);
 	}
 }
