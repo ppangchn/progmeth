@@ -33,7 +33,7 @@ public class GameScreen implements IRenderable {
 		Font font = new Font("Monospace", 18);
 		gc.setFont(font);
 		gc.drawImage(heart, 20,0);
-		gc.setFill(Color.BLACK);
+		gc.setFill(Color.WHITE);
 		gc.fillText(" : "+life, 50, 20);
 		gc.fillText("Lv: "+lv, 440, 20);
 		gc.fillText("Exp : "+exp+"/"+maxexp,500, 20);

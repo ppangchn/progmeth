@@ -50,10 +50,10 @@ public class Bullet implements IRenderable {
 	}
 	public void updatePos() {
 		// TODO Auto-generated method stub
-			if(c=='a') x-=5;
-			if (c=='d') x+=5;
-			if (c=='w') y-=5;
-			if (c=='s') y+=5;
+			if(c=='a') x-=10;
+			if (c=='d') x+=10;
+			if (c=='w') y-=10;
+			if (c=='s') y+=10;
 		
 		
 	}

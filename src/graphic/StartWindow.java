@@ -1,5 +1,6 @@
 package graphic;
 
+import application.Main;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -29,19 +30,52 @@ public class StartWindow{
 	private AnimationTimer a;
 	public int imageorder = 0;
 	private int frame = 0;
-
 	private Image background;
+<<<<<<< HEAD
+||||||| merged common ancestors
+
+	public AudioClip sound;
+
+
+
+=======
 
 	public AudioClip sound;
 	private int numberselected;
+<<<<<<< HEAD
+||||||| merged common ancestors
+||||||| merged common ancestors
+=======
+
+
+
+>>>>>>> 5ab2f7bb22be4c88a108cbc44a8a3d1bfc9cb39d
+=======
+||||||| merged common ancestors
+=======
+
+
+
+>>>>>>> 5ab2f7bb22be4c88a108cbc44a8a3d1bfc9cb39d
+>>>>>>> 39085c35f95523471cbc860dddf79aac67825512
+>>>>>>> f92c48b68cea8e678322fab9b5e58e115249812d
 	
 	public StartWindow(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		bg = new Canvas(800,450);
+<<<<<<< HEAD
+		
+		
+||||||| merged common ancestors
+		AudioClip sound = new AudioClip(ClassLoader.getSystemResource("Hello.mp3").toString());
+		sound.play();
+		sound.setCycleCount(MediaPlayer.INDEFINITE);
+=======
 		bg.requestFocus();
 		AudioClip sound = new AudioClip(ClassLoader.getSystemResource("Hello.mp3").toString());
 		sound.play();
 		sound.setCycleCount(MediaPlayer.INDEFINITE);
+>>>>>>> 39085c35f95523471cbc860dddf79aac67825512
 	}
 	public void drawStartWindow() {
 		StackPane root = new StackPane();
@@ -71,12 +105,29 @@ public class StartWindow{
 		primaryStage.setScene(scene);
 		bg.requestFocus();
 		primaryStage.setTitle("PEWPEW_Progmeth");
+<<<<<<< HEAD
 //		a = new AnimationTimer() {
 //			public void handle(long now) {
 //				ActionSelected();
 //			}
 //		};
 //		a.start();
+||||||| merged common ancestors
+		a = new AnimationTimer() {
+			public void handle(long now) {
+				ActionSelected();
+			}
+		};
+		a.start();
+=======
+		a = new AnimationTimer() {
+			public void handle(long now) {
+				ActionSelected();
+			}
+		};
+		a.start();
+		
+>>>>>>> f92c48b68cea8e678322fab9b5e58e115249812d
 	}
 	
 	public void setBackground(Canvas bg) {
@@ -89,10 +140,20 @@ public class StartWindow{
 	}
 	public void addAction(Button b) {
 		b.setOnMouseClicked((MouseEvent) -> {
+<<<<<<< HEAD
 //				a.sto                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       p();
 //				audio.stop();
+||||||| merged common ancestors
+				a.stop();
+//				audio.stop();
+=======
+			    
+			    a.stop();
+			    Main.stopMusic = true;
+>>>>>>> f92c48b68cea8e678322fab9b5e58e115249812d
 				GameWindow game = new GameWindow(primaryStage);
 				game.drawGameWinDow();
+				
 			
 		});
 		bg.setOnKeyPressed((KeyEvent) -> {

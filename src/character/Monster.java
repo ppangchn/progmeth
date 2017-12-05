@@ -14,7 +14,8 @@ public class Monster implements IRenderable {
 	public Image monsterpic;
 	public int exp;
 	public boolean isVisible = true;
-	public Monster() {
+	public Hero hero;
+	public Monster(Hero hero) {
 		x = (double)rand.nextInt(800);
 		//y = (double)rand.nextInt(450);
 		y = 100;
@@ -37,6 +38,7 @@ public class Monster implements IRenderable {
 			y=450;
 		}
 		setImage();
+		this.hero = hero; 
 	}
 
 	@Override
@@ -82,6 +84,15 @@ public class Monster implements IRenderable {
 		else if (way==2) x-=2;
 		else if (way==3) y+=2;
 		else if (way==4) y-=2;
+		
+		boolean IsHeroAttacked;
+		IsHeroAttacked = hero.isAttacked(x, y);
+		if(IsHeroAttacked) isVisible = false;
+		
 	}
+	
+	
+	
+	
 	
 }

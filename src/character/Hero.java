@@ -20,6 +20,7 @@ public class Hero implements IRenderable {
 	private String[] front = {"front.png","front2.png","front3.png"};
 	private String[] back = {"back.png","back2.png","back3.png"};
 	
+	
 	public Hero() {
 		this.x = 400;
 		this.y = 225;
@@ -69,7 +70,8 @@ public class Hero implements IRenderable {
 		
 	}
 	public void updatePos(String control) {
-		if (control.contains("a")) if(x>=0) {
+		
+		if (control.contains("a")) if(x>=35) {
 			x-=4;
 			heropic = new Image(left[time/10]);
 		}
@@ -83,7 +85,7 @@ public class Hero implements IRenderable {
 			heropic = new Image(back[time/10]);
 			
 		}
-		if (control.contains("s")) if (y+90<=450) {
+		if (control.contains("s")) if (y+90<=460) {
 			y+=4;
 			heropic = new Image(front[time/10]);
 		}
@@ -136,6 +138,14 @@ public class Hero implements IRenderable {
 
 	public void setLife(int life) {
 		this.life = life;
+	}
+	
+	public boolean isAttacked(double x, double y) {
+		if(Math.abs(this.x-x)<=25 && Math.abs(this.y-y)<=25) {
+			life--;
+			return true;
+		}
+		return false;
 	}
 
 	
