@@ -64,14 +64,10 @@ public class GameWindow extends Canvas{
 		AnimationTimer a = new AnimationTimer() {
 			public void handle(long now) {
 				frame++;
-			if (frame%300 == 0) {
-				addMonster();
-				addMonster();
-				addMonster();
-				addMonster();
-				addMonster();
-				addMonster();
-			}
+
+			if (frame%50 == 0)addMonster();
+
+
 //			if (hero.getLv()>=2 && hero.getLv()<=4) {
 //				frame-=2;
 //			}

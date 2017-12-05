@@ -36,19 +36,65 @@ public class StartWindow{
 	private int framebg = 0;
 	private int framespace = 0;
 	private Image background;
-	public AudioClip sound;
-	private int numberselected;
+	private int numberselected = 0;
+
+
 	public StartWindow(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		bg = new Canvas(800,450);
+
+
 		gc = bg.getGraphicsContext2D();
+
 		AudioClip sound = new AudioClip(ClassLoader.getSystemResource("Hello.mp3").toString());
 		sound.play();
 		sound.setCycleCount(MediaPlayer.INDEFINITE);
+
+		bg.requestFocus();
+
+		
+		sound.play();
+		sound.setCycleCount(MediaPlayer.INDEFINITE);
+
 	}
 	public void drawStartWindow() {
 		StackPane root = new StackPane();
 		root.setPrefSize(800, 450);
+		//vbox.setAlignment(Pos.CENTER_RIGHT);
+		Label gamename = new Label("PEWPEW\nPROGMETH");
+		gamename.setTextFill(Color.DEEPPINK);
+		gamename.setFont(TITLE_FONT);
+		Button start = new Button("START");
+		start.setPrefSize(150, 30);
+		Button exit = new Button("EXIT");
+		exit.setPrefSize(150, 30);
+		Button highscore = new Button("HIGHSCORE");
+		highscore.setPrefSize(150, 30);
+		//vbox.setSpacing(15);
+		//title.getChildren().addAll(gamename,vbox);
+		//vbox.getChildren().addAll(start,exit,highscore);
+		//addAction(start);
+		//setBackground(bg);
+	//	root.getChildren().addAll(bg,title);
+		//vbox.setAlignment(Pos.CENTER_RIGHT);
+		//Label gamename = new Label("PEWPEW\nPROGMETH");
+		//gamename.setTextFill(Color.DEEPPINK);
+		//gamename.setFont(TITLE_FONT);
+//		Button start = new Button("START");
+//		start.setPrefSize(150, 30);
+//		Button exit = new Button("EXIT");
+//		exit.setPrefSize(150, 30);
+//		Button highscore = new Button("HIGHSCORE");
+//		highscore.setPrefSize(150, 30);
+//		vbox.setSpacing(15);
+//		title.getChildren().addAll(gamename,vbox);
+//		vbox.getChildren().addAll(start,exit,highscore);
+//		addAction(start);
+//		Label gamename = new Label("PEWPEW\nPROGMETH");
+//		gamename.setTextFill(Color.DEEPPINK);
+//		gamename.setFont(TITLE_FONT);
+//		title.getChildren().addAll(gamename);
+
 		setBackground();
 		setPressSpace();
 		addAction();
@@ -56,7 +102,9 @@ public class StartWindow{
 		Scene scene = new Scene(root);
 		bg.requestFocus();
 		primaryStage.setScene(scene);
-		primaryStage.setTitle("PEWPEW_Progmeth");
+
+		primaryStage.setTitle("PEWPEW_aaaaProgmeth");
+
 		a = new AnimationTimer() {
 			public void handle(long now) {
 				if (framebg == 50) {
