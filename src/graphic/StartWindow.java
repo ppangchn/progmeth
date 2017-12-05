@@ -33,14 +33,7 @@ public class StartWindow{
 	private Image background;
 
 	public AudioClip sound;
-<<<<<<< HEAD
 	private int numberselected;
-||||||| merged common ancestors
-=======
-
-
-
->>>>>>> 5ab2f7bb22be4c88a108cbc44a8a3d1bfc9cb39d
 	
 	public StartWindow(Stage primaryStage) {
 		this.primaryStage = primaryStage;
@@ -52,7 +45,7 @@ public class StartWindow{
 	}
 	public void drawStartWindow() {
 		StackPane root = new StackPane();
-		VBox vbox = setMenu();
+		VBox vbox = new VBox();
 		VBox title = new VBox();
 		title.setSpacing(70);
 		title.setAlignment(Pos.CENTER_RIGHT);
@@ -61,16 +54,16 @@ public class StartWindow{
 		Label gamename = new Label("PEWPEW\nPROGMETH");
 		gamename.setTextFill(Color.DEEPPINK);
 		gamename.setFont(TITLE_FONT);
-//		Button start = new Button("START");
-//		start.setPrefSize(150, 30);
-//		Button exit = new Button("EXIT");
-//		exit.setPrefSize(150, 30);
-//		Button highscore = new Button("HIGHSCORE");
-//		highscore.setPrefSize(150, 30);
-//		vbox.setSpacing(15);
+		Button start = new Button("START");
+		start.setPrefSize(150, 30);
+		Button exit = new Button("EXIT");
+		exit.setPrefSize(150, 30);
+		Button highscore = new Button("HIGHSCORE");
+		highscore.setPrefSize(150, 30);
+		vbox.setSpacing(15);
 		title.getChildren().addAll(gamename,vbox);
-//		vbox.getChildren().addAll(start,exit,highscore);
-//		addAction(start);
+		vbox.getChildren().addAll(start,exit,highscore);
+		addAction(start);
 		setBackground(bg);
 		root.getChildren().addAll(bg,title);
 		Scene scene = new Scene(root);
@@ -78,12 +71,12 @@ public class StartWindow{
 		primaryStage.setScene(scene);
 		bg.requestFocus();
 		primaryStage.setTitle("PEWPEW_Progmeth");
-		a = new AnimationTimer() {
-			public void handle(long now) {
-				ActionSelected();
-			}
-		};
-		a.start();
+//		a = new AnimationTimer() {
+//			public void handle(long now) {
+//				ActionSelected();
+//			}
+//		};
+//		a.start();
 	}
 	
 	public void setBackground(Canvas bg) {
@@ -96,7 +89,7 @@ public class StartWindow{
 	}
 	public void addAction(Button b) {
 		b.setOnMouseClicked((MouseEvent) -> {
-				a.stop();
+//				a.sto                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       p();
 //				audio.stop();
 				GameWindow game = new GameWindow(primaryStage);
 				game.drawGameWinDow();
@@ -111,39 +104,39 @@ public class StartWindow{
 			}
 		});
 	}
-	public VBox setMenu() {
-		VBox v = new VBox();
-		v.setSpacing(15);
-		v.setAlignment(Pos.CENTER_LEFT);
-		Text start = new Text("START THE GAME");
-		start.setFont(MENU_FONT);
-		start.setFill(Color.HOTPINK);
-		Text exit = new Text("Exit");
-		exit.setFont(MENU_FONT);
-		exit.setFill(Color.HOTPINK);
-		v.getChildren().addAll(start,exit);
-		return v;
-//		start.setPrefSize(150, 30);
-//		Button exit = new Button("EXIT");
-//		exit.setPrefSize(150, 30);
-//		Button highscore = new Button("HIGHSCORE");
-//		highscore.setPrefSize(150, 30);
-//		vbox.setSpacing(15);
-//		title.getChildren().addAll(gamename,vbox);
-//		vbox.getChildren().addAll(start,exit,highscore);
-//		addAction(start);
-	}
-	public void drawSelectedColor() {
-		
-	}
-	public void undrawSelectedColor() {
-		
-	}
-	public void ActionSelected() {
-		if (numberselected == 0) {
-			
-		}
-	}
+//	public VBox setMenu() {
+//		VBox v = new VBox();
+//		v.setSpacing(15);
+//		v.setAlignment(Pos.CENTER_LEFT);
+//		Text start = new Text("START THE GAME");
+//		start.setFont(MENU_FONT);
+//		start.setFill(Color.HOTPINK);
+//		Text exit = new Text("Exit");
+//		exit.setFont(MENU_FONT);
+//		exit.setFill(Color.HOTPINK);
+//		v.getChildren().addAll(start,exit);
+//		return v;
+////		start.setPrefSize(150, 30);
+////		Button exit = new Button("EXIT");
+////		exit.setPrefSize(150, 30);
+////		Button highscore = new Button("HIGHSCORE");
+////		highscore.setPrefSize(150, 30);
+////		vbox.setSpacing(15);
+////		title.getChildren().addAll(gamename,vbox);
+////		vbox.getChildren().addAll(start,exit,highscore);
+////		addAction(start);
+//	}
+//	public void drawSelectedColor() {
+//		
+//	}
+//	public void undrawSelectedColor() {
+//		
+//	}
+//	public void ActionSelected() {
+//		if (numberselected == 0) {
+//			
+//		}
+//	}
 	
 	
 }
