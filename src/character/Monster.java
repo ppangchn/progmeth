@@ -15,6 +15,7 @@ public class Monster implements IRenderable {
 	public int exp;
 	public boolean isVisible = true;
 	public Hero hero;
+	
 	public Monster(Hero hero) {
 		x = (double)rand.nextInt(800);
 		//y = (double)rand.nextInt(450);
@@ -23,19 +24,19 @@ public class Monster implements IRenderable {
 		System.out.println(way);
 		if (way==1) {
 			y = (double)rand.nextInt(200);
-			x=0;
+			x=35;
 		}
 		else if (way==2) {
 			y = (double)rand.nextInt(200);
-			x=800;
+			x=710;
 		}
 		else if (way==3) {
 			x = (double)rand.nextInt(800);
-			y=0;
+			y=4;
 		}
 		else if (way==4) {
 			x = (double)rand.nextInt(800);
-			y=450;
+			y=370;
 		}
 		setImage();
 		this.hero = hero; 
@@ -80,16 +81,36 @@ public class Monster implements IRenderable {
 		this.y = y;
 	}
 	public void updatePos() {
-		if (way==1) x+=2;
-		else if (way==2) x-=2;
-		else if (way==3) y+=2;
-		else if (way==4) y-=2;
-		
+		//if (way==1) x+=2;
+		//else if (way==2) x-=2;
+		//else if (way==3) y+=2;
+		//else if (way==4) y-=2;
+		x+= 1*(calculateCos(hero.getX(),hero.getY()));
+		y+= 1*(calculateSin(hero.getX(),hero.getY()));
 		boolean IsHeroAttacked;
 		IsHeroAttacked = hero.isAttacked(x, y);
 		if(IsHeroAttacked) isVisible = false;
 		
 	}
+	
+	public double calculateSin(double herox, double heroy) {
+		double kam = heroy-this.y;
+		double chid = herox-this.x;
+		double chack = Math.sqrt((kam*kam)+(chid*chid));
+		double sin = kam/chack;
+		return sin;
+		
+	}
+	
+	public double calculateCos(double herox, double heroy) {
+		double kam = heroy-this.y;
+		double chid = herox-this.x;
+		double chack = Math.sqrt((kam*kam)+(chid*chid));
+		double cos = chid/chack;	
+		return cos;
+	}
+	
+	
 	
 	
 	
