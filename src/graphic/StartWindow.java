@@ -96,12 +96,10 @@ public class StartWindow{
 			if (KeyEvent.getCode() == KeyCode.UP) {
 				if (numberselected !=0) numberselected--;
 				drawSelectedColor();
-				undrawSelectedColor();
 			}
 			if (KeyEvent.getCode() == KeyCode.DOWN) {
 				if (numberselected!=2) numberselected++;
 				drawSelectedColor();
-				undrawSelectedColor();
 			}
 			if (KeyEvent.getCode() == KeyCode.ENTER) {
 					Main.stopMusic = true;
@@ -158,14 +156,6 @@ public class StartWindow{
 			gc.setStroke(Color.DARKSLATEGREY);
 			gc.setLineWidth(5);
 			gc.strokeRect(460, 343, 250, 50);
-		}
-	}
-	public void undrawSelectedColor() {
-		
-	}
-	public void ActionSelected() {
-		if (numberselected == 0) {
-			
 		}
 	}
 	
