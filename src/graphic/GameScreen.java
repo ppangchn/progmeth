@@ -44,7 +44,7 @@ public class GameScreen implements IRenderable {
 	}
 	public void setImage() {
 		System.out.println("AA");
-		bggame = new Image("bggame.png");
+		bggame = new Image("bggame.jpg");
 		
 	}
 	@Override
