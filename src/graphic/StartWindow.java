@@ -23,8 +23,10 @@ public class StartWindow{
 	private Canvas bg;
 	private GraphicsContext gc;
 	private AnimationTimer a;
+	private AnimationTimer b;
 	public int imageorder = 0;
 	public AudioClip sound;
+	public AudioClip buttonsound;
 	public String[] soundURL = {"Hello.mp3","Coward.mp3","JustBeFriend.mp3","TellYourWorld.mp3"};
 	public Random rand;
 	private int framebg = 0;
@@ -72,6 +74,12 @@ public class StartWindow{
 			
 		};
 		a.start();
+		b = new AnimationTimer() {
+			public void handle(long now) {
+				if (sound.isPlaying()==false) playSong();
+			}
+		};
+		b.start();
 	}
 	
 	public void setBackground() {
@@ -103,6 +111,7 @@ public class StartWindow{
 							GameWindow game = new GameWindow(primaryStage);
 							game.drawGameWinDow();
 							a.stop();
+							b.stop();
 							sound.stop();
 						}
 						if (numberselected==1) {
@@ -113,6 +122,11 @@ public class StartWindow{
 						}
 						
 				}
+				
+			}
+			if (KeyEvent.getCode() == KeyCode.R) {
+				sound.stop();
+				playSong();
 			}
 			if (KeyEvent.getCode() == KeyCode.ESCAPE) {
 				Platform.exit();
@@ -172,7 +186,7 @@ public class StartWindow{
 	}
 	public void playSong() {
 		int x = rand.nextInt(soundURL.length);
-		sound = new AudioClip(ClassLoader.getSystemResource(soundURL[1]).toString());
+		sound = new AudioClip(ClassLoader.getSystemResource(soundURL[x]).toString());
 		sound.play();
 	}
 	

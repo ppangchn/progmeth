@@ -12,6 +12,7 @@ public class Block implements IRenderable{
 	private Random rand;
 	private int num;
 	public Image blockimage;
+	public boolean isVisible = true;
 	public Block() {
 //		x = rand.nextDouble()*800;
 //		y = rand.nextDouble()*450;
@@ -33,7 +34,7 @@ public class Block implements IRenderable{
 	@Override
 	public boolean isVisible() {
 		// TODO Auto-generated method stub
-		return false;
+		return isVisible;
 	}
 	
 
