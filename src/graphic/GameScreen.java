@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import sharedObject.IRenderable;
 
 public class GameScreen implements IRenderable {
-	public int score = 0;
+	public int currentscore = 0;
 	public int lv;
 	public int exp;
 	public int maxexp;
@@ -37,7 +37,7 @@ public class GameScreen implements IRenderable {
 		gc.fillText(" : "+life, 50, 20);
 		gc.fillText("Lv: "+lv, 440, 20);
 		gc.fillText("Exp : "+exp+"/"+maxexp,500, 20);
-		gc.fillText("SCORE : "+score, 650, 20);
+		gc.fillText("SCORE : "+currentscore, 650, 20);
 		System.out.println("bg");
 		
 		
@@ -54,10 +54,10 @@ public class GameScreen implements IRenderable {
 	}
 
 	public int getScore() {
-		return score;
+		return currentscore;
 	}
 	public void setScore(int score) {
-		this.score = score;
+		currentscore = score;
 	}
 	public void setHeroData(int lv,int exp,int maxexp,int life,GraphicsContext gc) {
 		this.lv =lv;

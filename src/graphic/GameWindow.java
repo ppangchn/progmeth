@@ -2,7 +2,6 @@ package graphic;
 
 import java.util.Random;
 
-import character.Bullet;
 import character.Hero;
 import character.Monster;
 import item.Item;
@@ -18,7 +17,6 @@ import sharedObject.RenderableHolder;
 
 public class GameWindow extends Canvas{
 	private Hero hero;
-	private Bullet bullet;
 	private GameScreen gamescreen;
 	private Monster monster;
 	private Item item;
@@ -30,7 +28,7 @@ public class GameWindow extends Canvas{
 	public boolean hasBullet = false;
 	public int frame = 0;
 	private AudioClip soundgame;
-	public String[] soundgameURL = {"Caramelldansen.mp3","PonPonPon.mp3","Senbonzakura.mp3","Melancholic.mp3"};
+	public String[] soundgameURL = {"Caramelldansen.mp3","PonPonPon.mp3","Senbonzakura.mp3","Melancholic.mp3","LevanPolkka.mp3"};
 	private Random rand;
 	
 
@@ -78,7 +76,6 @@ public class GameWindow extends Canvas{
 //			if(frame%25 ==0 && hero.lv>6 && hero.lv<= 8) addMonster();
 //			if(frame%10 ==0 && hero.lv>8 && hero.lv <=10 ) addMonster();
 ////			if (frame%10000 == 0)//dropItem
-//			
 				RenderableHolder.getinstance().draw(gc);
 				int exp = RenderableHolder.getinstance().setVisible();
 				int score = RenderableHolder.getinstance().remove();
@@ -86,7 +83,7 @@ public class GameWindow extends Canvas{
 				hero.setExp(hero.getExp()+exp);
 				hero.updateLv();
 				gamescreen.setHeroData(hero.getLv(),hero.getExp(),hero.getMaxexp(),hero.getLife(),gc);
-				gamescreen.setScore(score);
+				gamescreen.setScore(gamescreen.getScore()+score);
 				RenderableHolder.getinstance().update(control);
 				if (soundgame.isPlaying()==false) playSong();
 				}
@@ -119,17 +116,21 @@ public class GameWindow extends Canvas{
 				
 			}
 			if (KeyEvent.getCode() == KeyCode.SPACE) {
-				bullet = hero.attack(c);
+				hero.attack(c);
 				
 			}
 			if(KeyEvent.getCode() == KeyCode.D) {
-				bullet = hero.attack('s');
-				bullet = hero.attack('w');
-				bullet = hero.attack('d');
-				bullet = hero.attack('a');
+				hero.attack('s');
+				hero.attack('w');
+				hero.attack('d');
+				hero.attack('a');
 			}
 			if(KeyEvent.getCode() == KeyCode.S) {
 				hero.baria();
+			}
+			if (KeyEvent.getCode() == KeyCode.Q) {
+				StageWindow s = new StageWindow(gc);
+				s.draw();
 			}
 			
 		});

@@ -70,7 +70,7 @@ public class RenderableHolder {
 				score++;
 			}
 		}
-		return score;
+		return score/2;
 	}
 	public void Collision(Hero hero) {
 		for (IRenderable i : object) {
