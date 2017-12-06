@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import sharedObject.IRenderable;
 
 public class GameScreen implements IRenderable {
-	public int score = 0;
+	public int score;
 	public int lv;
 	public int exp;
 	public int maxexp;
