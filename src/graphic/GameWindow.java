@@ -12,7 +12,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sharedObject.RenderableHolder;
 
@@ -31,12 +30,15 @@ public class GameWindow extends Canvas{
 	private AudioClip soundgame;
 	public String[] soundgameURL = {"Caramelldansen.mp3","PonPonPon.mp3","Senbonzakura.mp3","Melancholic.mp3","LevanPolkka.mp3"};
 	private Random rand;
+	private static AnimationTimer gamewindowanimation;
+	private StageWindow stagewindow;
+	private boolean stageON = false ;
 	private AudioClip fire = new AudioClip(ClassLoader.getSystemResource("fire.wav").toString());
 	private int CoolDown = 0;
-	
-
+	private boolean isOver = false;
 	
 	public GameWindow(Stage primaryStage) {
+		stagewindow = new StageWindow(getGraphicsContext2D());
 		rand = new Random();
 		int x = rand.nextInt(soundgameURL.length);
 		setWidth(800);
@@ -65,7 +67,7 @@ public class GameWindow extends Canvas{
 		//addMonster();
 		
 		
-		AnimationTimer a = new AnimationTimer() {
+		gamewindowanimation = new AnimationTimer() {
 			public void handle(long now) {
 				frame++;
 
@@ -88,9 +90,20 @@ public class GameWindow extends Canvas{
 				
 				RenderableHolder.getinstance().update(control);
 				if (soundgame.isPlaying()==false) playSong();
+				if (hero.getLv()==3 && hero.isLvthreebefore()==false && !isOver) {
+					hero.setLvthreebefore(true);
+					gamewindowanimation.stop();
+					stagewindow.draw();
+					stageON = true;
 				}
+				if (hero.getLife()==0) {
+					gamewindowanimation.stop();
+					GameOver.draw(gc);
+					isOver = true;
+				}
+			}
 			};
-			a.start();
+			gamewindowanimation.start();
 	}
 	
 	public void addMoving(GraphicsContext gc) {
@@ -118,9 +131,21 @@ public class GameWindow extends Canvas{
 				
 			}
 			if (KeyEvent.getCode() == KeyCode.SPACE) {
-				fire.play();
-				hero.attack(c);
-				
+				if(stageON) {
+				    gamewindowanimation.start();
+				    stageON = false ;
+				}
+				if (!isOver) {
+					fire.play();
+					hero.attack(c);
+				}
+			}
+			if (KeyEvent.getCode() == KeyCode.ENTER) {
+				if (isOver) {
+					soundgame.stop();
+					StartWindow startwindow = new StartWindow(primaryStage);
+					startwindow.drawStartWindow();
+					}
 			}
 			if(KeyEvent.getCode() == KeyCode.D) {
 				if(CoolDown == 0)
@@ -134,12 +159,13 @@ public class GameWindow extends Canvas{
 				}
 			}
 			if(KeyEvent.getCode() == KeyCode.S) {
-				hero.baria();
+				hero.barrier();
 			}
 			if (KeyEvent.getCode() == KeyCode.Q) {
-				StageWindow s = new StageWindow(gc);
-				s.draw();
+				
 			}
+			
+
 			
 		});
 		this.setOnKeyReleased((KeyEvent) -> {
@@ -184,6 +210,10 @@ public class GameWindow extends Canvas{
 		soundgame = new AudioClip(ClassLoader.getSystemResource(soundgameURL[x]).toString());
 		soundgame.play();
 	}
+	public static AnimationTimer getGamewindowanimation() {
+		return gamewindowanimation;
+	}
 	
+
 }
 	

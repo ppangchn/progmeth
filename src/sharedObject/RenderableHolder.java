@@ -24,7 +24,6 @@ public class RenderableHolder {
 		object.add(i);
 	}
 	public void update(String control) {
-		//System.out.println("UPDATE");
 		for (IRenderable i : object) {
 			if ( i instanceof Hero) {
 				((Hero)i).updatePos(control);
@@ -39,7 +38,9 @@ public class RenderableHolder {
 	}
 	public void draw(GraphicsContext gc) {
 		for (IRenderable i : object) {
+
 		//System.out.println("check");
+
 			i.draw(gc);
 		}
 	}
