@@ -27,7 +27,7 @@ public class StartWindow{
 	private AnimationTimer b;
 	public int imageorder = 0;
 	public AudioClip sound;
-	public AudioClip buttonsound;
+	public AudioClip buttonsound = new AudioClip(ClassLoader.getSystemResource("fire.wav").toString());
 	public String[] soundURL = {"Hello.mp3","Coward.mp3","JustBeFriend.mp3","TellYourWorld.mp3"};
 	public Random rand;
 	private int framebg = 0;
@@ -35,6 +35,7 @@ public class StartWindow{
 	private Image background;
 	private int numberselected = 0;
 	private boolean isPressSpace = false;
+	
 
 	public StartWindow(Stage primaryStage) {
 		rand = new Random();
@@ -100,11 +101,11 @@ public class StartWindow{
 		bg.setOnKeyPressed((KeyEvent) -> {
 			if (isPressSpace) {
 				if (KeyEvent.getCode() == KeyCode.UP) {
-					if (numberselected !=0) numberselected--;
+					if (numberselected !=0) {buttonsound.play() ;numberselected--;}
 					drawSelectedColor();
 				}
 				if (KeyEvent.getCode() == KeyCode.DOWN) {
-					if (numberselected!=2) numberselected++;
+					if (numberselected!=2) {buttonsound.play();numberselected++;}
 					drawSelectedColor();
 				}
 				if (KeyEvent.getCode() == KeyCode.SPACE) {

@@ -167,6 +167,9 @@ public class Hero implements IRenderable {
 		isBariaOn = true;
 		BariaCount = 3;
 	}
+	public int getBariaCount() {
+		return BariaCount;
+	}
 	
 	
 	

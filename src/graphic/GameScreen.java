@@ -9,12 +9,18 @@ import javafx.stage.Stage;
 import sharedObject.IRenderable;
 
 public class GameScreen implements IRenderable {
+
+	public int score;
+
 	public int currentscore = 0;
+
 	public int lv;
 	public int exp;
 	public int maxexp;
 	public int life;
 	public Image bggame;
+	public int BCount;
+	public int CoolDown ;
 	
 	public GameScreen() {
 		setImage();
@@ -38,7 +44,14 @@ public class GameScreen implements IRenderable {
 		gc.fillText("Lv: "+lv, 440, 20);
 		gc.fillText("Exp : "+exp+"/"+maxexp,500, 20);
 		gc.fillText("SCORE : "+currentscore, 650, 20);
+		gc.setFill(Color.WHITE);
+		Image skillbullet = new Image("bullet-crop.png");
+		gc.drawImage(skillbullet, 750,300);
+		gc.fillText("B"+BCount,750,350);
+		gc.fillText("C"+CoolDown,750,380);
 		System.out.println("bg");
+		//Image skill = new Image("skill.png");
+		//gc.drawImage(skill,650,400);
 		
 		
 	}
@@ -65,4 +78,12 @@ public class GameScreen implements IRenderable {
 		this.maxexp = maxexp;
 		this.life = life;
 	}
+	
+	public void setSkillData(int BulletCount , int CoolDown) {
+		this.BCount = BulletCount ;
+		this.CoolDown = CoolDown/30;
+		
+	}
+	
+	
 }
