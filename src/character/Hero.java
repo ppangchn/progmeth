@@ -63,10 +63,10 @@ public class Hero implements IRenderable {
 	}
 	@Override
 	public void draw(GraphicsContext gc) {
-		System.out.println("hero");
+		//System.out.println("hero");
 		time++;
 		if(time>=30) time = 0; 
-		System.out.println("earth");
+		//System.out.println("earth");
 		gc.drawImage(heropic, x, y);
 		
 		

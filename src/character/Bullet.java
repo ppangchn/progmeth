@@ -31,15 +31,11 @@ public class Bullet implements IRenderable {
 	public double getX() {
 		return x;
 	}
-	public void setX(double x) {
-		this.x = x;
-	}
+
 	public double getY() {
 		return y;
 	}
-	public void setY(double y) {
-		this.y = y;
-	}
+	
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		gc.drawImage(bulletpic, x, y);
@@ -56,6 +52,7 @@ public class Bullet implements IRenderable {
 			if (c=='d') x+=10;
 			if (c=='w') y-=10;
 			if (c=='s') y+=10;
+			if(x>800 || x <0 || y>450 || y<0) isVisible = false;
 		
 		
 	}

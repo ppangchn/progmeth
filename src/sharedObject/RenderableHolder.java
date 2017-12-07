@@ -13,6 +13,7 @@ public class RenderableHolder {
 	Scanner keyboard = new Scanner(System.in);
 	private static final RenderableHolder r = new RenderableHolder();
 	private List<IRenderable> object;
+	private int bulletC ;
 	public RenderableHolder() {
 		object = new ArrayList<>();
 	}
@@ -38,7 +39,7 @@ public class RenderableHolder {
 	}
 	public void draw(GraphicsContext gc) {
 		for (IRenderable i : object) {
-		System.out.println("check");
+		//System.out.println("check");
 			i.draw(gc);
 		}
 	}
@@ -66,9 +67,12 @@ public class RenderableHolder {
 		int n = object.size();
 		for (int i=n-1; i>=0; i--) {
 			if (object.get(i).isVisible() == false) {
+				if(object.get(i) instanceof Bullet) System.out.println("remove");
 				object.remove(i);
 				score++;
 			}
+			
+			
 		}
 		return score/2;
 	}

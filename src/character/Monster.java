@@ -48,13 +48,11 @@ public class Monster implements IRenderable {
 
 	@Override
 	public void draw(GraphicsContext gc) {
-		System.out.println("monster");
+		//System.out.println("monster");
 		if((tick/20)%2==0)monsterPic = monsterUp;
 		else monsterPic = monsterDown;
 		gc.drawImage(monsterPic, x, y);
-		tick++;
-		
-		
+		tick++;	
 	}
 	public void setImage() {
 		monsterPic = monsterUp;
