@@ -5,6 +5,7 @@ package graphic;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -13,17 +14,19 @@ public class GameOver {
 	public static final Font CONTENT_FONT = new Font("Digital Tech",40);
 	public static final Font MAIN_FONT = new Font("Courier New",20);
 	public static Image gameover;
+	public static AudioClip gameoversound = new AudioClip(ClassLoader.getSystemResource("GameOver.wav").toString());
 	private static int framebg = 0;
 	private static int framepress =0;
 	private static int count;
+	private static AnimationTimer gameoveranimation;
 	public GameOver() {
 		
 	}
 	public static void draw(GraphicsContext gc) {
 		setImage();
 		count =0;
-		AnimationTimer gameoveranimation = new AnimationTimer() {
-
+		playSong();
+		gameoveranimation = new AnimationTimer() {
 			@Override
 			public void handle(long now) {
 				if (count!=3) {
@@ -70,5 +73,11 @@ public class GameOver {
 	public static void setImage() {
 		gameover = new Image("gameover.jpg");
 		
+	}
+	public static void playSong() {
+		gameoversound.play();
+	}
+	public static void stopAnimationTimer() {
+		gameoveranimation.stop();
 	}
 }

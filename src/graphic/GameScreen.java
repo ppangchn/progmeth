@@ -1,26 +1,20 @@
 package graphic;
 
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 import sharedObject.IRenderable;
 
 public class GameScreen implements IRenderable {
-
-	public int score;
-
-	public int currentscore = 0;
-
-	public int lv;
-	public int exp;
-	public int maxexp;
-	public int life;
-	public Image bggame;
-	public int BCount;
-	public int CoolDown ;
+	private int currentscore = 0;
+	private int lv;
+	private int exp;
+	private int maxexp;
+	private int life;
+	private Image bggame;
+	private int BCount;
+	private int CoolDown ;
 	
 	public GameScreen() {
 		setImage();

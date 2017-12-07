@@ -126,6 +126,7 @@ public class StartWindow{
 				}
 				
 			}
+			
 			if (KeyEvent.getCode() == KeyCode.R) {
 				sound.stop();
 				playSong();

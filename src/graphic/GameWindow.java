@@ -9,6 +9,9 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
@@ -36,6 +39,8 @@ public class GameWindow extends Canvas{
 	private AudioClip fire = new AudioClip(ClassLoader.getSystemResource("fire.wav").toString());
 	private int CoolDown = 0;
 	private boolean isOver = false;
+	private boolean nameable = false;
+	private String playername= "";
 	
 	public GameWindow(Stage primaryStage) {
 		stagewindow = new StageWindow(getGraphicsContext2D());
@@ -89,7 +94,7 @@ public class GameWindow extends Canvas{
 				if(CoolDown != 0 ) CoolDown--;
 				
 				RenderableHolder.getinstance().update(control);
-				if (soundgame.isPlaying()==false) playSong();
+				if (soundgame.isPlaying()==false && !isOver) playSong();
 				if (hero.getLv()==3 && hero.isLvthreebefore()==false && !isOver) {
 					hero.setLvthreebefore(true);
 					gamewindowanimation.stop();
@@ -97,9 +102,10 @@ public class GameWindow extends Canvas{
 					stageON = true;
 				}
 				if (hero.getLife()==0) {
-					gamewindowanimation.stop();
 					GameOver.draw(gc);
+					gamewindowanimation.stop();
 					isOver = true;
+					soundgame.stop();
 				}
 			}
 			};
@@ -108,6 +114,29 @@ public class GameWindow extends Canvas{
 	
 	public void addMoving(GraphicsContext gc) {
 		this.setOnKeyPressed((KeyEvent) -> {
+			if (nameable) {
+				if (KeyEvent.getCode() == KeyCode.BACK_SPACE) {
+					String tmp = playername;
+					playername ="";
+					for (int n=0; n<tmp.length()-1; n++) {
+						playername +=tmp.charAt(n);
+					}
+				}
+				AnimationTimer name = new AnimationTimer() {
+					public void handle(long now) {
+						HighScore.draw(gc,playername);
+					}
+				};
+				name.start();
+				if (playername.length()==11) {
+					Alert alert = new Alert(AlertType.ERROR,"Player's name is too long", ButtonType.OK);
+	                alert.setTitle("Error:PLAYER'S NAME IS TOO LONG");
+	                alert.setHeaderText("");
+	                alert.show();
+				}
+				playername +=KeyEvent.getText();
+				System.out.println(playername);
+			}
 			if (KeyEvent.getCode() == KeyCode.LEFT) {
 				control+="a";
 				c='a';
@@ -141,25 +170,38 @@ public class GameWindow extends Canvas{
 				}
 			}
 			if (KeyEvent.getCode() == KeyCode.ENTER) {
-				if (isOver) {
+				if (isOver && !nameable) {
 					soundgame.stop();
-					StartWindow startwindow = new StartWindow(primaryStage);
-					startwindow.drawStartWindow();
+					GameOver.stopAnimationTimer();
+					nameable = true;
+					HighScore.draw(gc,playername);
+					
+//					StartWindow startwindow = new StartWindow(primaryStage);
+//					startwindow.drawStartWindow();
 					}
-			}
-			if(KeyEvent.getCode() == KeyCode.D) {
-				if(CoolDown == 0)
-				{
-			    fire.play();
-				hero.attack('s');
-				hero.attack('w');
-				hero.attack('d');
-				hero.attack('a');
-				CoolDown = 90;
+				else if (isOver && nameable) {
+					HighScore.addData(gamescreen.getScore(),playername);
+					HighScore.drawTable(gc);
 				}
 			}
+			if(KeyEvent.getCode() == KeyCode.D) {
+				if (!isOver) {
+					if(CoolDown == 0)
+					{
+				    fire.play();
+					hero.attack('s');
+					hero.attack('w');
+					hero.attack('d');
+					hero.attack('a');
+					CoolDown = 90;
+					}
+				}
+				
+			}
 			if(KeyEvent.getCode() == KeyCode.S) {
+				if (!isOver) {
 				hero.barrier();
+				}
 			}
 			if (KeyEvent.getCode() == KeyCode.Q) {
 				
