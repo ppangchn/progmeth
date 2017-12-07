@@ -1,17 +1,14 @@
- package graphic;
+package graphic;
 
 import javafx.animation.AnimationTimer;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import sharedObject.IRenderable;
 
-public class StageWindow {
-	private AnimationTimer stageanimation;
-	public String[] stagedialog = {"Y","O","U"," ","S","O"," ","N","O","O","B"," ","L","A",".","    ","C","A","T","C","H"," ","M","E"," ","I","F"," ","Y","O","U"," ","C","A","N","  !"};
+public class StageWindow5 {
+	private AnimationTimer stageanimation ;
+	public String[] stagedialog = {"I","  ","A","M","  ","Y","O","U","R","  ","F","A","T","H","E","R"};
 	public String[] boss = {"boss.png"};
 	public String sentence ="";
 	public Font font = new Font("Digital Tech",18);
@@ -21,8 +18,7 @@ public class StageWindow {
 	private boolean isVisible = true;
 	public int time = 90;
 	
-	
-	public StageWindow(GraphicsContext gc) {
+	public StageWindow5(GraphicsContext gc) {
 		this.gc = gc;
 	}
 	public void draw() {
@@ -40,13 +36,10 @@ public class StageWindow {
 					if(count <= stagedialog.length-1) sentence+=stagedialog[count];
 					gc.fillText(sentence, 250, 380);
 					if (count<=stagedialog.length-1) count++;
-				    
 					frame++;
-				
 					
 					
 				}
-				
 			}
 		};
 		stageanimation.start();

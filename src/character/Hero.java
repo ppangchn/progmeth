@@ -7,6 +7,10 @@ import sharedObject.RenderableHolder;
 
 public class Hero implements IRenderable {
 	private boolean lvthreebefore = false;
+	private boolean lvsixbefore = false;
+	private boolean lveightbefore = false;
+	private boolean lvninebefore = false;
+	private boolean lvtenbefore = false;
 	private double x ;  //=center;
 	private double y; //=center;
 	private boolean isBuffed = false;
@@ -22,7 +26,7 @@ public class Hero implements IRenderable {
 	private String[] back = {"back.png","back2.png","back3.png"};
 	private boolean isBariaOn =  false;
 	private int BariaCount;
-	
+	private Image barrier = new Image("baria1.png");
 	
 	public Hero() {
 		this.x = 400;
@@ -35,6 +39,32 @@ public class Hero implements IRenderable {
 	public void setLvthreebefore(boolean lvthreebefore) {
 		this.lvthreebefore = lvthreebefore;
 	}
+	public boolean isLvsixbefore() {
+		return lvsixbefore;
+	}
+	public void setLvsixbefore(boolean lvsixbefore) {
+		this.lvsixbefore = lvsixbefore;
+	}
+	public boolean isLveightbefore() {
+		return lveightbefore;
+	}
+	public void setLveightbefore(boolean lveightbefore) {
+		this.lveightbefore = lveightbefore;
+	}
+	public boolean isLvninebefore() {
+		return lvninebefore;
+	}
+	public void setLvninebefore(boolean lvninebefore) {
+		this.lvninebefore = lvninebefore;
+	}
+	public boolean isLvtenbefore() {
+		return lvtenbefore;
+	}
+	public void setLvtenbefore(boolean lvtenbefore) {
+		this.lvtenbefore = lvtenbefore;
+	}
+	
+	
 	public boolean isDead() {
 		if (life==0) return true;
 		return false;
@@ -74,6 +104,7 @@ public class Hero implements IRenderable {
 		time++;
 		if(time>=30) time = 0; 
 		//System.out.println("earth");
+		if(isBariaOn) gc.drawImage(barrier, x-8, y+15);
 		gc.drawImage(heropic, x, y);
 		
 		
@@ -118,9 +149,7 @@ public class Hero implements IRenderable {
 		//control+="b";
 		return bullet;
 	}
-	public void Collision() {
-		
-	}
+	
 	public int getExp() {
 		return exp;
 	}

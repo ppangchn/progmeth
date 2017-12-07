@@ -53,6 +53,22 @@ public class Bullet implements IRenderable {
 			if (c=='w') y-=10;
 			if (c=='s') y+=10;
 			if(x>800 || x <0 || y>450 || y<0) isVisible = false;
+			if( c=='r') {
+				x+=10;
+				y+=10;
+			}
+			if(c=='t') {
+				x+=10;
+				y-=10;
+			}
+			if(c=='y') {
+				x-=10;
+				y-=10;
+			}
+			if(c=='u') {
+				x-=10;
+				y+=10;
+			}
 		
 		
 	}
