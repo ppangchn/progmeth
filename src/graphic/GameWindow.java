@@ -9,13 +9,9 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sharedObject.RenderableHolder;
 
@@ -34,19 +30,12 @@ public class GameWindow extends Canvas{
 	private AudioClip soundgame;
 	public String[] soundgameURL = {"Caramelldansen.mp3","PonPonPon.mp3","Senbonzakura.mp3","Melancholic.mp3","LevanPolkka.mp3"};
 	private Random rand;
-<<<<<<< HEAD
 	private static AnimationTimer gamewindowanimation;
 	private StageWindow stagewindow;
 	private boolean stageON = false ;
-||||||| merged common ancestors
-	
-
-=======
 	private AudioClip fire = new AudioClip(ClassLoader.getSystemResource("fire.wav").toString());
 	private int CoolDown = 0;
-	
-
->>>>>>> 969b17c44e626f1f55c42d3e3b6824fc6ef4812f
+	private boolean isOver = false;
 	
 	public GameWindow(Stage primaryStage) {
 		stagewindow = new StageWindow(getGraphicsContext2D());
@@ -107,6 +96,11 @@ public class GameWindow extends Canvas{
 					stagewindow.draw();
 					stageON = true;
 				}
+				if (hero.getLife()==0) {
+					gamewindowanimation.stop();
+					GameOver.draw(gc);
+					isOver = true;
+				}
 			}
 			};
 			gamewindowanimation.start();
@@ -137,17 +131,21 @@ public class GameWindow extends Canvas{
 				
 			}
 			if (KeyEvent.getCode() == KeyCode.SPACE) {
-<<<<<<< HEAD
 				if(stageON) {
 				    gamewindowanimation.start();
 				    stageON = false ;
 				}
-||||||| merged common ancestors
-=======
-				fire.play();
->>>>>>> 969b17c44e626f1f55c42d3e3b6824fc6ef4812f
-				hero.attack(c);
-				
+				if (!isOver) {
+					fire.play();
+					hero.attack(c);
+				}
+			}
+			if (KeyEvent.getCode() == KeyCode.ENTER) {
+				if (isOver) {
+					soundgame.stop();
+					StartWindow startwindow = new StartWindow(primaryStage);
+					startwindow.drawStartWindow();
+					}
 			}
 			if(KeyEvent.getCode() == KeyCode.D) {
 				if(CoolDown == 0)
@@ -212,16 +210,10 @@ public class GameWindow extends Canvas{
 		soundgame = new AudioClip(ClassLoader.getSystemResource(soundgameURL[x]).toString());
 		soundgame.play();
 	}
-<<<<<<< HEAD
 	public static AnimationTimer getGamewindowanimation() {
 		return gamewindowanimation;
 	}
 	
 
-	
-||||||| merged common ancestors
-=======
-	
->>>>>>> 969b17c44e626f1f55c42d3e3b6824fc6ef4812f
 }
 	
