@@ -6,6 +6,7 @@ import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
 
 public class Hero implements IRenderable {
+	private boolean lvthreebefore = false;
 	private double x ;  //=center;
 	private double y; //=center;
 	private boolean isBuffed = false;
@@ -27,6 +28,12 @@ public class Hero implements IRenderable {
 		this.x = 400;
 		this.y = 225;
 		setHero();
+	}
+	public boolean isLvthreebefore() {
+		return lvthreebefore;
+	}
+	public void setLvthreebefore(boolean lvthreebefore) {
+		this.lvthreebefore = lvthreebefore;
 	}
 	public boolean isDead() {
 		if (life==0) return true;
@@ -156,7 +163,7 @@ public class Hero implements IRenderable {
 		}
 		return false;
 	}
-	public void baria() {
+	public void barrier() {
 		isBariaOn = true;
 		BariaCount = 3;
 	}

@@ -19,6 +19,7 @@ public class StartWindow{
 	private static final Font TITLE_FONT = new Font("AvenueX", 70);
 	private static final Font MENU_FONT = new Font("Courier New", 40);
 	private static final Font SPACE_FONT = new Font("Courier New", 25);
+	private static final Font RANDOM_FONT = new Font("Courier New",18);
 	private Stage primaryStage;
 	private Canvas bg;
 	private GraphicsContext gc;
@@ -69,7 +70,6 @@ public class StartWindow{
 				}
 				framebg++;
 				framespace++;
-//				if (sound.isPlaying()==false) playSong();
 			}
 			
 		};
@@ -93,6 +93,7 @@ public class StartWindow{
 		gc.fillText("PEWPEW\nPROGMETH", 400, 100);
 		Image wink = new Image("wink.png");
 		gc.drawImage(wink, 400, 80);
+		setRandomText();
 		
 	}
 	public void addAction() {
@@ -143,6 +144,11 @@ public class StartWindow{
 		gc.setFont(SPACE_FONT);
 		gc.fillText("  Press Space to\nEnter the Main Menu", 440, 270); //508 270
 		
+	}
+	public void setRandomText() {
+		gc.setFill(Color.DIMGREY);
+		gc.setFont(RANDOM_FONT);
+		gc.fillText("Press R to random the music", 500, 20); //508 270
 	}
 	public void setMenu() {
 		setStart();

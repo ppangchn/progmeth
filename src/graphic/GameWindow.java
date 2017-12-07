@@ -9,6 +9,9 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
@@ -30,10 +33,12 @@ public class GameWindow extends Canvas{
 	private AudioClip soundgame;
 	public String[] soundgameURL = {"Caramelldansen.mp3","PonPonPon.mp3","Senbonzakura.mp3","Melancholic.mp3","LevanPolkka.mp3"};
 	private Random rand;
-	
-
+	private static AnimationTimer gamewindowanimation;
+	private StageWindow stagewindow;
+	private boolean stageON = false ;
 	
 	public GameWindow(Stage primaryStage) {
+		stagewindow = new StageWindow(getGraphicsContext2D());
 		rand = new Random();
 		int x = rand.nextInt(soundgameURL.length);
 		setWidth(800);
@@ -62,7 +67,7 @@ public class GameWindow extends Canvas{
 		//addMonster();
 		
 		
-		AnimationTimer a = new AnimationTimer() {
+		gamewindowanimation = new AnimationTimer() {
 			public void handle(long now) {
 				frame++;
 
@@ -86,9 +91,15 @@ public class GameWindow extends Canvas{
 				gamescreen.setScore(gamescreen.getScore()+score);
 				RenderableHolder.getinstance().update(control);
 				if (soundgame.isPlaying()==false) playSong();
+				if (hero.getLv()==3 && hero.isLvthreebefore()==false) {
+					hero.setLvthreebefore(true);
+					gamewindowanimation.stop();
+					stagewindow.draw();
+					stageON = true;
 				}
+			}
 			};
-			a.start();
+			gamewindowanimation.start();
 	}
 	
 	public void addMoving(GraphicsContext gc) {
@@ -116,6 +127,10 @@ public class GameWindow extends Canvas{
 				
 			}
 			if (KeyEvent.getCode() == KeyCode.SPACE) {
+				if(stageON) {
+				    gamewindowanimation.start();
+				    stageON = false ;
+				}
 				hero.attack(c);
 				
 			}
@@ -126,12 +141,13 @@ public class GameWindow extends Canvas{
 				hero.attack('a');
 			}
 			if(KeyEvent.getCode() == KeyCode.S) {
-				hero.baria();
+				hero.barrier();
 			}
 			if (KeyEvent.getCode() == KeyCode.Q) {
-				StageWindow s = new StageWindow(gc);
-				s.draw();
+				
 			}
+			
+
 			
 		});
 		this.setOnKeyReleased((KeyEvent) -> {
@@ -176,5 +192,11 @@ public class GameWindow extends Canvas{
 		soundgame = new AudioClip(ClassLoader.getSystemResource(soundgameURL[x]).toString());
 		soundgame.play();
 	}
+	public static AnimationTimer getGamewindowanimation() {
+		return gamewindowanimation;
+	}
+	
+
+	
 }
 	
