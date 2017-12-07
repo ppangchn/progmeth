@@ -90,7 +90,7 @@ public class GameWindow extends Canvas{
 				
 				RenderableHolder.getinstance().update(control);
 				if (soundgame.isPlaying()==false) playSong();
-				if (hero.getLv()==3 && hero.isLvthreebefore()==false) {
+				if (hero.getLv()==3 && hero.isLvthreebefore()==false && !isOver) {
 					hero.setLvthreebefore(true);
 					gamewindowanimation.stop();
 					stagewindow.draw();
