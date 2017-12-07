@@ -45,16 +45,20 @@ public class GameScreen implements IRenderable {
 		gc.fillText("Exp : "+exp+"/"+maxexp,500, 20);
 		gc.fillText("SCORE : "+currentscore, 650, 20);
 		gc.setFill(Color.WHITE);
-		Image skillbullet = new Image("skillx42.png");
-		gc.drawImage(skillbullet, 760,300);
+		//Image skill = new Image("skillinven.png");
+		//gc.drawImage(skill,346,386);
+		Image skillbullet = new Image("fuckingfireball1.png");
+		gc.drawImage(skillbullet, 220,10);
 		
-		Image skillulti = new Image("skillulti.png");
-		gc.drawImage(skillulti, 760, 350);
+		Image skillulti = new Image("fuckingulti1.png");
+		gc.drawImage(skillulti, 260, 10);
+		
+		Image skillBaria = new Image("fuckingBaria1.png");
+		gc.drawImage(skillBaria, 300 , 10);
 		gc.fillText("B"+BCount,750,350);
 		gc.fillText("C"+CoolDown,750,380);
 		//System.out.println("bg");
-		//Image skill = new Image("skill.png");
-		//gc.drawImage(skill,650,400);
+		
 		
 		
 	}

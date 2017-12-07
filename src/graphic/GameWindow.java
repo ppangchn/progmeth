@@ -32,13 +32,25 @@ public class GameWindow extends Canvas{
 	private Random rand;
 	private static AnimationTimer gamewindowanimation;
 	private StageWindow stagewindow;
+	private StageWindow2 stagewindow2;
+	private StageWindow3 stagewindow3;
+	private StageWindow4 stagewindow4;
+	private StageWindow5 stagewindow5;
 	private boolean stageON = false ;
 	private AudioClip fire = new AudioClip(ClassLoader.getSystemResource("fire.wav").toString());
 	private int CoolDown = 0;
 	private boolean isOver = false;
+	public int time;
+	
+
+	
 	
 	public GameWindow(Stage primaryStage) {
 		stagewindow = new StageWindow(getGraphicsContext2D());
+		stagewindow2 = new StageWindow2(getGraphicsContext2D());
+		stagewindow3 = new StageWindow3(getGraphicsContext2D());
+		stagewindow4 = new StageWindow4(getGraphicsContext2D());
+		stagewindow5 = new StageWindow5(getGraphicsContext2D());
 		rand = new Random();
 		int x = rand.nextInt(soundgameURL.length);
 		setWidth(800);
@@ -57,6 +69,8 @@ public class GameWindow extends Canvas{
 		RenderableHolder.getinstance().add(monster);
 		soundgame = new AudioClip(ClassLoader.getSystemResource(soundgameURL[x]).toString());
 		soundgame.play();
+	    
+		
 		
 //		RenderableHolder.getinstance().add(item);
 		requestFocus();
@@ -65,7 +79,6 @@ public class GameWindow extends Canvas{
 		addMoving(gc);
 		frame=0;
 		//addMonster();
-		
 		
 		gamewindowanimation = new AnimationTimer() {
 			public void handle(long now) {
@@ -86,16 +99,57 @@ public class GameWindow extends Canvas{
 				gamescreen.setHeroData(hero.getLv(),hero.getExp(),hero.getMaxexp(),hero.getLife(),gc);
 				gamescreen.setScore(gamescreen.getScore()+score);
 				gamescreen.setSkillData(hero.getBariaCount(), CoolDown);
+				fire();
 				if(CoolDown != 0 ) CoolDown--;
+	
 				
 				RenderableHolder.getinstance().update(control);
 				if (soundgame.isPlaying()==false) playSong();
+				
 				if (hero.getLv()==3 && hero.isLvthreebefore()==false && !isOver) {
 					hero.setLvthreebefore(true);
 					gamewindowanimation.stop();
 					stagewindow.draw();
 					stageON = true;
+					
+					
+					
 				}
+				
+				if (hero.getLv()==4 && hero.isLvsixbefore()==false && !isOver) {
+					hero.setLvsixbefore(true);
+					gamewindowanimation.stop();
+					stagewindow2.draw();
+					stageON = true;
+					
+					
+				}
+				if (hero.getLv()==5 && hero.isLveightbefore()==false && !isOver) {
+					hero.setLveightbefore(true);
+					gamewindowanimation.stop();
+					stagewindow3.draw();
+					stageON = true;
+					
+					
+				}
+				if (hero.getLv()==6 && hero.isLvninebefore()==false && !isOver) {
+					hero.setLvninebefore(true);
+					gamewindowanimation.stop();
+					stagewindow4.draw();
+					stageON = true;
+					
+					
+				}
+				if (hero.getLv()==7 && hero.isLvsixbefore()==false && !isOver) {
+					hero.setLvtenbefore(true);
+					gamewindowanimation.stop();
+					stagewindow5.draw();
+					stageON = true;
+					
+					
+				}
+				
+				
 				if (hero.getLife()==0) {
 					gamewindowanimation.stop();
 					GameOver.draw(gc);
@@ -132,8 +186,15 @@ public class GameWindow extends Canvas{
 			}
 			if (KeyEvent.getCode() == KeyCode.SPACE) {
 				if(stageON) {
-				    gamewindowanimation.start();
-				    stageON = false ;
+					if(time <= 0) {
+						gamewindowanimation.start();
+						stageON = false ;
+						if(hero.getLv() == 3)stagewindow.StopAnimationTimer();
+						if(hero.getLv() == 4)stagewindow2.StopAnimationTimer();
+						if(hero.getLv() == 5)stagewindow3.StopAnimationTimer();
+						if(hero.getLv() == 6)stagewindow4.StopAnimationTimer();
+						if(hero.getLv() == 7)stagewindow5.StopAnimationTimer();
+					}
 				}
 				if (!isOver) {
 					fire.play();
@@ -148,15 +209,7 @@ public class GameWindow extends Canvas{
 					}
 			}
 			if(KeyEvent.getCode() == KeyCode.D) {
-				if(CoolDown == 0)
-				{
-			    fire.play();
-				hero.attack('s');
-				hero.attack('w');
-				hero.attack('d');
-				hero.attack('a');
 				CoolDown = 90;
-				}
 			}
 			if(KeyEvent.getCode() == KeyCode.S) {
 				hero.barrier();
@@ -212,6 +265,21 @@ public class GameWindow extends Canvas{
 	}
 	public static AnimationTimer getGamewindowanimation() {
 		return gamewindowanimation;
+	}
+	
+	public void fire() {
+		if(CoolDown %30 ==  0 && CoolDown!=0)
+		{	
+			fire.play();
+			hero.attack('s');
+			hero.attack('w');
+			hero.attack('d');
+			hero.attack('a');
+		    hero.attack('r');
+		    hero.attack('t');
+		    hero.attack('u');
+		    hero.attack('y');
+		}	
 	}
 	
 
