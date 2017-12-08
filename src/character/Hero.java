@@ -26,6 +26,8 @@ public class Hero implements IRenderable {
 	private boolean isBariaOn =  false;
 	private int BariaCount;
 	private Image barrier = new Image("baria1.png");
+	private int speed = 3 ; 
+	
 	
 	public Hero() {
 		this.x = 400;
@@ -114,21 +116,21 @@ public class Hero implements IRenderable {
 	public void updatePos(String control) {
 		
 		if (control.contains("a")) if(x>=35) {
-			x-=4;
+			x-=speed;
 			heropic = new Image(left[time/10]);
 		}
 		if (control.contains("d")) if (x+90<=800) {
-			x+=4; 
+			x+=speed; 
 			heropic = new Image(right[time/10]);
 			
 		}
-		if (control.contains("w")) if (y-4>=0) {
-			y-=4;
+		if (control.contains("w")) if (y-60>=0) {
+			y-=speed;
 			heropic = new Image(back[time/10]);
 			
 		}
 		if (control.contains("s")) if (y+90<=460) {
-			y+=4;
+			y+=speed;
 			heropic = new Image(front[time/10]);
 		}
 		
@@ -202,6 +204,11 @@ public class Hero implements IRenderable {
 		return BariaCount;
 	}
 	
-	
+	public int getSpeed() {
+		return speed;
+	}
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
 	
 }
