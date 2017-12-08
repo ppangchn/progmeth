@@ -9,7 +9,8 @@ import sharedObject.IRenderable;
 public class Monster implements IRenderable {
 	private double x;
 	private double y;
-	private int way; 
+	private int way;
+	private int speed = 1;
 	public Random rand = new Random();
 	public Image monsterUp = new Image("monsterup.png");
 	public Image monsterDown = new Image("monsterdown.png");
@@ -21,9 +22,6 @@ public class Monster implements IRenderable {
 	public int tick;
 	public boolean isCollide = false;
 	public Monster(Hero hero) {
-		
-		
-		
 		way = rand.nextInt(4)+1;
 		System.out.println(way);
 		if (way==1) {
@@ -73,7 +71,6 @@ public class Monster implements IRenderable {
 		}
 		return false;
 	}
-	
 	public double getX() {
 		return x;
 	}
@@ -87,18 +84,23 @@ public class Monster implements IRenderable {
 		this.y = y;
 	}
 	public void updatePos() {
-		//if (way==1) x+=2;
-		//else if (way==2) x-=2;
-		//else if (way==3) y+=2;
-		//else if (way==4) y-=2;
-		x+= 1.5*(calculateCos(hero.getX(),hero.getY()));
-		y+= 1.5*(calculateSin(hero.getX(),hero.getY()));
+
+		x+= speed*(calculateCos(hero.getX(),hero.getY()));
+		y+= speed*(calculateSin(hero.getX(),hero.getY()));
 		boolean IsHeroAttacked;
 		IsHeroAttacked = hero.isAttacked(x, y);
 		if(IsHeroAttacked) {isVisible = false; isCollide = true;}
 		
 	}
 	
+	public int getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+
 	public double calculateSin(double herox, double heroy) {
 		double kam = heroy-this.y;
 		double chid = herox-this.x;
