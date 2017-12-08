@@ -8,7 +8,7 @@ import javafx.scene.text.Font;
 
 public class StageWindow5 {
 	private AnimationTimer stageanimation ;
-	public String[] stagedialog = {"I","  ","A","M","  ","Y","O","U","R","  ","F","A","T","H","E","R","R","R","R","R","R","R","R","R","!"};
+	public String[] stagedialog = {"I"," ","A","M"," ","Y","O","U","R"," ","F","A","T","H","E","R","R","R","R","R","R","R","R","R","!"};
 	public String[] boss = {"boss.png"};
 	public String sentence ="";
 	public static final Font font = new Font("Courier New",18);

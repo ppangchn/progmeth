@@ -48,11 +48,12 @@ public class GameWindow extends Canvas{
 	private boolean nameable = false;
 	private String playername= "";
 	private boolean isStateFive = false;
-	public int time;
-	public int CoolDownUltimateSkill;
-	public int CoolDownFire;
-	public int CoolDownBarrier;
-	public int CoolDownSpeed;
+	private int time;
+	private int CoolDownUltimateSkill;
+	private int CoolDownFire;
+	private int CoolDownBarrier;
+	private int CoolDownSpeed;
+	private Boss boss;
 	
 
 	public GameWindow(Stage primaryStage) {
@@ -102,12 +103,10 @@ public class GameWindow extends Canvas{
 			
 				RenderableHolder.getinstance().draw(gc);
 				int exp = RenderableHolder.getinstance().setVisible();
-				int score = RenderableHolder.getinstance().remove();
 				RenderableHolder.getinstance().Collision(hero);
 				hero.setExp(hero.getExp()+exp);
 				hero.updateLv();
 				gamescreen.setHeroData(hero.getLv(),hero.getExp(),hero.getMaxexp(),hero.getLife(),gc);
-				gamescreen.setScore(gamescreen.getScore()+score);
 				gamescreen.setSkillData(hero.getBariaCount(), FireTimes);
 				fire();
 				if(FireTimes != 0 ) FireTimes--;
@@ -137,22 +136,23 @@ public class GameWindow extends Canvas{
 					stagewindow2.draw();
 					stageON = true;
 				}
-				if (hero.getLv()==5 && hero.isLveightbefore()==false && !isOver) {
-					hero.setLveightbefore(true);
+				if (hero.getLv()==5 && hero.isLvfivebefore()==false && !isOver) {
+					hero.setLvfivebefore(true);
 					gamewindowanimation.stop();
 					stagewindow3.draw();
 					stageON = true;
 				}
-				if (hero.getLv()==6 && hero.isLvninebefore()==false && !isOver) {
-					hero.setLvninebefore(true);
+				if (hero.getLv()==6 && hero.isLvsixbefore()==false && !isOver) {
+					hero.setLvsixbefore(true);
 					gamewindowanimation.stop();
 					stagewindow4.draw();
 					stageON = true;					
 				}
-				if (hero.getLv()==7 && hero.isLvsixbefore()==false && !isOver) {
-					hero.setLvtenbefore(true);
+				if (hero.getLv()==1 && hero.isLvsevenbefore()==false && !isOver) {
+					hero.setLvsevenbefore(true);
 					gamewindowanimation.stop();
 					stagewindow5.draw();
+					isStateFive = true;
 					stageON = true;
 					addBoss();
 				}
@@ -224,19 +224,12 @@ public class GameWindow extends Canvas{
 				}
 			}
 			if (KeyEvent.getCode() == KeyCode.ENTER) {
-				if (isOver && !nameable) {
+				if (isOver) {
 					soundgame.stop();
 					GameOver.stopAnimationTimer();
-					nameable = true;
-					HighScore.draw(gc,playername);
-					
-//					StartWindow startwindow = new StartWindow(primaryStage);
-//					startwindow.drawStartWindow();
+					StartWindow startwindow = new StartWindow(primaryStage);
+					startwindow.drawStartWindow();
 					}
-				else if (isOver && nameable) {
-					HighScore.addData(gamescreen.getScore(),playername);
-					HighScore.drawTable(gc);
-				}
 				if(stageON) {
 					gamewindowanimation.start();
 					stageON = false ;
@@ -245,7 +238,7 @@ public class GameWindow extends Canvas{
 					if(hero.getLv() >= 5)stagewindow3.StopAnimationTimer();
 					if(hero.getLv() >= 6)stagewindow4.StopAnimationTimer();
 					if(hero.getLv() >= 7)stagewindow5.StopAnimationTimer();
-			}
+				}
 			}
 			if(KeyEvent.getCode() == KeyCode.D) {
 				if(CoolDownFire == 0) {FireTimes = 90;
@@ -308,7 +301,7 @@ public class GameWindow extends Canvas{
 		RenderableHolder.getinstance().add(monster);
 	}
 	public void addBoss() {
-		Boss boss = new Boss(hero);
+		boss = new Boss(hero);
 		RenderableHolder.getinstance().add(boss);
 	}
 	public void addItem() {

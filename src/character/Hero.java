@@ -7,17 +7,17 @@ import sharedObject.RenderableHolder;
 
 public class Hero implements IRenderable {
 	private boolean lvthreebefore = false;
+	private boolean lvfourbefore = false;
+	private boolean lvfivebefore = false;
 	private boolean lvsixbefore = false;
-	private boolean lveightbefore = false;
-	private boolean lvninebefore = false;
-	private boolean lvtenbefore = false;
+	private boolean lvsevenbefore = false;
 	private double x ;  //=center;
 	private double y; //=center;
 	private int life = 10;
 	public Image heropic;
 	private int exp = 0;
 	private int lv = 1;
-	private int maxexp = 50;
+	private int maxexp = 30;
 	private int time = 0;
 	private String[] left = {"left.png","left2.png","left3.png"};
 	private String[] right = {"right.png","right2.png","right3.png"};
@@ -44,32 +44,30 @@ public class Hero implements IRenderable {
 	public void setLvthreebefore(boolean lvthreebefore) {
 		this.lvthreebefore = lvthreebefore;
 	}
+	public boolean isLvfourbefore() {
+		return lvsixbefore;
+	}
+	public void setLvfourbefore(boolean lvfourbefore) {
+		this.lvfourbefore = lvfourbefore;
+	}
+	public boolean isLvfivebefore() {
+		return lvfivebefore;
+	}
+	public void setLvfivebefore(boolean lvfivebefore) {
+		this.lvfivebefore = lvfivebefore;
+	}
 	public boolean isLvsixbefore() {
 		return lvsixbefore;
 	}
 	public void setLvsixbefore(boolean lvsixbefore) {
 		this.lvsixbefore = lvsixbefore;
 	}
-	public boolean isLveightbefore() {
-		return lveightbefore;
+	public boolean isLvsevenbefore() {
+		return lvsevenbefore;
 	}
-	public void setLveightbefore(boolean lveightbefore) {
-		this.lveightbefore = lveightbefore;
+	public void setLvsevenbefore(boolean lvsevenbefore) {
+		this.lvsevenbefore = lvsevenbefore;
 	}
-	public boolean isLvninebefore() {
-		return lvninebefore;
-	}
-	public void setLvninebefore(boolean lvninebefore) {
-		this.lvninebefore = lvninebefore;
-	}
-	public boolean isLvtenbefore() {
-		return lvtenbefore;
-	}
-	public void setLvtenbefore(boolean lvtenbefore) {
-		this.lvtenbefore = lvtenbefore;
-	}
-	
-	
 	public boolean isDead() {
 		if (life==0) return true;
 		return false;
@@ -139,7 +137,7 @@ public class Hero implements IRenderable {
 		if (exp>=maxexp) {
 			lv++;
 			exp=0;
-			maxexp+=50*lv;
+			maxexp+=30*lv;
 		}
 	}
 	public Bullet attack(char c) {

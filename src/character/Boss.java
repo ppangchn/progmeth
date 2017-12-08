@@ -1,50 +1,50 @@
 package character;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import graphic.GameWin;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import sharedObject.IRenderable;
 
 public class Boss extends Monster implements IRenderable {
-	private String[] left = {"bossleft1.png","bossleft2.png","bossleft3.png","bossleft4.png"};
-	private String[] right = {"bossright1.png","bossright2.png","bossright3.png","bossright4.png"};
-	private String[] front = {"bossfront1.png","bossfront2.png","bossfront3.png","bossfront4.png"};
-	private String[] back = {"bossback1.png","bossback2.png","bossback3.png","bossback4.png"};
+	private List<Image> front = new ArrayList<>();
 	private double x ;  //=center;
 	private double y; //=center;
 	private int life = 10;
 	public Image bosspic;
 	private int time = 0;
+	private int count = 0;
+	private boolean isVisible = true;
 	public Boss(Hero hero) {
 		super(hero);
+		for (int i=1; i<5; i++) {
+			front.add(new Image("bossfront"+i+".png",40,58,false,false));
+		}
 		// TODO Auto-generated constructor stub
 	}
+	@Override
 	public void draw(GraphicsContext gc) {
 		time++;
-		if(time>=30) time = 0; 
-		gc.drawImage(bosspic, x, y);
-		
-		
-	}
-	public void updatePos() {
-		x+= 1.5*(calculateCos(hero.getX(),hero.getY()));
-		y+= 1.5*(calculateSin(hero.getX(),hero.getY()));
-		if (x<hero.getX()) {
-			
+		if(time==15) {
+			count++;
+			time = 0; 
 		}
-		boolean IsHeroAttacked;
-		IsHeroAttacked = hero.isAttacked(x, y);
-		if(IsHeroAttacked) life--;
-		if (life==0) {
-			isVisible = false;
-			GameWin gamewin = new GameWin();
-		}
+		gc.drawImage(front.get(count), 400, 100);
+		
+		if (count>=3) count = 0;
 		
 	}
 	@Override
 	public boolean isVisible() {
-		return true;
+		return isVisible;
 	}
+//	@Override
+//	public void setImage() {
+//		// TODO Auto-generated method stub
+//		bosspic = new Image("bossfront1.png",40,58,false,false);
+//	}
 
 	
 }

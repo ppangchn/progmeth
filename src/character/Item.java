@@ -8,6 +8,7 @@ import sharedObject.IRenderable;
 public class Item implements IRenderable{
 	double x,y;
 	protected boolean isVisible = true;
+	private int frame = 0;
 	public void effect(Hero hero) {
 		
 	}
@@ -23,7 +24,11 @@ public class Item implements IRenderable{
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		
+		frame++;
+		if (frame==5 && isVisible) {
+			isVisible = false;
+			frame = 0;
+		}
 	}
 
 	@Override

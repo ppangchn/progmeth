@@ -7,7 +7,6 @@ import javafx.scene.text.Font;
 import sharedObject.IRenderable;
 
 public class GameScreen implements IRenderable {
-	private int currentscore = 0;
 	private int lv;
 	private int exp;
 	private int maxexp;
@@ -37,7 +36,6 @@ public class GameScreen implements IRenderable {
 		gc.fillText(" : "+life, 50, 20);
 		gc.fillText("Lv: "+lv, 440, 20);
 		gc.fillText("Exp : "+exp+"/"+maxexp,500, 20);
-		gc.fillText("SCORE : "+currentscore, 650, 20);
 		gc.setFill(Color.WHITE);
 		//Image skill = new Image("skillinven.png");
 		//gc.drawImage(skill,346,386);
@@ -57,21 +55,12 @@ public class GameScreen implements IRenderable {
 		
 	}
 	public void setImage() {
-		System.out.println("AA");
 		bggame = new Image("bggame.jpg");
 		
 	}
 	@Override
 	public boolean isVisible() {
-		// TODO Auto-generated method stub
 		return true;
-	}
-
-	public int getScore() {
-		return currentscore;
-	}
-	public void setScore(int score) {
-		currentscore = score;
 	}
 	public void setHeroData(int lv,int exp,int maxexp,int life,GraphicsContext gc) {
 		this.lv =lv;

@@ -30,7 +30,6 @@ public class StartWindow{
 	private int framespace = 0;
 	private int numberselected = 0;
 	private boolean isPressedSpace = false;
-	private boolean isMuted = false;
 	private Random rand;
 	public Image background;
 	public AudioClip soundbg;
@@ -108,7 +107,7 @@ public class StartWindow{
 					drawSelectedColor();
 				}
 				if (KeyEvent.getCode() == KeyCode.DOWN) {
-					if (numberselected!=2) {buttonsound.play();numberselected++;}
+					if (numberselected!=1) {buttonsound.play();numberselected++;}
 					drawSelectedColor();
 				}
 				if (KeyEvent.getCode() == KeyCode.SPACE) {
@@ -121,9 +120,6 @@ public class StartWindow{
 						}
 						if (numberselected==1) {
 							Platform.exit();
-						}
-						if (numberselected==2) {
-							
 						}
 						
 				}
@@ -170,7 +166,6 @@ public class StartWindow{
 	public void setMenu() {
 		setStart();
 		setExit();
-		setHighScore();
 	}
 	public void setStart() {
 		gc.setFill(Color.GREY);
@@ -182,12 +177,6 @@ public class StartWindow{
 		gc.setFont(MENU_FONT);
 		gc.fillText("EXIT", 525, 320);
 	}
-	public void setHighScore() {
-		gc.setFill(Color.GREY);
-		gc.setFont(MENU_FONT);
-		gc.fillText("HIGHSCORE",468, 380);
-	}
-	
 	public void drawSelectedColor() {
 		setBackground();
 		setMenu();
@@ -201,27 +190,12 @@ public class StartWindow{
 			gc.setLineWidth(5);
 			gc.strokeRect(506, 283, 130, 50);
 		}
-		if (numberselected==2) {
-			gc.setStroke(Color.DARKSLATEGREY);
-			gc.setLineWidth(5);
-			gc.strokeRect(450, 343, 250, 50);
-		}
 	}
 	public void playSong() {
 		int x = rand.nextInt(soundURL.length);
 		soundbg = new AudioClip(ClassLoader.getSystemResource(soundURL[x]).toString());
 		soundbg.play();
 	}
-//	public void muteSong() {
-//		if (!isMuted) {
-//			primaryStage.
-//			isMuted = true;
-//		}
-//		else {
-//			sound.
-//			isMuted = false;
-//		}
-//	}
 	
 	
 }
