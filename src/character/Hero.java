@@ -47,7 +47,7 @@ public class Hero implements IRenderable {
 		this.lvthreebefore = lvthreebefore;
 	}
 	public boolean isLvfourbefore() {
-		return lvsixbefore;
+		return lvfourbefore;
 	}
 	public void setLvfourbefore(boolean lvfourbefore) {
 		this.lvfourbefore = lvfourbefore;

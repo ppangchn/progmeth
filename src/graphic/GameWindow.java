@@ -11,21 +11,30 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
-import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
 
 public class GameWindow extends Canvas{
 	private Hero hero;
 	private GameScreen gamescreen;
 	private Monster monster;
+<<<<<<< HEAD
+	private AudioClip soundgame;
+||||||| merged common ancestors
+	public String control = "";
+	public GraphicsContext gc;
+	public Scene scene;
+	public Stage primaryStage;
+	public char c = 'a';
+	public boolean hasBullet = false;
+	public int frame = 0;
+	private AudioClip soundgame;
+	public String[] soundgameURL = {"Caramelldansen.mp3","PonPonPon.mp3","Senbonzakura.mp3","Melancholic.mp3","LevanPolkka.mp3"};
+=======
+>>>>>>> ee5fd05f05fa74bd03a6c84269ac6da129185339
 	private Random rand;
 	private static AnimationTimer gamewindowanimation;
 	private StageWindow stagewindow;
@@ -37,14 +46,53 @@ public class GameWindow extends Canvas{
 	private AudioClip fire = new AudioClip(ClassLoader.getSystemResource("fire.wav").toString());
 	private int FireTimes = 0;
 	private boolean isOver = false;
+<<<<<<< HEAD
+||||||| merged common ancestors
 	private boolean nameable = false;
 	private String playername= "";
+
+=======
+	private boolean nameable = false;
+	private String playername= "";
+>>>>>>> ee5fd05f05fa74bd03a6c84269ac6da129185339
 	private boolean isStateFive = false;
 	private int CoolDownUltimateSkill;
 	private int CoolDownFire;
 	private int CoolDownBarrier;
 	private int CoolDownSpeed;
 	private Boss boss;
+<<<<<<< HEAD
+	public String control = "";
+	public GraphicsContext gc;
+	public Scene scene;
+	public Stage primaryStage;
+	public char c = 'a';
+	public boolean hasBullet = false;
+	public int frame = 0;
+	
+	public String[] soundgameURL = {"Caramelldansen.mp3","PonPonPon.mp3","Senbonzakura.mp3","Melancholic.mp3","LevanPolkka.mp3"};
+	
+||||||| merged common ancestors
+||||||| merged common ancestors
+	public int time;
+	public int CoolDownUltimateSkill;
+	public int CoolDownFire;
+	public int CoolDownBarrier;
+	public int CoolDownSpeed;
+=======
+>>>>>>> 3f13d848da35fc5ea748299f8cf398ffaf5f198e
+||||||| merged common ancestors
+>>>>>>> 3f13d848da35fc5ea748299f8cf398ffaf5f198e
+=======
+
+>>>>>>> 749de8d55bef35dbe68c03cf43b315905f6bbadd
+	public int time;
+	public int CoolDownUltimateSkill;
+	public int CoolDownFire;
+	public int CoolDownBarrier;
+	public int CoolDownSpeed;
+>>>>>>> aa25c97fa94af75dcb5369a0935284928d1d80d4
+=======
 	private AudioClip soundgame;
 	public String control = "";
 	public GraphicsContext gc;
@@ -53,6 +101,7 @@ public class GameWindow extends Canvas{
 	public char c = 'a';
 	public boolean hasBullet = false;
 	public int frame = 0;
+>>>>>>> ee5fd05f05fa74bd03a6c84269ac6da129185339
 	
 	public String[] soundgameURL = {"Caramelldansen.mp3","PonPonPon.mp3","Senbonzakura.mp3","Melancholic.mp3","LevanPolkka.mp3"};
 
@@ -172,31 +221,6 @@ public class GameWindow extends Canvas{
 	
 	public void addMoving(GraphicsContext gc) {
 		this.setOnKeyPressed((KeyEvent) -> {
-			if (nameable) {
-				if (KeyEvent.getCode() == KeyCode.BACK_SPACE) {
-					String tmp = playername;
-					playername ="";
-					for (int n=0; n<tmp.length()-1; n++) {
-						playername +=tmp.charAt(n);
-					}
-				}
-				AnimationTimer name = new AnimationTimer() {
-					public void handle(long now) {
-						HighScore.draw(gc,playername);
-					}
-				};
-				name.start();
-				if (playername.length()==11) {
-					Alert alert = new Alert(AlertType.ERROR,"Player's name is too long", ButtonType.OK);
-	                alert.setTitle("Error:PLAYER'S NAME IS TOO LONG");
-	                alert.setHeaderText("");
-	                alert.show();
-				}
-				playername +=KeyEvent.getText();
-				
-				System.out.println(playername);
-				
-			}
 			if (KeyEvent.getCode() == KeyCode.LEFT) {
 				control+="a";
 				c='a';
@@ -220,10 +244,10 @@ public class GameWindow extends Canvas{
 				
 			}
 			if (KeyEvent.getCode() == KeyCode.SPACE) {
-				if (!isOver && !stageON) {
+//				if (!isOver && !stageON) {
 					fire.play();
 					hero.attack(c);
-				}
+//				}
 			}
 			if (KeyEvent.getCode() == KeyCode.ENTER) {
 				if (isOver) {
@@ -233,13 +257,14 @@ public class GameWindow extends Canvas{
 					startwindow.drawStartWindow();
 					}
 				if(stageON) {
-					gamewindowanimation.start();
-					stageON = false ;
 					if(hero.getLv() >= 3)stagewindow.StopAnimationTimer();
 					if(hero.getLv() >= 4)stagewindow2.StopAnimationTimer();
 					if(hero.getLv() >= 5)stagewindow3.StopAnimationTimer();
 					if(hero.getLv() >= 6)stagewindow4.StopAnimationTimer();
 					if(hero.getLv() >= 7)stagewindow5.StopAnimationTimer();
+					gamewindowanimation.start();
+					stageON = false ;
+					
 				}
 			}
 			if(KeyEvent.getCode() == KeyCode.D) {
@@ -307,7 +332,7 @@ public class GameWindow extends Canvas{
 		RenderableHolder.getinstance().add(monster);
 	}
 	public void addBoss() {
-		boss = new Boss(hero);
+		boss = new Boss();
 		RenderableHolder.getinstance().add(boss);
 	}
 	public void addItem() {
