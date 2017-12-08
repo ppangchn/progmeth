@@ -28,6 +28,7 @@ public class Hero implements IRenderable {
 	private Image barrier = new Image("baria1.png");
 	private int speed = 3 ; 
 	private Image UltiEffect = new Image("UltiEffect.png");
+	private boolean  isBoss = false;
 	public boolean isUltiOn = false;
 	
 	
@@ -110,25 +111,27 @@ public class Hero implements IRenderable {
 		
 	}
 	public void updatePos(String control) {
+		if (!isBoss) {
+			if (control.contains("a")) if(x>=35) {
+				x-=speed;
+				heropic = new Image(left[time/10]);
+			}
+			if (control.contains("d")) if (x+90<=800) {
+				x+=speed; 
+				heropic = new Image(right[time/10]);
+				
+			}
+			if (control.contains("w")) if (y-60>=0) {
+				y-=speed;
+				heropic = new Image(back[time/10]);
+				
+			}
+			if (control.contains("s")) if (y+90<=460) {
+				y+=speed;
+				heropic = new Image(front[time/10]);
+			}
+		}
 		
-		if (control.contains("a")) if(x>=35) {
-			x-=speed;
-			heropic = new Image(left[time/10]);
-		}
-		if (control.contains("d")) if (x+90<=800) {
-			x+=speed; 
-			heropic = new Image(right[time/10]);
-			
-		}
-		if (control.contains("w")) if (y-60>=0) {
-			y-=speed;
-			heropic = new Image(back[time/10]);
-			
-		}
-		if (control.contains("s")) if (y+90<=460) {
-			y+=speed;
-			heropic = new Image(front[time/10]);
-		}
 		
 	}
 	@Override
@@ -205,6 +208,9 @@ public class Hero implements IRenderable {
 	}
 	public void setSpeed(int speed) {
 		this.speed = speed;
+	}
+	public void setBoss(boolean isBoss) {
+		this.isBoss = isBoss;
 	}
 	
 }

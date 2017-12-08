@@ -10,14 +10,15 @@ import sharedObject.IRenderable;
 public class Boss extends Hero implements IRenderable {
 	private List<Image> front = new ArrayList<>();
 	public Image bosspic;
-	private double x;
-	private double y;
+	private double x = 400;
+	private double y = 100;
 	private int time = 0;
 	private int count = 0;
 	private boolean isVisible = true;
 	public Boss() {
-		super.setX(400);
-		super.setY(100);
+		super.setX(x);
+		super.setY(y);
+		super.setBoss(true);
 		for (int i=1; i<5; i++) {
 			front.add(new Image("bossfront"+i+".png",40,58,false,false));
 		}
