@@ -108,9 +108,9 @@ public class GameWindow extends Canvas{
 				if(CoolDownBarrier != 0 )CoolDownBarrier--;
 				if(CoolDownSpeed != 0) {
 					CoolDownSpeed--;
-					hero.setSpeed(8);
+					hero.setSpeed(6);
 				}
-				else {hero.setSpeed(3); hero.isUltiOn =false;}
+				else {hero.setSpeed(hero.getSpeed()); hero.isUltiOn =false;}
 				gamescreen.setCoolDown(CoolDownFire, CoolDownBarrier, CoolDownUltimateSkill);
 				
 				RenderableHolder.getinstance().update(control);
@@ -308,7 +308,22 @@ public class GameWindow extends Canvas{
 		}	
 	}
 	public void setLV() {
+		if(hero.getLv() ==3) {
+			Monster.speed = 1.2;
+			hero.setSpeed(4);
 		
+		}
+		if(hero.getLv() == 4) {
+			Monster.speed = 1.4;
+			
+		}
+		if(hero.getLv() == 5) {
+			Monster.speed = 1.6;
+		
+		}
+		if(hero.getLv() == 6) {
+			Monster.speed = 1.8;
+		}
 	}
 
 }
