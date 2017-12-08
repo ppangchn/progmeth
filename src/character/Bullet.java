@@ -7,26 +7,18 @@ import sharedObject.IRenderable;
 public class Bullet implements IRenderable {
 	private double x;
 	private double y;
+	private char direction;
+	private boolean isVisible = true;
 	public Image bulletpic;
-	public char c;
-	public boolean isVisible = true;
 	
-	
-	public Bullet(double x,double y,char c) {
+	public Bullet(double x,double y,char direction) {
 		this.x = x;
 		this.y = y;
-		this.c = c;
+		this.direction = direction;
 		setBullet();
 	}
-//	public void Shooting() {
-//		draw
-//		
-//	}
 	public void setBullet() {
-		
-		String image_path = "bullet.png";
-		Image bullet = new Image(image_path);
-		bulletpic = bullet;	
+		bulletpic = new Image("bullet.png");
 	}
 	public double getX() {
 		return x;
@@ -48,24 +40,24 @@ public class Bullet implements IRenderable {
 	}
 	public void updatePos() {
 		// TODO Auto-generated method stub
-			if (c=='a') x-=10;
-			if (c=='d') x+=10;
-			if (c=='w') y-=10;
-			if (c=='s') y+=10;
+			if (direction=='a') x-=10;
+			if (direction=='d') x+=10;
+			if (direction=='w') y-=10;
+			if (direction=='s') y+=10;
 			if(x>800 || x <0 || y>450 || y<0) isVisible = false;
-			if( c=='r') {
+			if( direction=='r') {
 				x+=10;
 				y+=10;
 			}
-			if(c=='t') {
+			if(direction=='t') {
 				x+=10;
 				y-=10;
 			}
-			if(c=='y') {
+			if(direction=='y') {
 				x-=10;
 				y-=10;
 			}
-			if(c=='u') {
+			if(direction=='u') {
 				x-=10;
 				y+=10;
 			}

@@ -11,10 +11,11 @@ import sharedObject.IRenderable;
 
 public class StageWindow {
 	private AnimationTimer stageanimation;
-	public String[] stagedialog = {"Y","O","U"," ","S","O"," ","N","O","O","B"," ","L","A",".","    ","C","A","T","C","H"," ","M","E"," ","I","F"," ","Y","O","U"," ","C","A","N","  !"};
-	public String[] boss = {"boss.png"};
+	public String[] stagedialog = {"Y","o","u"," ","s","o"," ","n","o","o","b"," ","l","a","~"," ","C","a","t","c","h"," ","m","e"," ","i","f"," ","y","o","u"," ","c","a","n"," ",":","P"};
+	public String[] boss = {"bossblack.png"};
 	public String sentence ="";
-	public Font font = new Font("Digital Tech",18);
+	public static final Font font = new Font("Courier New",18);
+	public static final Font enter = new Font("Courier New",12);
 	private int count = 0;
 	public int frame=0;
 	public GraphicsContext gc;
@@ -40,7 +41,8 @@ public class StageWindow {
 					if(count <= stagedialog.length-1) sentence+=stagedialog[count];
 					gc.fillText(sentence, 250, 380);
 					if (count<=stagedialog.length-1) count++;
-				    
+					gc.setFont(enter);
+				    gc.fillText("Press Enter", 700, 420);
 					frame++;
 				
 					

@@ -13,7 +13,6 @@ public class Hero implements IRenderable {
 	private boolean lvtenbefore = false;
 	private double x ;  //=center;
 	private double y; //=center;
-	private boolean isBuffed = false;
 	private int life = 10;
 	public Image heropic;
 	private int exp = 0;
@@ -32,6 +31,9 @@ public class Hero implements IRenderable {
 		this.x = 400;
 		this.y = 225;
 		setHero();
+	}
+	public void gainHP() {
+		this.life+=1;
 	}
 	public boolean isLvthreebefore() {
 		return lvthreebefore;

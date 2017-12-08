@@ -2,9 +2,10 @@ package graphic;
 
 import java.util.Random;
 
+import character.Heart;
 import character.Hero;
+import character.Item;
 import character.Monster;
-import item.Item;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -22,7 +23,6 @@ public class GameWindow extends Canvas{
 	private Hero hero;
 	private GameScreen gamescreen;
 	private Monster monster;
-	private Item item;
 	public String control = "";
 	public GraphicsContext gc;
 	public Scene scene;
@@ -43,17 +43,11 @@ public class GameWindow extends Canvas{
 	private AudioClip fire = new AudioClip(ClassLoader.getSystemResource("fire.wav").toString());
 	private int CoolDown = 0;
 	private boolean isOver = false;
-<<<<<<< HEAD
 	private boolean nameable = false;
 	private String playername= "";
-||||||| merged common ancestors
-=======
 	public int time;
 	
 
-	
->>>>>>> c0ac071f8dee2930fbd4317c4d3ae896c9d99534
-	
 	public GameWindow(Stage primaryStage) {
 		stagewindow = new StageWindow(getGraphicsContext2D());
 		stagewindow2 = new StageWindow2(getGraphicsContext2D());
@@ -97,6 +91,7 @@ public class GameWindow extends Canvas{
 				{
 					
 					if (frame%60 ==0 )addMonster();
+					if(frame %300==0)addItem();
 				}
 			
 				RenderableHolder.getinstance().draw(gc);
@@ -113,14 +108,9 @@ public class GameWindow extends Canvas{
 	
 				
 				RenderableHolder.getinstance().update(control);
-<<<<<<< HEAD
 				if (soundgame.isPlaying()==false && !isOver) playSong();
-||||||| merged common ancestors
 				if (soundgame.isPlaying()==false) playSong();
-=======
 				if (soundgame.isPlaying()==false) playSong();
-				
->>>>>>> c0ac071f8dee2930fbd4317c4d3ae896c9d99534
 				if (hero.getLv()==3 && hero.isLvthreebefore()==false && !isOver) {
 					hero.setLvthreebefore(true);
 					gamewindowanimation.stop();
@@ -172,6 +162,8 @@ public class GameWindow extends Canvas{
 					soundgame.stop();
 				}
 			}
+
+
 			};
 			gamewindowanimation.start();
 	}
@@ -224,17 +216,7 @@ public class GameWindow extends Canvas{
 				
 			}
 			if (KeyEvent.getCode() == KeyCode.SPACE) {
-				if(stageON) {
-					if(time <= 0) {
-						gamewindowanimation.start();
-						stageON = false ;
-						if(hero.getLv() == 3)stagewindow.StopAnimationTimer();
-						if(hero.getLv() == 4)stagewindow2.StopAnimationTimer();
-						if(hero.getLv() == 5)stagewindow3.StopAnimationTimer();
-						if(hero.getLv() == 6)stagewindow4.StopAnimationTimer();
-						if(hero.getLv() == 7)stagewindow5.StopAnimationTimer();
-					}
-				}
+				
 				if (!isOver) {
 					fire.play();
 					hero.attack(c);
@@ -254,34 +236,36 @@ public class GameWindow extends Canvas{
 					HighScore.addData(gamescreen.getScore(),playername);
 					HighScore.drawTable(gc);
 				}
+				if(stageON) {
+					gamewindowanimation.start();
+					stageON = false ;
+					if(hero.getLv() >= 3)stagewindow.StopAnimationTimer();
+					if(hero.getLv() >= 4)stagewindow2.StopAnimationTimer();
+					if(hero.getLv() >= 5)stagewindow3.StopAnimationTimer();
+					if(hero.getLv() >= 6)stagewindow4.StopAnimationTimer();
+					if(hero.getLv() >= 7)stagewindow5.StopAnimationTimer();
+			}
 			}
 			if(KeyEvent.getCode() == KeyCode.D) {
-<<<<<<< HEAD
 				if (!isOver) {
-					if(CoolDown == 0)
-					{
-				    fire.play();
-					hero.attack('s');
-					hero.attack('w');
-					hero.attack('d');
-					hero.attack('a');
+					if(CoolDown == 0) {
+					    fire.play();
+						hero.attack('s');
+						hero.attack('w');
+						hero.attack('d');
+						hero.attack('a');
 					CoolDown = 90;
 					}
+					if(CoolDown == 0) {
+					    fire.play();
+						hero.attack('s');
+						hero.attack('w');
+						hero.attack('d');
+						hero.attack('a');
+						CoolDown = 90;
+						}
+					CoolDown = 90;
 				}
-				
-||||||| merged common ancestors
-				if(CoolDown == 0)
-				{
-			    fire.play();
-				hero.attack('s');
-				hero.attack('w');
-				hero.attack('d');
-				hero.attack('a');
-				CoolDown = 90;
-				}
-=======
-				CoolDown = 90;
->>>>>>> c0ac071f8dee2930fbd4317c4d3ae896c9d99534
 			}
 			if(KeyEvent.getCode() == KeyCode.S) {
 				if (!isOver) {
@@ -329,7 +313,8 @@ public class GameWindow extends Canvas{
 		RenderableHolder.getinstance().add(monster);
 	}
 	public void addItem() {
-		
+		// TODO Auto-generated method stub
+		Item item = new Heart();
 		RenderableHolder.getinstance().add(item);
 	}
 	public void playSong() {

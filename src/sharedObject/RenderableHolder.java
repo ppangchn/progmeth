@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import character.Bullet;
 import character.Hero;
+import character.Item;
 import character.Monster;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -84,7 +85,18 @@ public class RenderableHolder {
 					hero.decreaseLife();
 				}
 			}
+			if(i instanceof Item) {
+				
+				if(getDist(hero.getX(),((Item)i).getX(),hero.getY(),((Item)i).getY()) <= 20) {
+					System.out.println(""+hero.getX()+" "+((Item)i).getX()+" "+hero.getY()+" "+((Item)i).getY());
+					((Item) i).effect(hero);
+				}
+			}
 		}
+	}
+	public double getDist(double x1,double x2,double y1,double y2) {
+		double ans = Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
+		return ans;
 	}
 	
 }
