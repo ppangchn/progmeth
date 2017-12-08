@@ -14,7 +14,6 @@ public class RenderableHolder {
 	Scanner keyboard = new Scanner(System.in);
 	private static final RenderableHolder r = new RenderableHolder();
 	private List<IRenderable> object;
-	private int bulletC ;
 	public RenderableHolder() {
 		object = new ArrayList<>();
 	}

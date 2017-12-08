@@ -8,13 +8,14 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
 public class HighScore {
 	private static List<String> data = new ArrayList<>();
 	public static final Font font = new Font("Digital tech",50);
 	private static AnimationTimer entername;
 	private String name ="";
-	public HighScore() {
+	public HighScore(Stage primarystage) {
 	}
 	public static void draw(GraphicsContext gc,String name) {
 		
