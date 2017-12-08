@@ -14,7 +14,9 @@ public class GameScreen implements IRenderable {
 	private Image bggame;
 	private int BCount;
 	private int CoolDown ;
-	
+	private Image skillbullet;
+	private Image skillulti;
+	private Image skillBaria;
 	public GameScreen() {
 		setImage();
 	}
@@ -39,17 +41,14 @@ public class GameScreen implements IRenderable {
 		gc.setFill(Color.WHITE);
 		//Image skill = new Image("skillinven.png");
 		//gc.drawImage(skill,346,386);
-		Image skillbullet = new Image("fuckingfireball1.png");
-		gc.drawImage(skillbullet, 220,10);
-		
-		Image skillulti = new Image("fuckingulti1.png");
-		gc.drawImage(skillulti, 260, 10);
-		
-		Image skillBaria = new Image("fuckingBaria1.png");
-		gc.drawImage(skillBaria, 300 , 10);
-		gc.fillText("B"+BCount,750,350);
-		gc.fillText("C"+CoolDown,750,380);
 		//System.out.println("bg");
+		gc.drawImage(skillBaria, 220,5);
+		gc.fillText("S",231 , 55);
+		gc.drawImage(skillulti, 260, 5);
+		gc.fillText("D",271,55);
+		gc.drawImage(skillbullet, 300 , 5);
+		gc.fillText("F", 311, 55);
+		
 		
 		
 		
@@ -72,6 +71,15 @@ public class GameScreen implements IRenderable {
 	public void setSkillData(int BulletCount , int CoolDown) {
 		this.BCount = BulletCount ;
 		this.CoolDown = CoolDown/30;
+		
+	}
+	public void setCoolDown(int CoolDownFire , int CoolDownBarrier , int CoolDownUltimateSkill) {
+		 skillbullet = new Image("fuckingfireball1.png");
+		 skillulti = new Image("fuckingulti1.png");
+		 skillBaria = new Image("fuckingBaria1.png");
+		if(CoolDownFire != 0) skillbullet = new Image("fireballCoolDown.png");
+		if(CoolDownBarrier != 0)skillBaria = new Image("BariaCoolDown.png");
+		if(CoolDownUltimateSkill != 0) skillulti = new Image("UltiCoolDown.png");
 		
 	}
 	

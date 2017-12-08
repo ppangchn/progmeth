@@ -95,7 +95,7 @@ public class Monster implements IRenderable {
 		y+= 1.5*(calculateSin(hero.getX(),hero.getY()));
 		boolean IsHeroAttacked;
 		IsHeroAttacked = hero.isAttacked(x, y);
-		if(IsHeroAttacked) isVisible = false;
+		if(IsHeroAttacked) {isVisible = false; isCollide = true;}
 		
 	}
 	
