@@ -1,13 +1,20 @@
 package character;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
+import javafx.scene.image.Image;
 import sharedObject.IRenderable;
 
 public class Heart extends Item implements IRenderable {
-
+	private int n =0;
+	public List<Image> image = new ArrayList<>();
 	public Heart() {
-		super();
+		for (int i=0; i<16; i++) {
+			Image item = new Image("frame"+i+".png",40,40,false,false);
+			image.add(item);
+		}
 		
 	}
 	@Override
@@ -18,9 +25,9 @@ public class Heart extends Item implements IRenderable {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		gc.setFill(Color.AQUA);
-		gc.fillRect(this.x, this.y, 20, 20);
-
+			gc.drawImage(image.get(n), x, y);
+		n++;
+		if (n>=15) n=0;
 	}
 
 	@Override

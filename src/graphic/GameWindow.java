@@ -2,6 +2,7 @@ package graphic;
 
 import java.util.Random;
 
+import character.Boss;
 import character.Heart;
 import character.Hero;
 import character.Item;
@@ -46,6 +47,7 @@ public class GameWindow extends Canvas{
 	private boolean isOver = false;
 	private boolean nameable = false;
 	private String playername= "";
+	private boolean isStateFive = false;
 	public int time;
 	public int CoolDownUltimateSkill;
 	public int CoolDownFire;
@@ -94,7 +96,7 @@ public class GameWindow extends Canvas{
 
 			if ((frame%600)<500)
 				{
-					if (frame%60 ==0 )addMonster();
+					if (frame%60 ==0 && !isStateFive)addMonster();
 					if(frame %300==0)addItem();
 				}
 			
@@ -152,6 +154,7 @@ public class GameWindow extends Canvas{
 					gamewindowanimation.stop();
 					stagewindow5.draw();
 					stageON = true;
+					addBoss();
 				}
 				
 				if (hero.getLife()==0) {
@@ -215,8 +218,7 @@ public class GameWindow extends Canvas{
 				
 			}
 			if (KeyEvent.getCode() == KeyCode.SPACE) {
-				
-				if (!isOver) {
+				if (!isOver && !stageON) {
 					fire.play();
 					hero.attack(c);
 				}
@@ -246,88 +248,20 @@ public class GameWindow extends Canvas{
 			}
 			}
 			if(KeyEvent.getCode() == KeyCode.D) {
-<<<<<<< HEAD
-||||||| merged common ancestors
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 				if(CoolDownFire == 0) {FireTimes = 90;
 				CoolDownFire = 150;
 				}
-				
-				
-||||||| merged common ancestors
-				CoolDown = 90;
-=======
-<<<<<<< HEAD
->>>>>>> 72ca9fc54e67c1296220e465e1e1963a7cd4b05b
-				if (!isOver) {
-					if(CoolDown == 0) {
-					    fire.play();
-						hero.attack('s');
-						hero.attack('w');
-						hero.attack('d');
-						hero.attack('a');
-					CoolDown = 90;
-					}
-					if(CoolDown == 0) {
-					    fire.play();
-						hero.attack('s');
-						hero.attack('w');
-						hero.attack('d');
-						hero.attack('a');
-						CoolDown = 90;
-						}
-					CoolDown = 90;
-				}
-<<<<<<< HEAD
-||||||| merged common ancestors
-				
-||||||| merged common ancestors
-				if(CoolDown == 0)
-				{
-			    fire.play();
-				hero.attack('s');
-				hero.attack('w');
-				hero.attack('d');
-				hero.attack('a');
-				CoolDown = 90;
-				}
-=======
-				CoolDown = 90;
->>>>>>> c0ac071f8dee2930fbd4317c4d3ae896c9d99534
-=======
-				
-||||||| merged common ancestors
-				if(CoolDown == 0)
-				{
-			    fire.play();
-				hero.attack('s');
-				hero.attack('w');
-				hero.attack('d');
-				hero.attack('a');
-				CoolDown = 90;
-				}
-=======
-				CoolDown = 90;
->>>>>>> c0ac071f8dee2930fbd4317c4d3ae896c9d99534
->>>>>>> 637b776e94123b97ec51196f68360d947f25e32f
->>>>>>> 72ca9fc54e67c1296220e465e1e1963a7cd4b05b
 			}
 			if(KeyEvent.getCode() == KeyCode.S) {
-<<<<<<< HEAD
 				if(CoolDownBarrier == 0) {
 					hero.barrier();
 					CoolDownBarrier = 300;
 				}
 				
-||||||| merged common ancestors
 				hero.barrier();
-=======
 				if (!isOver) {
 				hero.barrier();
 				}
->>>>>>> 637b776e94123b97ec51196f68360d947f25e32f
 			}
 			if (KeyEvent.getCode() == KeyCode.F) {
 				if(CoolDownUltimateSkill == 0 ) {
@@ -372,6 +306,10 @@ public class GameWindow extends Canvas{
 	public void addMonster() {
 		monster = new Monster(hero);
 		RenderableHolder.getinstance().add(monster);
+	}
+	public void addBoss() {
+		Boss boss = new Boss(hero);
+		RenderableHolder.getinstance().add(boss);
 	}
 	public void addItem() {
 		// TODO Auto-generated method stub

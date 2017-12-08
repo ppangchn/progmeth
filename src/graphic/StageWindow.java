@@ -1,13 +1,10 @@
  package graphic;
 
 import javafx.animation.AnimationTimer;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import sharedObject.IRenderable;
 
 public class StageWindow {
 	private AnimationTimer stageanimation;

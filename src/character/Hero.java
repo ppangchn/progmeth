@@ -33,6 +33,7 @@ public class Hero implements IRenderable {
 		this.x = 400;
 		this.y = 225;
 		setHero();
+		
 	}
 	public void gainHP() {
 		this.life+=1;
@@ -73,14 +74,8 @@ public class Hero implements IRenderable {
 		if (life==0) return true;
 		return false;
 	}
-	public void shoot() {
-		
-	}
 	public void decreaseLife() {
 		life--;
-		
-	}
-	public void randomItem() {
 		
 	}
 
