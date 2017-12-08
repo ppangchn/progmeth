@@ -17,24 +17,27 @@ import javafx.stage.Stage;
 
 public class StartWindow{
 	private static final Font TITLE_FONT = new Font("AvenueX", 70);
+	private static final Font CHAT_FONT = new Font("Digital tech", 40);
 	private static final Font MENU_FONT = new Font("Courier New", 40);
 	private static final Font SPACE_FONT = new Font("Courier New", 25);
 	private static final Font RANDOM_FONT = new Font("Courier New",18);
 	private Stage primaryStage;
 	private Canvas bg;
 	private GraphicsContext gc;
-	private AnimationTimer a;
-	private AnimationTimer b;
-	public int imageorder = 0;
-	public AudioClip sound;
-	public AudioClip buttonsound = new AudioClip(ClassLoader.getSystemResource("fire.wav").toString());
-	public String[] soundURL = {"Hello.mp3","Coward.mp3","JustBeFriend.mp3","TellYourWorld.mp3"};
-	public Random rand;
+	private AnimationTimer spaceanimation;
+	private AnimationTimer soundanimation;
 	private int framebg = 0;
 	private int framespace = 0;
-	private Image background;
 	private int numberselected = 0;
-	private boolean isPressSpace = false;
+	private boolean isPressedSpace = false;
+	private boolean isMuted = false;
+	private Random rand;
+	public Image background;
+	public AudioClip soundbg;
+	public AudioClip buttonsound = new AudioClip(ClassLoader.getSystemResource("fire.wav").toString());
+	public String[] soundURL = {"Hello.mp3","Coward.mp3","JustBeFriend.mp3","TellYourWorld.mp3"};
+	
+	
 	
 
 	public StartWindow(Stage primaryStage) {
@@ -43,8 +46,8 @@ public class StartWindow{
 		this.primaryStage = primaryStage;
 		bg = new Canvas(800,450);
 		gc = bg.getGraphicsContext2D();
-		sound = new AudioClip(ClassLoader.getSystemResource(soundURL[x]).toString());
-		sound.play();
+		soundbg = new AudioClip(ClassLoader.getSystemResource(soundURL[x]).toString());
+		soundbg.play();
 	}
 	public void drawStartWindow() {
 		StackPane root = new StackPane();
@@ -59,7 +62,7 @@ public class StartWindow{
 
 		primaryStage.setTitle("PEWPEW_Progmeth");
 
-		a = new AnimationTimer() {
+		spaceanimation = new AnimationTimer() {
 			public void handle(long now) {
 				if (framebg == 50) {
 					setBackground();
@@ -74,13 +77,13 @@ public class StartWindow{
 			}
 			
 		};
-		a.start();
-		b = new AnimationTimer() {
+		spaceanimation.start();
+		soundanimation = new AnimationTimer() {
 			public void handle(long now) {
-				if (sound.isPlaying()==false) playSong();
+				if (soundbg.isPlaying()==false) playSong();
 			}
 		};
-		b.start();
+		soundanimation.start();
 	}
 	
 	public void setBackground() {
@@ -99,7 +102,7 @@ public class StartWindow{
 	}
 	public void addAction() {
 		bg.setOnKeyPressed((KeyEvent) -> {
-			if (isPressSpace) {
+			if (isPressedSpace) {
 				if (KeyEvent.getCode() == KeyCode.UP) {
 					if (numberselected !=0) {buttonsound.play() ;numberselected--;}
 					drawSelectedColor();
@@ -112,9 +115,9 @@ public class StartWindow{
 						if (numberselected==0) {
 							GameWindow game = new GameWindow(primaryStage);
 							game.drawGameWinDow();
-							a.stop();
-							b.stop();
-							sound.stop();
+							spaceanimation.stop();
+							soundanimation.stop();
+							soundbg.stop();
 						}
 						if (numberselected==1) {
 							Platform.exit();
@@ -128,16 +131,28 @@ public class StartWindow{
 			}
 			
 			if (KeyEvent.getCode() == KeyCode.R) {
-				sound.stop();
+				soundbg.stop();
 				playSong();
 			}
 			if (KeyEvent.getCode() == KeyCode.ESCAPE) {
 				Platform.exit();
 			}
+			if (KeyEvent.getCode() == KeyCode.ENTER) {
+				if (isPressedSpace) {
+					gc.setFill(Color.DODGERBLUE);
+					gc.setStroke(Color.BLACK);
+					gc.setFont(CHAT_FONT);
+					gc.strokeText("PRESS SPACE\nTO INTERACT", 80, 350);
+					gc.fillText("PRESS SPACE\nTO INTERACT", 80, 350);
+				}
+			}
 			if (KeyEvent.getCode() == KeyCode.SPACE) {
-				isPressSpace = true;
-				a.stop();
+				isPressedSpace = true;
+				spaceanimation.stop();
 				drawSelectedColor();
+			}
+			if (KeyEvent.getCode() == KeyCode.M) {
+//				muteSong();
 			}
 		});
 	}
@@ -194,9 +209,19 @@ public class StartWindow{
 	}
 	public void playSong() {
 		int x = rand.nextInt(soundURL.length);
-		sound = new AudioClip(ClassLoader.getSystemResource(soundURL[x]).toString());
-		sound.play();
+		soundbg = new AudioClip(ClassLoader.getSystemResource(soundURL[x]).toString());
+		soundbg.play();
 	}
+//	public void muteSong() {
+//		if (!isMuted) {
+//			primaryStage.
+//			isMuted = true;
+//		}
+//		else {
+//			sound.
+//			isMuted = false;
+//		}
+//	}
 	
 	
 }

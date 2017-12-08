@@ -13,6 +13,7 @@ public class GameOver {
 	public static final Font GAMEOVER_FONT = new Font("Digital Tech",80);
 	public static final Font CONTENT_FONT = new Font("Digital Tech",40);
 	public static final Font MAIN_FONT = new Font("Courier New",20);
+//	protected static final boolean isAnimationRunning = false;
 	public static Image gameover;
 	public static AudioClip gameoversound = new AudioClip(ClassLoader.getSystemResource("GameOver.wav").toString());
 	private static int framebg = 0;
@@ -26,6 +27,23 @@ public class GameOver {
 		setImage();
 		count =0;
 		playSong();
+		Thread t = new Thread(new Runnable() {
+			public void run() {
+//				do{
+					updateAnimation(gc);
+					try {
+						Thread.sleep(10000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+//					}
+//				while(isAnimationRunning!=false);
+				}
+		});	
+		t.setDaemon(true);
+		t.start();
 		gameoveranimation = new AnimationTimer() {
 			@Override
 			public void handle(long now) {
@@ -70,6 +88,16 @@ public class GameOver {
 		};
 		gameoveranimation.start();
 	}
+	protected static void updateAnimation(GraphicsContext gc) {
+		// TODO Auto-generated method stub
+		gc.setFont(GAMEOVER_FONT);
+		gc.setFill(Color.ORANGERED);
+		gc.setStroke(Color.BLACK);
+		gc.setLineWidth(2 );
+		gc.fillText("GAME OVER", 220, 250);
+		gc.strokeText("GAME OVER", 220, 250);
+		
+	}
 	public static void setImage() {
 		gameover = new Image("gameover.jpg");
 		
@@ -80,4 +108,5 @@ public class GameOver {
 	public static void stopAnimationTimer() {
 		gameoveranimation.stop();
 	}
+	
 }

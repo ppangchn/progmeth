@@ -8,10 +8,11 @@ import javafx.scene.text.Font;
 
 public class StageWindow2 {
 	private AnimationTimer stageanimation ;
-	public String[] stagedialog = {"I","S","  ","T","H","I","S","  ","T","H","E","  ","B","E","S","T","  ","Y","O","U","  ","C","A","N","  ","D","O","?"};
-	public String[] boss = {"boss.png"};
+	public String[] stagedialog = {"I","s"," ","t","h","i","s"," ","t","h","e"," ","b","e","s","t"," ","y","o","u"," ","c","a","n"," ","d","o","?"};
+	public String[] boss = {"bossblack.png"};
 	public String sentence ="";
-	public Font font = new Font("Digital Tech",18);
+	public static final Font font = new Font("Courier New",18);
+	public static final Font enter = new Font("Courier New",12);
 	private int count = 0;
 	public int frame=0;
 	public GraphicsContext gc;
@@ -37,7 +38,8 @@ public class StageWindow2 {
 					gc.fillText(sentence, 250, 380);
 					if (count<=stagedialog.length-1) count++;
 					frame++;
-					
+					gc.setFont(enter);
+				    gc.fillText("Press Enter", 700, 420);
 					
 				}
 			}
