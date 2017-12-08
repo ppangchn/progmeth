@@ -44,9 +44,9 @@ public class GameScreen implements IRenderable {
 		//System.out.println("bg");
 		gc.drawImage(skillBaria, 220,5);
 		gc.fillText("S",231 , 55);
-		gc.drawImage(skillulti, 260, 5);
+		gc.drawImage(skillbullet, 260, 5);
 		gc.fillText("D",271,55);
-		gc.drawImage(skillbullet, 300 , 5);
+		gc.drawImage(skillulti, 300 , 5);
 		gc.fillText("F", 311, 55);
 		
 		

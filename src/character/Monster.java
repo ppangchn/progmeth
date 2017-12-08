@@ -10,7 +10,7 @@ public class Monster implements IRenderable {
 	private double x;
 	private double y;
 	private int way;
-	private int speed = 1;
+	public static double speed = 1 ;
 	public Random rand = new Random();
 	public Image monsterUp = new Image("monsterup.png");
 	public Image monsterDown = new Image("monsterdown.png");
@@ -93,13 +93,6 @@ public class Monster implements IRenderable {
 		
 	}
 	
-	public int getSpeed() {
-		return speed;
-	}
-
-	public void setSpeed(int speed) {
-		this.speed = speed;
-	}
 
 	public double calculateSin(double herox, double heroy) {
 		double kam = heroy-this.y;

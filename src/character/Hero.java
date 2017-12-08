@@ -26,7 +26,7 @@ public class Hero implements IRenderable {
 	private boolean isBariaOn =  false;
 	private int BariaCount;
 	private Image barrier = new Image("baria1.png");
-	private int speed = 3 ; 
+	private int speed = 4 ; 
 	private Image UltiEffect = new Image("UltiEffect.png");
 	public boolean isUltiOn = false;
 	
