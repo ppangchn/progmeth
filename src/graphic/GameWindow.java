@@ -26,15 +26,6 @@ public class GameWindow extends Canvas{
 	private Hero hero;
 	private GameScreen gamescreen;
 	private Monster monster;
-	public String control = "";
-	public GraphicsContext gc;
-	public Scene scene;
-	public Stage primaryStage;
-	public char c = 'a';
-	public boolean hasBullet = false;
-	public int frame = 0;
-	private AudioClip soundgame;
-	public String[] soundgameURL = {"Caramelldansen.mp3","PonPonPon.mp3","Senbonzakura.mp3","Melancholic.mp3","LevanPolkka.mp3"};
 	private Random rand;
 	private static AnimationTimer gamewindowanimation;
 	private StageWindow stagewindow;
@@ -48,36 +39,23 @@ public class GameWindow extends Canvas{
 	private boolean isOver = false;
 	private boolean nameable = false;
 	private String playername= "";
-
 	private boolean isStateFive = false;
-<<<<<<< HEAD
-<<<<<<< HEAD
-	private int time;
 	private int CoolDownUltimateSkill;
 	private int CoolDownFire;
 	private int CoolDownBarrier;
 	private int CoolDownSpeed;
 	private Boss boss;
-||||||| merged common ancestors
-	public int time;
-	public int CoolDownUltimateSkill;
-	public int CoolDownFire;
-	public int CoolDownBarrier;
-	public int CoolDownSpeed;
-=======
->>>>>>> 3f13d848da35fc5ea748299f8cf398ffaf5f198e
-||||||| merged common ancestors
->>>>>>> 3f13d848da35fc5ea748299f8cf398ffaf5f198e
-=======
-
->>>>>>> 749de8d55bef35dbe68c03cf43b315905f6bbadd
-	public int time;
-	public int CoolDownUltimateSkill;
-	public int CoolDownFire;
-	public int CoolDownBarrier;
-	public int CoolDownSpeed;
->>>>>>> aa25c97fa94af75dcb5369a0935284928d1d80d4
+	private AudioClip soundgame;
+	public String control = "";
+	public GraphicsContext gc;
+	public Scene scene;
+	public Stage primaryStage;
+	public char c = 'a';
+	public boolean hasBullet = false;
+	public int frame = 0;
 	
+	public String[] soundgameURL = {"Caramelldansen.mp3","PonPonPon.mp3","Senbonzakura.mp3","Melancholic.mp3","LevanPolkka.mp3"};
+
 	public GameWindow(Stage primaryStage) {
 		stagewindow = new StageWindow(getGraphicsContext2D());
 		stagewindow2 = new StageWindow2(getGraphicsContext2D());
@@ -122,7 +100,7 @@ public class GameWindow extends Canvas{
 					if (frame%60 ==0 && !isStateFive)addMonster();
 					if(frame %300==0)addItem();
 				}
-			
+				RenderableHolder.getinstance().remove();
 				RenderableHolder.getinstance().draw(gc);
 				int exp = RenderableHolder.getinstance().setVisible();
 				RenderableHolder.getinstance().Collision(hero);
@@ -152,7 +130,7 @@ public class GameWindow extends Canvas{
 					stageON = true;
 				}
 				
-				if (hero.getLv()==4 && hero.isLvsixbefore()==false && !isOver) {
+				if (hero.getLv()==4 && hero.isLvfourbefore()==false && !isOver) {
 					hero.setLvsixbefore(true);
 					gamewindowanimation.stop();
 					stagewindow2.draw();
@@ -170,7 +148,7 @@ public class GameWindow extends Canvas{
 					stagewindow4.draw();
 					stageON = true;					
 				}
-				if (hero.getLv()==1 && hero.isLvsevenbefore()==false && !isOver) {
+				if (hero.getLv()==7 && hero.isLvsevenbefore()==false && !isOver) {
 					hero.setLvsevenbefore(true);
 					gamewindowanimation.stop();
 					stagewindow5.draw();
@@ -291,12 +269,9 @@ public class GameWindow extends Canvas{
 					CoolDownUltimateSkill = 90;
 					CoolDownSpeed = 150;
 					hero.isUltiOn = true;
+					}
 				}
-				}
-				
-			}
-			
-			
+			}			
 		});
 		this.setOnKeyReleased((KeyEvent) -> {
 			if (KeyEvent.getCode() == KeyCode.LEFT) {
@@ -363,7 +338,9 @@ public class GameWindow extends Canvas{
 		    hero.attack('y');
 		}	
 	}
-	
+	public void setLV() {
+		
+	}
 
 }
 	
