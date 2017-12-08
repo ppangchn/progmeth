@@ -70,12 +70,9 @@ public class RenderableHolder {
 		for (int i=n-1; i>=0; i--) {
 			if (object.get(i).isVisible() == false) {
 				if(object.get(i) instanceof Bullet) System.out.println("remove");
-				if(object.get(i) instanceof Monster) score++;
+				if(object.get(i) instanceof Monster && !((Monster)object.get(i)).isCollide) score++;
 				object.remove(i);
-				
 			}
-			
-			
 		}
 		return score;
 	}

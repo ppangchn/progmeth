@@ -19,7 +19,7 @@ public class Monster implements IRenderable {
 	public boolean isVisible = true;
 	public Hero hero;
 	public int tick;
-	
+	public boolean isCollide = false;
 	public Monster(Hero hero) {
 		
 		

@@ -27,6 +27,8 @@ public class Hero implements IRenderable {
 	private int BariaCount;
 	private Image barrier = new Image("baria1.png");
 	private int speed = 3 ; 
+	private Image UltiEffect = new Image("UltiEffect.png");
+	public boolean isUltiOn = false;
 	
 	
 	public Hero() {
@@ -102,6 +104,7 @@ public class Hero implements IRenderable {
 		if(time>=30) time = 0; 
 		//System.out.println("earth");
 		if(isBariaOn) gc.drawImage(barrier, x-8, y+15);
+		if(isUltiOn) gc.drawImage(UltiEffect, x-8, y+15);
 		gc.drawImage(heropic, x, y);
 		
 		

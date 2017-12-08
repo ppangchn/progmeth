@@ -15,6 +15,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
@@ -47,15 +48,44 @@ public class GameWindow extends Canvas{
 	private boolean isOver = false;
 	private boolean nameable = false;
 	private String playername= "";
+<<<<<<< HEAD
+||||||| merged common ancestors
+||||||| merged common ancestors
+=======
+=======
 	private boolean isStateFive = false;
+<<<<<<< HEAD
 	private int time;
 	private int CoolDownUltimateSkill;
 	private int CoolDownFire;
 	private int CoolDownBarrier;
 	private int CoolDownSpeed;
 	private Boss boss;
+||||||| merged common ancestors
+	public int time;
+	public int CoolDownUltimateSkill;
+	public int CoolDownFire;
+	public int CoolDownBarrier;
+	public int CoolDownSpeed;
+=======
+>>>>>>> 3f13d848da35fc5ea748299f8cf398ffaf5f198e
+	public int time;
+	public int CoolDownUltimateSkill;
+	public int CoolDownFire;
+	public int CoolDownBarrier;
+	public int CoolDownSpeed;
+>>>>>>> aa25c97fa94af75dcb5369a0935284928d1d80d4
 	
 
+<<<<<<< HEAD
+	
+	
+||||||| merged common ancestors
+	
+>>>>>>> c0ac071f8dee2930fbd4317c4d3ae896c9d99534
+	
+=======
+>>>>>>> 3f13d848da35fc5ea748299f8cf398ffaf5f198e
 	public GameWindow(Stage primaryStage) {
 		stagewindow = new StageWindow(getGraphicsContext2D());
 		stagewindow2 = new StageWindow2(getGraphicsContext2D());
@@ -117,12 +147,23 @@ public class GameWindow extends Canvas{
 					CoolDownSpeed--;
 					hero.setSpeed(8);
 				}
-				else hero.setSpeed(3);
+				else {hero.setSpeed(3); hero.isUltiOn =false;}
 				
 				RenderableHolder.getinstance().update(control);
 				if (soundgame.isPlaying()==false && !isOver) playSong();
+<<<<<<< HEAD
+				
+||||||| merged common ancestors
+||||||| merged common ancestors
+				if (soundgame.isPlaying()==false) playSong();
+=======
+				if (soundgame.isPlaying()==false) playSong();
+				
+>>>>>>> c0ac071f8dee2930fbd4317c4d3ae896c9d99534
+=======
 				if (soundgame.isPlaying()==false) playSong();
 				if (soundgame.isPlaying()==false) playSong();
+>>>>>>> 3f13d848da35fc5ea748299f8cf398ffaf5f198e
 				if (hero.getLv()==3 && hero.isLvthreebefore()==false && !isOver) {
 					hero.setLvthreebefore(true);
 					gamewindowanimation.stop();
@@ -244,23 +285,82 @@ public class GameWindow extends Canvas{
 				if(CoolDownFire == 0) {FireTimes = 90;
 				CoolDownFire = 150;
 				}
+<<<<<<< HEAD
+				
+				
+||||||| merged common ancestors
+				
+				
+||||||| merged common ancestors
+				CoolDown = 90;
+=======
+<<<<<<< HEAD
+				if (!isOver) {
+					if(CoolDown == 0)
+					{
+				    fire.play();
+					hero.attack('s');
+					hero.attack('w');
+					hero.attack('d');
+					hero.attack('a');
+					CoolDown = 90;
+					}
+				}
+				
+||||||| merged common ancestors
+				if(CoolDown == 0)
+				{
+			    fire.play();
+				hero.attack('s');
+				hero.attack('w');
+				hero.attack('d');
+				hero.attack('a');
+				CoolDown = 90;
+				}
+=======
+				CoolDown = 90;
+>>>>>>> c0ac071f8dee2930fbd4317c4d3ae896c9d99534
+>>>>>>> 637b776e94123b97ec51196f68360d947f25e32f
+=======
+>>>>>>> 3f13d848da35fc5ea748299f8cf398ffaf5f198e
 			}
 			if(KeyEvent.getCode() == KeyCode.S) {
+<<<<<<< HEAD
+
+				if(CoolDownBarrier == 0 && !isOver) {
+||||||| merged common ancestors
+<<<<<<< HEAD
 				if(CoolDownBarrier == 0) {
+=======
+				if(CoolDownBarrier == 0) {
+>>>>>>> 3f13d848da35fc5ea748299f8cf398ffaf5f198e
 					hero.barrier();
 					CoolDownBarrier = 300;
 				}
 				
+<<<<<<< HEAD
+
+||||||| merged common ancestors
+||||||| merged common ancestors
+				hero.barrier();
+=======
+				if (!isOver) {
+				hero.barrier();
+				}
+>>>>>>> 637b776e94123b97ec51196f68360d947f25e32f
+=======
 				hero.barrier();
 				if (!isOver) {
 				hero.barrier();
 				}
+>>>>>>> 3f13d848da35fc5ea748299f8cf398ffaf5f198e
 			}
 			if (KeyEvent.getCode() == KeyCode.F) {
 				if(CoolDownUltimateSkill == 0 ) {
 					RenderableHolder.getinstance().UltimateSkill();
 					CoolDownUltimateSkill = 90;
 					CoolDownSpeed = 150;
+					hero.isUltiOn = true;
 				}
 				
 			}
