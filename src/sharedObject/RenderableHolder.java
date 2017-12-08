@@ -37,11 +37,8 @@ public class RenderableHolder {
 		}
 	}
 	public void draw(GraphicsContext gc) {
-		for (IRenderable i : object) {
-
-		//System.out.println("check");
-
-			i.draw(gc);
+		for (int i =0; i<object.size(); i++) {
+			object.get(i).draw(gc);
 		}
 	}
 	public int setVisible() {
@@ -63,17 +60,13 @@ public class RenderableHolder {
 		}
 		return exp;
 	}
-	public int remove() {
-		int score =0;
+	public void remove() {
 		int n = object.size();
 		for (int i=n-1; i>=0; i--) {
 			if (object.get(i).isVisible() == false) {
-				if(object.get(i) instanceof Bullet) System.out.println("remove");
-				if(object.get(i) instanceof Monster && !((Monster)object.get(i)).isCollide) score++;
 				object.remove(i);
 			}
 		}
-		return score;
 	}
 	public void Collision(Hero hero) {
 		for (IRenderable i : object) {
