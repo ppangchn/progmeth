@@ -21,29 +21,30 @@ public class Monster implements IRenderable {
 	public int tick;
 	
 	public Monster(Hero hero) {
-		x = (double)rand.nextInt(800);
-		//y = (double)rand.nextInt(450);
-		y = 100;
+		
+		
+		
 		way = rand.nextInt(4)+1;
 		System.out.println(way);
 		if (way==1) {
-			y = (double)rand.nextInt(200);
+			y = (double)rand.nextInt(311)+60;
 			x=35;
 		}
 		else if (way==2) {
-			y = (double)rand.nextInt(200);
+			y = (double)rand.nextInt(311)+60;
 			x=710;
 		}
 		else if (way==3) {
-			x = (double)rand.nextInt(800);
-			y=4;
+			x = (double)rand.nextInt(677)+35;
+			y =60;
 		}
 		else if (way==4) {
-			x = (double)rand.nextInt(800);
+			x = (double)rand.nextInt(677)+35;
 			y=370;
-		}
+		} 
 		setImage();
 		this.hero = hero; 
+		System.out.println(x+" , "+y);
 	}
 
 	@Override
@@ -90,8 +91,8 @@ public class Monster implements IRenderable {
 		//else if (way==2) x-=2;
 		//else if (way==3) y+=2;
 		//else if (way==4) y-=2;
-		x+= 1*(calculateCos(hero.getX(),hero.getY()));
-		y+= 1*(calculateSin(hero.getX(),hero.getY()));
+		x+= 1.5*(calculateCos(hero.getX(),hero.getY()));
+		y+= 1.5*(calculateSin(hero.getX(),hero.getY()));
 		boolean IsHeroAttacked;
 		IsHeroAttacked = hero.isAttacked(x, y);
 		if(IsHeroAttacked) isVisible = false;

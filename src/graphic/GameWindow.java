@@ -13,6 +13,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
+import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
 
 public class GameWindow extends Canvas{
@@ -38,9 +39,13 @@ public class GameWindow extends Canvas{
 	private StageWindow5 stagewindow5;
 	private boolean stageON = false ;
 	private AudioClip fire = new AudioClip(ClassLoader.getSystemResource("fire.wav").toString());
-	private int CoolDown = 0;
+	private int FireTimes = 0;
 	private boolean isOver = false;
 	public int time;
+	public int CoolDownUltimateSkill;
+	public int CoolDownFire;
+	public int CoolDownBarrier;
+	public int CoolDownSpeed;
 	
 
 	
@@ -86,7 +91,6 @@ public class GameWindow extends Canvas{
 
 			if ((frame%600)<500)
 				{
-					
 					if (frame%60 ==0 )addMonster();
 				}
 			
@@ -98,10 +102,17 @@ public class GameWindow extends Canvas{
 				hero.updateLv();
 				gamescreen.setHeroData(hero.getLv(),hero.getExp(),hero.getMaxexp(),hero.getLife(),gc);
 				gamescreen.setScore(gamescreen.getScore()+score);
-				gamescreen.setSkillData(hero.getBariaCount(), CoolDown);
+				gamescreen.setSkillData(hero.getBariaCount(), FireTimes);
 				fire();
-				if(CoolDown != 0 ) CoolDown--;
-	
+				if(FireTimes != 0 ) FireTimes--;
+				if(CoolDownUltimateSkill != 0) CoolDownUltimateSkill--;
+				if(CoolDownFire !=0 )CoolDownFire--;
+				if(CoolDownBarrier != 0 )CoolDownBarrier--;
+				if(CoolDownSpeed != 0) {
+					CoolDownSpeed--;
+					hero.setSpeed(8);
+				}
+				else hero.setSpeed(3);
 				
 				RenderableHolder.getinstance().update(control);
 				if (soundgame.isPlaying()==false) playSong();
@@ -111,9 +122,6 @@ public class GameWindow extends Canvas{
 					gamewindowanimation.stop();
 					stagewindow.draw();
 					stageON = true;
-					
-					
-					
 				}
 				
 				if (hero.getLv()==4 && hero.isLvsixbefore()==false && !isOver) {
@@ -121,34 +129,25 @@ public class GameWindow extends Canvas{
 					gamewindowanimation.stop();
 					stagewindow2.draw();
 					stageON = true;
-					
-					
 				}
 				if (hero.getLv()==5 && hero.isLveightbefore()==false && !isOver) {
 					hero.setLveightbefore(true);
 					gamewindowanimation.stop();
 					stagewindow3.draw();
 					stageON = true;
-					
-					
 				}
 				if (hero.getLv()==6 && hero.isLvninebefore()==false && !isOver) {
 					hero.setLvninebefore(true);
 					gamewindowanimation.stop();
 					stagewindow4.draw();
-					stageON = true;
-					
-					
+					stageON = true;					
 				}
 				if (hero.getLv()==7 && hero.isLvsixbefore()==false && !isOver) {
 					hero.setLvtenbefore(true);
 					gamewindowanimation.stop();
 					stagewindow5.draw();
 					stageON = true;
-					
-					
 				}
-				
 				
 				if (hero.getLife()==0) {
 					gamewindowanimation.stop();
@@ -209,16 +208,28 @@ public class GameWindow extends Canvas{
 					}
 			}
 			if(KeyEvent.getCode() == KeyCode.D) {
-				CoolDown = 90;
+				if(CoolDownFire == 0) {FireTimes = 90;
+				CoolDownFire = 150;
+				}
+				
+				
 			}
 			if(KeyEvent.getCode() == KeyCode.S) {
-				hero.barrier();
+				if(CoolDownBarrier == 0) {
+					hero.barrier();
+					CoolDownBarrier = 300;
+				}
+				
 			}
-			if (KeyEvent.getCode() == KeyCode.Q) {
+			if (KeyEvent.getCode() == KeyCode.F) {
+				if(CoolDownUltimateSkill == 0 ) {
+					RenderableHolder.getinstance().UltimateSkill();
+					CoolDownUltimateSkill = 90;
+					CoolDownSpeed = 150;
+				}
 				
 			}
 			
-
 			
 		});
 		this.setOnKeyReleased((KeyEvent) -> {
@@ -268,7 +279,7 @@ public class GameWindow extends Canvas{
 	}
 	
 	public void fire() {
-		if(CoolDown %30 ==  0 && CoolDown!=0)
+		if(FireTimes %30 ==  0 && FireTimes!=0 )
 		{	
 			fire.play();
 			hero.attack('s');

@@ -69,13 +69,14 @@ public class RenderableHolder {
 		for (int i=n-1; i>=0; i--) {
 			if (object.get(i).isVisible() == false) {
 				if(object.get(i) instanceof Bullet) System.out.println("remove");
+				if(object.get(i) instanceof Monster) score++;
 				object.remove(i);
-				score++;
+				
 			}
 			
 			
 		}
-		return score/2;
+		return score;
 	}
 	public void Collision(Hero hero) {
 		for (IRenderable i : object) {
@@ -83,6 +84,14 @@ public class RenderableHolder {
 				if (((Monster)i).getX()==hero.getX() && ((Monster)i).getY()==hero.getY()) {
 					hero.decreaseLife();
 				}
+			}
+		}
+	}
+	
+	public void UltimateSkill() {
+		for(IRenderable i : object) {
+			if(i instanceof Monster) {
+				if(i.isVisible()) ((Monster) i).setVisible(false);
 			}
 		}
 	}
