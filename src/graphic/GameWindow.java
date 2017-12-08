@@ -13,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
@@ -44,11 +45,8 @@ public class GameWindow extends Canvas{
 	private AudioClip fire = new AudioClip(ClassLoader.getSystemResource("fire.wav").toString());
 	private int FireTimes = 0;
 	private boolean isOver = false;
-<<<<<<< HEAD
 	private boolean nameable = false;
 	private String playername= "";
-||||||| merged common ancestors
-=======
 	public int time;
 	public int CoolDownUltimateSkill;
 	public int CoolDownFire;
@@ -57,7 +55,6 @@ public class GameWindow extends Canvas{
 	
 
 	
->>>>>>> c0ac071f8dee2930fbd4317c4d3ae896c9d99534
 	
 	public GameWindow(Stage primaryStage) {
 		stagewindow = new StageWindow(getGraphicsContext2D());
@@ -121,17 +118,11 @@ public class GameWindow extends Canvas{
 					CoolDownSpeed--;
 					hero.setSpeed(8);
 				}
-				else hero.setSpeed(3);
+				else {hero.setSpeed(3); hero.isUltiOn =false;}
 				
 				RenderableHolder.getinstance().update(control);
-<<<<<<< HEAD
 				if (soundgame.isPlaying()==false && !isOver) playSong();
-||||||| merged common ancestors
-				if (soundgame.isPlaying()==false) playSong();
-=======
-				if (soundgame.isPlaying()==false) playSong();
 				
->>>>>>> c0ac071f8dee2930fbd4317c4d3ae896c9d99534
 				if (hero.getLv()==3 && hero.isLvthreebefore()==false && !isOver) {
 					hero.setLvthreebefore(true);
 					gamewindowanimation.stop();
@@ -255,63 +246,27 @@ public class GameWindow extends Canvas{
 				}
 			}
 			if(KeyEvent.getCode() == KeyCode.D) {
-<<<<<<< HEAD
 				if(CoolDownFire == 0) {FireTimes = 90;
 				CoolDownFire = 150;
 				}
 				
 				
-||||||| merged common ancestors
-				CoolDown = 90;
-=======
-<<<<<<< HEAD
-				if (!isOver) {
-					if(CoolDown == 0)
-					{
-				    fire.play();
-					hero.attack('s');
-					hero.attack('w');
-					hero.attack('d');
-					hero.attack('a');
-					CoolDown = 90;
-					}
-				}
-				
-||||||| merged common ancestors
-				if(CoolDown == 0)
-				{
-			    fire.play();
-				hero.attack('s');
-				hero.attack('w');
-				hero.attack('d');
-				hero.attack('a');
-				CoolDown = 90;
-				}
-=======
-				CoolDown = 90;
->>>>>>> c0ac071f8dee2930fbd4317c4d3ae896c9d99534
->>>>>>> 637b776e94123b97ec51196f68360d947f25e32f
 			}
 			if(KeyEvent.getCode() == KeyCode.S) {
-<<<<<<< HEAD
-				if(CoolDownBarrier == 0) {
+
+				if(CoolDownBarrier == 0 && !isOver) {
 					hero.barrier();
 					CoolDownBarrier = 300;
 				}
 				
-||||||| merged common ancestors
-				hero.barrier();
-=======
-				if (!isOver) {
-				hero.barrier();
-				}
->>>>>>> 637b776e94123b97ec51196f68360d947f25e32f
+
 			}
 			if (KeyEvent.getCode() == KeyCode.F) {
 				if(CoolDownUltimateSkill == 0 ) {
 					RenderableHolder.getinstance().UltimateSkill();
 					CoolDownUltimateSkill = 90;
 					CoolDownSpeed = 150;
+					hero.isUltiOn = true;
 				}
 				
 			}
