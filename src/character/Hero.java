@@ -149,7 +149,7 @@ public class Hero implements IRenderable {
 	public Bullet attack(char c) {
 		Bullet bullet = new Bullet(x,y,c);
 		RenderableHolder.getinstance().add(bullet);
-		//control+="b";
+		if (isBoss) bullet.setFromBoss(true);
 		return bullet;
 	}
 	
@@ -212,5 +212,9 @@ public class Hero implements IRenderable {
 	public void setBoss(boolean isBoss) {
 		this.isBoss = isBoss;
 	}
+	public boolean isBoss() {
+		return isBoss;
+	}
+	
 	
 }

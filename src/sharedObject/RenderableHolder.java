@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import character.Boss;
 import character.Bullet;
 import character.Hero;
 import character.Item;
@@ -82,6 +83,18 @@ public class RenderableHolder {
 					((Item) i).effect(hero);
 				}
 			}
+			if (i instanceof Bullet) {
+				if (getDist(hero.getX(),((Bullet)i).getX(),hero.getY(),((Bullet)i).getY()) <= 10 && ((Bullet)i).isFromBoss()) {
+					System.out.println("nedd to dai");
+					hero.decreaseLife();
+				}
+				if (hero.isBoss()) {
+					if (getDist(hero.getX(),((Bullet)i).getX(),hero.getY(),((Bullet)i).getY()) <= 10) {
+						System.out.println("nedd to dai boss");
+						hero.decreaseLife();
+					}
+				}
+			}
 		}
 	}
 	public double getDist(double x1,double x2,double y1,double y2) {
@@ -95,6 +108,10 @@ public class RenderableHolder {
 				if(i.isVisible()) ((Monster) i).setVisible(false);
 			}
 		}
+	}
+	public void clearList() {
+		this.object = null;
+		this.object = new ArrayList<>();
 	}
 	
 }

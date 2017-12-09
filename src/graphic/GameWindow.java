@@ -18,10 +18,29 @@ import javafx.stage.Stage;
 import sharedObject.RenderableHolder;
 
 public class GameWindow extends Canvas{
+	private static AnimationTimer gamewindowanimation;
 	private Hero hero;
 	private GameScreen gamescreen;
 	private Monster monster;
 	private AudioClip soundgame;
+	private Random rand;
+	private StageWindow stagewindow;
+	private StageWindow2 stagewindow2;
+	private StageWindow3 stagewindow3;
+	private StageWindow4 stagewindow4;
+	private StageWindow5 stagewindow5;
+	private boolean stageON = false ;
+	private AudioClip fire = new AudioClip(ClassLoader.getSystemResource("fire.wav").toString());
+	private AudioClip bosssound = new AudioClip(ClassLoader.getSystemResource("BossSound130.wav").toString());
+	private int FireTimes = 0;
+	private boolean isOver = false;
+	private boolean isStateFive = false;
+	private boolean AddedBoss = false;
+	private int CoolDownUltimateSkill;
+	private int CoolDownFire;
+	private int CoolDownBarrier;
+	private int CoolDownSpeed;
+	private Boss boss;
 	public String control = "";
 	public GraphicsContext gc;
 	public Scene scene;
@@ -30,25 +49,7 @@ public class GameWindow extends Canvas{
 	public boolean hasBullet = false;
 	public int frame = 0;
 	public String[] soundgameURL = {"Caramelldansen.mp3","PonPonPon.mp3","Senbonzakura.mp3","Melancholic.mp3","LevanPolkka.mp3"};
-	private Random rand;
-	private static AnimationTimer gamewindowanimation;
-	private StageWindow stagewindow;
-	private StageWindow2 stagewindow2;
-	private StageWindow3 stagewindow3;
-	private StageWindow4 stagewindow4;
-	private StageWindow5 stagewindow5;
-	private boolean stageON = false ;
-	private AudioClip fire = new AudioClip(ClassLoader.getSystemResource("fire.wav").toString());
-	private int FireTimes = 0;
-	private boolean isOver = false;
-	private boolean nameable = false;
-	private String playername= "";
-	private boolean isStateFive = false;
-	private int CoolDownUltimateSkill;
-	private int CoolDownFire;
-	private int CoolDownBarrier;
-	private int CoolDownSpeed;
-	private Boss boss;
+	
 	public GameWindow(Stage primaryStage) {
 		stagewindow = new StageWindow(getGraphicsContext2D());
 		stagewindow2 = new StageWindow2(getGraphicsContext2D());
@@ -110,11 +111,12 @@ public class GameWindow extends Canvas{
 					CoolDownSpeed--;
 					hero.setSpeed(6);
 				}
+				
 				else {hero.setSpeed(hero.getSpeed()); hero.isUltiOn =false;}
 				gamescreen.setCoolDown(CoolDownFire, CoolDownBarrier, CoolDownUltimateSkill);
 				
 				RenderableHolder.getinstance().update(control);
-				if (soundgame.isPlaying()==false && !isOver) playSong();
+				if (soundgame.isPlaying()==false && !isOver && !isStateFive) playSong();
 
 				if (hero.getLv()==3 && hero.isLvthreebefore()==false && !isOver) {
 					hero.setLvthreebefore(true);
@@ -141,23 +143,35 @@ public class GameWindow extends Canvas{
 					stagewindow4.draw();
 					stageON = true;					
 				}
-				if (hero.getLv()==1 && hero.isLvsevenbefore()==false && !isOver) {
+				if (hero.getLv()==7 && hero.isLvsevenbefore()==false && !isOver) {
 					hero.setLvsevenbefore(true);
+					soundgame.stop();
 					gamewindowanimation.stop();
+					bosssound.play();
+					addBoss();
 					stagewindow5.draw();
 					isStateFive = true;
 					stageON = true;
-					addBoss();
+					
 				}
 				
 				if (hero.getLife()==0) {
-					GameOver.draw(gc);
+					RenderableHolder.getinstance().clearList();
 					gamewindowanimation.stop();
+					GameOver.draw(gc);
 					isOver = true;
 					soundgame.stop();
 				}
+				if (AddedBoss) {
+					if (boss.isDead()) {
+						RenderableHolder.getinstance().clearList();
+						gamewindowanimation.stop();
+						GameWinner.draw(gc);
+						isOver = true;
+					}
+				}
+				
 			}
-
 
 			};
 			gamewindowanimation.start();
@@ -188,10 +202,10 @@ public class GameWindow extends Canvas{
 				
 			}
 			if (KeyEvent.getCode() == KeyCode.SPACE) {
-//				if (!isOver && !stageON) {
+				if (!isOver && !stageON) {
 					fire.play();
 					hero.attack(c);
-//				}
+				}
 			}
 			if (KeyEvent.getCode() == KeyCode.ENTER) {
 				if (isOver) {
@@ -278,6 +292,7 @@ public class GameWindow extends Canvas{
 	public void addBoss() {
 		boss = new Boss();
 		RenderableHolder.getinstance().add(boss);
+		AddedBoss = true;
 	}
 	public void addItem() {
 		// TODO Auto-generated method stub

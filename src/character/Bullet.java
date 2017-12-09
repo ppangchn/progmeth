@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import sharedObject.IRenderable;
 
 public class Bullet implements IRenderable {
+	private boolean isFromBoss = false;
 	private double x;
 	private double y;
 	private char direction;
@@ -68,6 +69,12 @@ public class Bullet implements IRenderable {
 	public boolean isVisible() {
 		// TODO Auto-generated method stub
 		return isVisible;
+	}
+	public boolean isFromBoss() {
+		return isFromBoss;
+	}
+	public void setFromBoss(boolean isFromBoss) {
+		this.isFromBoss = isFromBoss;
 	}
 	
 
