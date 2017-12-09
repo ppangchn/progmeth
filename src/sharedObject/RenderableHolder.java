@@ -10,6 +10,7 @@ import character.Hero;
 import character.Item;
 import character.Monster;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.media.AudioClip;
 
 public class RenderableHolder {
 	Scanner keyboard = new Scanner(System.in);
@@ -74,11 +75,6 @@ public class RenderableHolder {
 	}
 	public void Collision(Hero hero) {
 		for (IRenderable i : object) {
-			if (i instanceof Monster) {
-				if (((Monster)i).getX()==hero.getX() && ((Monster)i).getY()==hero.getY()) {
-					hero.decreaseLife();
-				}
-			}
 			if(i instanceof Item) {
 				
 				if(getDist(hero.getX(),((Item)i).getX(),hero.getY(),((Item)i).getY()) <= 20) {
@@ -87,14 +83,15 @@ public class RenderableHolder {
 				}
 			}
 			if (i instanceof Bullet) {
-				if (getDist(hero.getX(),((Bullet)i).getX(),hero.getY(),((Bullet)i).getY()) <= 10 && ((Bullet)i).isFromBoss()) {
-					System.out.println("nedd to dai");
+				if (getDist(hero.getX(),((Bullet)i).getX(),hero.getY(),((Bullet)i).getY()) <= 20 && ((Bullet)i).isFromBoss()) {
+//					System.out.println("nedd to dai");
 					hero.decreaseLife();
 				}
 				if (hero.isBoss()) {
-					if (getDist(hero.getX(),((Bullet)i).getX(),hero.getY(),((Bullet)i).getY()) <= 10) {
-						System.out.println("nedd to dai boss");
-						hero.decreaseLife();
+					if (getDist(((Boss)hero).getX(),((Bullet)i).getX(),((Boss)hero).getY(),((Bullet)i).getY()) <= 20 && !((Bullet)i).isFromBoss()) {
+//						System.out.println("BANGBANGABGANGN");
+						((Boss)hero).setLife(((Boss)hero).getLife()-1);
+						((Bullet) i).setIsvisible(false);
 					}
 				}
 			}
@@ -105,12 +102,17 @@ public class RenderableHolder {
 		return ans;
 	}
 	
-	public void UltimateSkill() {
+	public int UltimateSkill() {
+		int n =0;
 		for(IRenderable i : object) {
 			if(i instanceof Monster) {
-				if(i.isVisible()) ((Monster) i).setVisible(false);
+				if(i.isVisible()) {
+					((Monster) i).setVisible(false);
+					n++;
+				}
 			}
 		}
+		return 10*n;
 	}
 	public void clearList() {
 		this.object = null;

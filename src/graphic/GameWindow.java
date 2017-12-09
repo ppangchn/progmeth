@@ -30,26 +30,18 @@ public class GameWindow extends Canvas{
 	private StageWindow4 stagewindow4;
 	private StageWindow5 stagewindow5;
 	private boolean stageON = false ;
-	private AudioClip fire = new AudioClip(ClassLoader.getSystemResource("fire.wav").toString());
+	private AudioClip fire = new AudioClip(ClassLoader.getSystemResource("Laser.mp3").toString());
 	private AudioClip bosssound = new AudioClip(ClassLoader.getSystemResource("BossSound130.wav").toString());
 	private int FireTimes = 0;
 	private boolean isOver = false;
-<<<<<<< HEAD
 	private boolean isStateFive = false;
 	private boolean AddedBoss = false;
-||||||| merged common ancestors
-	private boolean nameable = false;
-	private String playername= "";
-	private boolean isStateFive = false;
-=======
-    private boolean isStateFive = false;
->>>>>>> f1ad8518b4868888e385c76da2b3fd3a397103d0
+	private boolean toMainMenu = false;
 	private int CoolDownUltimateSkill;
 	private int CoolDownFire;
 	private int CoolDownBarrier;
 	private int CoolDownSpeed;
 	private Boss boss;
-<<<<<<< HEAD
 	public String control = "";
 	public GraphicsContext gc;
 	public Scene scene;
@@ -58,16 +50,12 @@ public class GameWindow extends Canvas{
 	public boolean hasBullet = false;
 	public int frame = 0;
 	public String[] soundgameURL = {"Caramelldansen.mp3","PonPonPon.mp3","Senbonzakura.mp3","Melancholic.mp3","LevanPolkka.mp3"};
-	
-||||||| merged common ancestors
-=======
 	private int monsteramount = 1;
-	private int InitialSpeed;//?
+	private int InitialSpeed;
 	
 
 
 
->>>>>>> f1ad8518b4868888e385c76da2b3fd3a397103d0
 	public GameWindow(Stage primaryStage) {
 		stagewindow = new StageWindow(getGraphicsContext2D());
 		stagewindow2 = new StageWindow2(getGraphicsContext2D());
@@ -115,11 +103,12 @@ public class GameWindow extends Canvas{
 					}
 					if(frame %300==0)addItem();
 				}
-			    System.out.println("speed"+hero.getSpeed());
+//			    System.out.println("speed"+hero.getSpeed());
 				RenderableHolder.getinstance().remove();
 				RenderableHolder.getinstance().draw(gc);
 				int exp = RenderableHolder.getinstance().setVisible();
 				RenderableHolder.getinstance().Collision(hero);
+				if (AddedBoss) RenderableHolder.getinstance().Collision(boss);
 				hero.setExp(hero.getExp()+exp);
 				hero.updateLv();
 				gamescreen.setHeroData(hero.getLv(),hero.getExp(),hero.getMaxexp(),hero.getLife(),gc);
@@ -132,27 +121,14 @@ public class GameWindow extends Canvas{
 					CoolDownSpeed--;
 					hero.setSpeed(8);
 				}
-<<<<<<< HEAD
 				
-				else {hero.setSpeed(hero.getSpeed()); hero.isUltiOn =false;}
-||||||| merged common ancestors
-				else {hero.setSpeed(hero.getSpeed()); hero.isUltiOn =false;}
-=======
-				else {hero.setSpeed(InitialSpeed); hero.isUltiOn =false;}
->>>>>>> f1ad8518b4868888e385c76da2b3fd3a397103d0
+				else {hero.setSpeed(InitialSpeed); hero.setUltiOn(false);}
 				gamescreen.setCoolDown(CoolDownFire, CoolDownBarrier, CoolDownUltimateSkill);
 				
 				RenderableHolder.getinstance().update(control);
-<<<<<<< HEAD
 				if (soundgame.isPlaying()==false && !isOver && !isStateFive) playSong();
-||||||| merged common ancestors
-				if (soundgame.isPlaying()==false && !isOver) playSong();
-=======
-				if (soundgame.isPlaying()==false && !isOver) playSong();
-				
 				setLV();
->>>>>>> f1ad8518b4868888e385c76da2b3fd3a397103d0
-
+				if (bosssound.isPlaying() == false && AddedBoss && !toMainMenu) bosssound.play();
 				
 				if (hero.getLv()==3 && hero.isLvthreebefore()==false && !isOver) {
 					hero.setLvthreebefore(true);
@@ -196,14 +172,17 @@ public class GameWindow extends Canvas{
 					gamewindowanimation.stop();
 					GameOver.draw(gc);
 					isOver = true;
+					bosssound.stop();
 					soundgame.stop();
 				}
 				if (AddedBoss) {
 					if (boss.isDead()) {
 						RenderableHolder.getinstance().clearList();
 						gamewindowanimation.stop();
+						soundgame.stop();
+						toMainMenu = true;
 						GameWinner.draw(gc);
-						isOver = true;
+						
 					}
 				}
 				
@@ -238,7 +217,7 @@ public class GameWindow extends Canvas{
 				
 			}
 			if (KeyEvent.getCode() == KeyCode.SPACE) {
-				if (!isOver && !stageON) {
+				if (!isOver && !stageON && !toMainMenu) {
 					fire.play();
 					hero.attack(c);
 				}
@@ -247,7 +226,7 @@ public class GameWindow extends Canvas{
 				if (isOver) {
 					soundgame.stop();
 					GameOver.stopAnimationTimer();
-					StartWindow startwindow = new StartWindow(primaryStage);
+					StartWindow startwindow =new StartWindow(primaryStage);
 					startwindow.drawStartWindow();
 					}
 				if(stageON) {
@@ -258,7 +237,14 @@ public class GameWindow extends Canvas{
 					if(hero.getLv() >= 7)stagewindow5.StopAnimationTimer();
 					gamewindowanimation.start();
 					stageON = false ;
-					
+				
+				}
+				if (toMainMenu) 	{
+					System.out.println("FUCK");
+					StartWindow startwindow = new StartWindow(primaryStage);
+					startwindow.drawStartWindow();
+					bosssound.stop();
+					toMainMenu = false;
 				}
 			}
 			if(KeyEvent.getCode() == KeyCode.D) {
@@ -284,10 +270,13 @@ public class GameWindow extends Canvas{
 			if (KeyEvent.getCode() == KeyCode.F) {
 				if(!isOver) {
 				if(CoolDownUltimateSkill == 0 ) {
-					RenderableHolder.getinstance().UltimateSkill();
+					int exp = RenderableHolder.getinstance().UltimateSkill();
+					hero.setExp(hero.getExp()+exp);
+					hero.updateLv();
+					gamescreen.setHeroData(hero.getLv(),hero.getExp(),hero.getMaxexp(),hero.getLife(),gc);
 					CoolDownUltimateSkill = 1500;//note
 					CoolDownSpeed = 150;
-					hero.isUltiOn = true;
+					hero.setUltiOn(true);
 					}
 				}
 			}			
@@ -354,24 +343,24 @@ public class GameWindow extends Canvas{
 	}
 	public void setLV() {
 		if(hero.getLv() ==3) {
-			Monster.speed = 1.5;
+			Monster.setSpeed(1.5);
 			hero.setSpeed(5);
 			InitialSpeed = 5;
-			System.out.println("speed"+hero.getSpeed());
-			System.out.println("MSpeed"+Monster.speed);
+//			System.out.println("speed"+hero.getSpeed());
+//			System.out.println("MSpeed"+Monster.speed);
 		
 		}
 		if(hero.getLv() == 4) {
-			Monster.speed =2;
+			Monster.setSpeed(2);
 		}
 		if(hero.getLv() == 5) {
-			Monster.speed = 2.5;
+			Monster.setSpeed(2.5);
 			hero.setSpeed(6);
 			InitialSpeed = 6;
 		}
 		if(hero.getLv() == 6) {
 			monsteramount =2;
-			Monster.speed = 1.5;
+			Monster.setSpeed(1.5);
 		}
 	}
 

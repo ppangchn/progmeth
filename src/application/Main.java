@@ -9,8 +9,8 @@ import javafx.stage.Stage;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
-		StartWindow s = new StartWindow(primaryStage);
-		s.drawStartWindow();
+		StartWindow startwindow = new StartWindow(primaryStage);
+		startwindow.drawStartWindow();
 		primaryStage.show();
 		
 	}

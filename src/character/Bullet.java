@@ -63,7 +63,6 @@ public class Bullet implements IRenderable {
 				y+=10;
 			}
 		
-		
 	}
 	@Override
 	public boolean isVisible() {

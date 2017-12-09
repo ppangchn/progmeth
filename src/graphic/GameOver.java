@@ -86,7 +86,6 @@ public class GameOver {
 			}
 			
 		};
-		gameoveranimation.start();
 	}
 	protected static void updateAnimation(GraphicsContext gc) {
 		// TODO Auto-generated method stub
@@ -104,6 +103,9 @@ public class GameOver {
 	}
 	public static void playSong() {
 		gameoversound.play();
+	}
+	public static void startAnimationTimer() {
+		gameoveranimation.start();
 	}
 	public static void stopAnimationTimer() {
 		gameoveranimation.stop();

@@ -7,6 +7,7 @@ import java.util.Random;
 import graphic.GameWinner;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import sharedObject.IRenderable;
 
 public class Boss extends Hero implements IRenderable {
@@ -14,7 +15,7 @@ public class Boss extends Hero implements IRenderable {
 	
 	private double x = 400;
 	private double y = 100;
-	private int life = 5;
+	private int life = 20;
 	private int time = 0;
 	private int countframe = 0;
 	private boolean isVisible = true;
@@ -32,6 +33,12 @@ public class Boss extends Hero implements IRenderable {
 	@Override
 	public void draw(GraphicsContext gc) {
 		gc.drawImage(front.get(countframe),this.getX(), this.getY());
+		gc.setFill(Color.RED);
+		gc.setStroke(Color.BLACK);
+		gc.setLineWidth(3);
+		gc.strokeRect(150, 400, 480, 10);
+		gc.fillRect(150, 400, 480*life/20, 10);
+		
 		if (!isCoolDown) {
 			if(time%5==0) {
 				attack('a');
@@ -58,14 +65,19 @@ public class Boss extends Hero implements IRenderable {
 		
 		if (countframe>=3) countframe = 0;
 	}
-	
 	@Override
 	public boolean isVisible() {
 		return isVisible;
 	}
 	public boolean isDead() {
-		if (life==0) return true;
+		if (life<=0) return true;
 		return false;
+	}
+	public int getLife() {
+		return life;
+	}
+	public void setLife(int life) {
+		this.life = life;
 	}
 	
 }

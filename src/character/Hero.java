@@ -2,6 +2,7 @@ package character;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
 
@@ -17,7 +18,7 @@ public class Hero implements IRenderable {
 	public Image heropic;
 	private int exp = 0;
 	private int lv = 1;
-	private int maxexp = 30;
+	private int maxexp = 20;
 	private int time = 0;
 	private String[] left = {"left.png","left2.png","left3.png"};
 	private String[] right = {"right.png","right2.png","right3.png"};
@@ -29,7 +30,8 @@ public class Hero implements IRenderable {
 	private int speed = 4 ; 
 	private Image UltiEffect = new Image("UltiEffect.png");
 	private boolean  isBoss = false;
-	public boolean isUltiOn = false;
+	private boolean isUltiOn = false;
+	private AudioClip collidesound = new AudioClip(ClassLoader.getSystemResource("animesound.wav").toString());
 	
 	
 	public Hero() {
@@ -105,7 +107,7 @@ public class Hero implements IRenderable {
 		if(time>=30) time = 0; 
 		//System.out.println("earth");
 		if(isBariaOn) gc.drawImage(barrier, x-8, y+15);
-		if(isUltiOn) gc.drawImage(UltiEffect, x-8, y+15);
+		if(isUltiOn()) gc.drawImage(UltiEffect, x-8, y+15);
 		gc.drawImage(heropic, x, y);
 		
 		
@@ -143,7 +145,7 @@ public class Hero implements IRenderable {
 		if (exp>=maxexp) {
 			lv++;
 			exp=0;
-			maxexp+=30*lv;
+			maxexp+=2*lv;
 		}
 	}
 	public Bullet attack(char c) {
@@ -190,7 +192,10 @@ public class Hero implements IRenderable {
 				if(BariaCount == 0) isBariaOn = false;
 			}
 			
-			else life--; 
+			else {
+				life--;
+				collidesound.play();
+			}
 			return true;
 		}
 		return false;
@@ -214,6 +219,12 @@ public class Hero implements IRenderable {
 	}
 	public boolean isBoss() {
 		return isBoss;
+	}
+	public boolean isUltiOn() {
+		return isUltiOn;
+	}
+	public void setUltiOn(boolean isUltiOn) {
+		this.isUltiOn = isUltiOn;
 	}
 	
 	

@@ -4,23 +4,25 @@ import java.util.Random;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 import sharedObject.IRenderable;
 
 public class Monster implements IRenderable {
 	private double x;
 	private double y;
 	private int way;
-	public static double speed = 1 ;
-	public Random rand = new Random();
+	private static double speed = 1 ;
+	private Random rand = new Random();
+	private int exp;
+	private boolean isVisible = true;
+	private Hero hero;
+	private int tick;
+	private boolean isCollide = false;
 	public Image monsterUp = new Image("monsterup.png");
 	public Image monsterDown = new Image("monsterdown.png");
 	public Image monsterDie = new Image("monsterDie.png");
 	public Image monsterPic;
-	public int exp;
-	public boolean isVisible = true;
-	public Hero hero;
-	public int tick;
-	public boolean isCollide = false;
+	
 	public Monster(Hero hero) {
 		way = rand.nextInt(4)+1;
 		System.out.println(way);
@@ -85,8 +87,8 @@ public class Monster implements IRenderable {
 	}
 	public void updatePos() {
 
-		x+= speed*(calculateCos(hero.getX(),hero.getY()));
-		y+= speed*(calculateSin(hero.getX(),hero.getY()));
+		x+= getSpeed()*(calculateCos(hero.getX(),hero.getY()));
+		y+= getSpeed()*(calculateSin(hero.getX(),hero.getY()));
 		boolean IsHeroAttacked;
 		IsHeroAttacked = hero.isAttacked(x, y);
 		if(IsHeroAttacked) {isVisible = false; isCollide = true;}
@@ -109,6 +111,14 @@ public class Monster implements IRenderable {
 		double chack = Math.sqrt((kam*kam)+(chid*chid));
 		double cos = chid/chack;	
 		return cos;
+	}
+
+	public static double getSpeed() {
+		return speed;
+	}
+
+	public static void setSpeed(double speed) {
+		Monster.speed = speed;
 	}
 	
 	
