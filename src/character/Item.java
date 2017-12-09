@@ -9,16 +9,16 @@ public class Item implements IRenderable{
 	double x,y;
 	protected boolean isVisible = true;
 	private int frame = 0;
-	public void effect(Hero hero) {
-		
-	}
+	public int tick=200;
+	
 	public Item() {
 		this.randomAddress();
+
 	}
 	public void randomAddress() {
 		Random rand = new Random();
-		x = rand.nextDouble()*640;
-		y = rand.nextDouble()*480;
+		x = rand.nextInt(677)+35;
+		y = rand.nextInt(311)+60;
 		
 	}
 	@Override
@@ -43,5 +43,13 @@ public class Item implements IRenderable{
 	public double getY() {
 		return y;
 	}
+	public void effect(Hero hero) {
+		
+	}
+	public void update() {
+		tick--;
+		if(tick <= 0) isVisible = false; 
+	}
+
 
 }
