@@ -48,6 +48,7 @@ public class GameWindow extends Canvas{
 	private int CoolDownSpeed;
 	private Boss boss;
 	private int monsteramount = 1;
+	private int InitialSpeed;//?
 	
 
 
@@ -76,6 +77,7 @@ public class GameWindow extends Canvas{
 		RenderableHolder.getinstance().add(monster);
 		soundgame = new AudioClip(ClassLoader.getSystemResource(soundgameURL[x]).toString());
 		soundgame.play();
+		InitialSpeed = hero.getSpeed();
 	    
 		
 		
@@ -98,6 +100,7 @@ public class GameWindow extends Canvas{
 					}
 					if(frame %300==0)addItem();
 				}
+			    System.out.println("speed"+hero.getSpeed());
 				RenderableHolder.getinstance().remove();
 				RenderableHolder.getinstance().draw(gc);
 				int exp = RenderableHolder.getinstance().setVisible();
@@ -114,7 +117,7 @@ public class GameWindow extends Canvas{
 					CoolDownSpeed--;
 					hero.setSpeed(8);
 				}
-				else {hero.setSpeed(hero.getSpeed()); hero.isUltiOn =false;}
+				else {hero.setSpeed(InitialSpeed); hero.isUltiOn =false;}
 				gamescreen.setCoolDown(CoolDownFire, CoolDownBarrier, CoolDownUltimateSkill);
 				
 				RenderableHolder.getinstance().update(control);
@@ -148,7 +151,7 @@ public class GameWindow extends Canvas{
 					stagewindow4.draw();
 					stageON = true;					
 				}
-				if (hero.getLv()==1 && hero.isLvsevenbefore()==false && !isOver) {
+				if (hero.getLv()==7 && hero.isLvsevenbefore()==false && !isOver) {
 					hero.setLvsevenbefore(true);
 					gamewindowanimation.stop();
 					stagewindow5.draw();
@@ -242,7 +245,7 @@ public class GameWindow extends Canvas{
 				if(!isOver) {
 				if(CoolDownUltimateSkill == 0 ) {
 					RenderableHolder.getinstance().UltimateSkill();
-					CoolDownUltimateSkill = 1500;
+					CoolDownUltimateSkill = 1500;//note
 					CoolDownSpeed = 150;
 					hero.isUltiOn = true;
 					}
@@ -312,19 +315,22 @@ public class GameWindow extends Canvas{
 		if(hero.getLv() ==3) {
 			Monster.speed = 1.5;
 			hero.setSpeed(5);
+			InitialSpeed = 5;
 			System.out.println("speed"+hero.getSpeed());
 			System.out.println("MSpeed"+Monster.speed);
 		
 		}
 		if(hero.getLv() == 4) {
-			monsteramount =2;
+			Monster.speed =2;
 		}
 		if(hero.getLv() == 5) {
-			Monster.speed = 2;
+			Monster.speed = 2.5;
 			hero.setSpeed(6);
+			InitialSpeed = 6;
 		}
 		if(hero.getLv() == 6) {
-			monsteramount =3;
+			monsteramount =2;
+			Monster.speed = 1.5;
 		}
 	}
 
