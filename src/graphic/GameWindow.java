@@ -34,13 +34,22 @@ public class GameWindow extends Canvas{
 	private AudioClip bosssound = new AudioClip(ClassLoader.getSystemResource("BossSound130.wav").toString());
 	private int FireTimes = 0;
 	private boolean isOver = false;
+<<<<<<< HEAD
 	private boolean isStateFive = false;
 	private boolean AddedBoss = false;
+||||||| merged common ancestors
+	private boolean nameable = false;
+	private String playername= "";
+	private boolean isStateFive = false;
+=======
+    private boolean isStateFive = false;
+>>>>>>> f1ad8518b4868888e385c76da2b3fd3a397103d0
 	private int CoolDownUltimateSkill;
 	private int CoolDownFire;
 	private int CoolDownBarrier;
 	private int CoolDownSpeed;
 	private Boss boss;
+<<<<<<< HEAD
 	public String control = "";
 	public GraphicsContext gc;
 	public Scene scene;
@@ -50,6 +59,15 @@ public class GameWindow extends Canvas{
 	public int frame = 0;
 	public String[] soundgameURL = {"Caramelldansen.mp3","PonPonPon.mp3","Senbonzakura.mp3","Melancholic.mp3","LevanPolkka.mp3"};
 	
+||||||| merged common ancestors
+=======
+	private int monsteramount = 1;
+	private int InitialSpeed;//?
+	
+
+
+
+>>>>>>> f1ad8518b4868888e385c76da2b3fd3a397103d0
 	public GameWindow(Stage primaryStage) {
 		stagewindow = new StageWindow(getGraphicsContext2D());
 		stagewindow2 = new StageWindow2(getGraphicsContext2D());
@@ -74,6 +92,7 @@ public class GameWindow extends Canvas{
 		RenderableHolder.getinstance().add(monster);
 		soundgame = new AudioClip(ClassLoader.getSystemResource(soundgameURL[x]).toString());
 		soundgame.play();
+		InitialSpeed = hero.getSpeed();
 	    
 		
 		
@@ -91,9 +110,12 @@ public class GameWindow extends Canvas{
 
 			if ((frame%600)<500)
 				{
-					if (frame%60 ==0 && !isStateFive)addMonster();
+					if (frame%60 ==0 && !isStateFive) {
+						for(int i = 0 ; i<monsteramount ; i++) addMonster();
+					}
 					if(frame %300==0)addItem();
 				}
+			    System.out.println("speed"+hero.getSpeed());
 				RenderableHolder.getinstance().remove();
 				RenderableHolder.getinstance().draw(gc);
 				int exp = RenderableHolder.getinstance().setVisible();
@@ -101,7 +123,6 @@ public class GameWindow extends Canvas{
 				hero.setExp(hero.getExp()+exp);
 				hero.updateLv();
 				gamescreen.setHeroData(hero.getLv(),hero.getExp(),hero.getMaxexp(),hero.getLife(),gc);
-				gamescreen.setSkillData(hero.getBariaCount(), FireTimes);
 				fire();
 				if(FireTimes != 0 ) FireTimes--;
 				if(CoolDownUltimateSkill != 0) CoolDownUltimateSkill--;
@@ -109,15 +130,30 @@ public class GameWindow extends Canvas{
 				if(CoolDownBarrier != 0 )CoolDownBarrier--;
 				if(CoolDownSpeed != 0) {
 					CoolDownSpeed--;
-					hero.setSpeed(6);
+					hero.setSpeed(8);
 				}
+<<<<<<< HEAD
 				
 				else {hero.setSpeed(hero.getSpeed()); hero.isUltiOn =false;}
+||||||| merged common ancestors
+				else {hero.setSpeed(hero.getSpeed()); hero.isUltiOn =false;}
+=======
+				else {hero.setSpeed(InitialSpeed); hero.isUltiOn =false;}
+>>>>>>> f1ad8518b4868888e385c76da2b3fd3a397103d0
 				gamescreen.setCoolDown(CoolDownFire, CoolDownBarrier, CoolDownUltimateSkill);
 				
 				RenderableHolder.getinstance().update(control);
+<<<<<<< HEAD
 				if (soundgame.isPlaying()==false && !isOver && !isStateFive) playSong();
+||||||| merged common ancestors
+				if (soundgame.isPlaying()==false && !isOver) playSong();
+=======
+				if (soundgame.isPlaying()==false && !isOver) playSong();
+				
+				setLV();
+>>>>>>> f1ad8518b4868888e385c76da2b3fd3a397103d0
 
+				
 				if (hero.getLv()==3 && hero.isLvthreebefore()==false && !isOver) {
 					hero.setLvthreebefore(true);
 					gamewindowanimation.stop();
@@ -126,7 +162,7 @@ public class GameWindow extends Canvas{
 				}
 				
 				if (hero.getLv()==4 && hero.isLvfourbefore()==false && !isOver) {
-					hero.setLvsixbefore(true);
+					hero.setLvfourbefore(true);
 					gamewindowanimation.stop();
 					stagewindow2.draw();
 					stageON = true;
@@ -228,7 +264,7 @@ public class GameWindow extends Canvas{
 			if(KeyEvent.getCode() == KeyCode.D) {
 				if(!isOver) {
 				if(CoolDownFire == 0) {FireTimes = 90;
-				CoolDownFire = 150;
+				CoolDownFire = 300;
 				}
 				}
 
@@ -239,7 +275,7 @@ public class GameWindow extends Canvas{
 				if(CoolDownBarrier == 0) {
 
 					hero.barrier();
-					CoolDownBarrier = 300;
+					CoolDownBarrier = 600;
 				}
 				}
 
@@ -249,7 +285,7 @@ public class GameWindow extends Canvas{
 				if(!isOver) {
 				if(CoolDownUltimateSkill == 0 ) {
 					RenderableHolder.getinstance().UltimateSkill();
-					CoolDownUltimateSkill = 90;
+					CoolDownUltimateSkill = 1500;//note
 					CoolDownSpeed = 150;
 					hero.isUltiOn = true;
 					}
@@ -259,25 +295,19 @@ public class GameWindow extends Canvas{
 		this.setOnKeyReleased((KeyEvent) -> {
 			if (KeyEvent.getCode() == KeyCode.LEFT) {
 				control = control.replace("a","");
-				//bullet.c='a';
 				RenderableHolder.getinstance().update(control);
 			}
 			if (KeyEvent.getCode() == KeyCode.RIGHT) {
 				control = control.replace("d", "");
-				//bullet.c='d';
 				RenderableHolder.getinstance().update(control);
 			}
 			if (KeyEvent.getCode() == KeyCode.UP) {
 				control = control.replace("w", "");
-				//bullet.c='w';
 				RenderableHolder.getinstance().update(control);
-				
 			}
 			if (KeyEvent.getCode() == KeyCode.DOWN ) {
 				control = control.replace("s", "");
-				//bullet.c='s';
 				RenderableHolder.getinstance().update(control);
-				
 			}
 			if (KeyEvent.getCode() == KeyCode.SPACE) {
 				RenderableHolder.getinstance().update(control);
@@ -324,20 +354,24 @@ public class GameWindow extends Canvas{
 	}
 	public void setLV() {
 		if(hero.getLv() ==3) {
-			Monster.speed = 1.2;
-			hero.setSpeed(4);
+			Monster.speed = 1.5;
+			hero.setSpeed(5);
+			InitialSpeed = 5;
+			System.out.println("speed"+hero.getSpeed());
+			System.out.println("MSpeed"+Monster.speed);
 		
 		}
 		if(hero.getLv() == 4) {
-			Monster.speed = 1.4;
-			
+			Monster.speed =2;
 		}
 		if(hero.getLv() == 5) {
-			Monster.speed = 1.6;
-		
+			Monster.speed = 2.5;
+			hero.setSpeed(6);
+			InitialSpeed = 6;
 		}
 		if(hero.getLv() == 6) {
-			Monster.speed = 1.8;
+			monsteramount =2;
+			Monster.speed = 1.5;
 		}
 	}
 

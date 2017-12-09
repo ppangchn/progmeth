@@ -190,7 +190,7 @@ public class Hero implements IRenderable {
 				if(BariaCount == 0) isBariaOn = false;
 			}
 			
-			else life--;
+			else life--; 
 			return true;
 		}
 		return false;

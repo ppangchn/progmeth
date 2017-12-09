@@ -35,6 +35,9 @@ public class RenderableHolder {
 			if (i instanceof Monster) {
 				((Monster)i).updatePos();
 			}
+			if(i instanceof Item) {
+				((Item)i).update();
+			}
 		}
 	}
 	public void draw(GraphicsContext gc) {
