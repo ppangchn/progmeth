@@ -23,6 +23,14 @@ public class GameWindow extends Canvas{
 	private GameScreen gamescreen;
 	private Monster monster;
 	private AudioClip soundgame;
+	public String control = "";
+	public GraphicsContext gc;
+	public Scene scene;
+	public Stage primaryStage;
+	public char c = 'a';
+	public boolean hasBullet = false;
+	public int frame = 0;
+	public String[] soundgameURL = {"Caramelldansen.mp3","PonPonPon.mp3","Senbonzakura.mp3","Melancholic.mp3","LevanPolkka.mp3"};
 	private Random rand;
 	private StageWindow stagewindow;
 	private StageWindow2 stagewindow2;
@@ -33,21 +41,15 @@ public class GameWindow extends Canvas{
 	private AudioClip fire = new AudioClip(ClassLoader.getSystemResource("fire.wav").toString());
 	private int FireTimes = 0;
 	private boolean isOver = false;
-	private boolean isStateFive = false;
+    private boolean isStateFive = false;
 	private int CoolDownUltimateSkill;
 	private int CoolDownFire;
 	private int CoolDownBarrier;
 	private int CoolDownSpeed;
 	private Boss boss;
 	private int monsteramount = 1;
-	public String control = "";
-	public GraphicsContext gc;
-	public Scene scene;
-	public Stage primaryStage;
-	public char c = 'a';
-	public boolean hasBullet = false;
-	public int frame = 0;
-	public String[] soundgameURL = {"Caramelldansen.mp3","PonPonPon.mp3","Senbonzakura.mp3","Melancholic.mp3","LevanPolkka.mp3"};
+	
+
 
 
 	public GameWindow(Stage primaryStage) {
@@ -146,7 +148,7 @@ public class GameWindow extends Canvas{
 					stagewindow4.draw();
 					stageON = true;					
 				}
-				if (hero.getLv()==7 && hero.isLvsevenbefore()==false && !isOver) {
+				if (hero.getLv()==1 && hero.isLvsevenbefore()==false && !isOver) {
 					hero.setLvsevenbefore(true);
 					gamewindowanimation.stop();
 					stagewindow5.draw();
