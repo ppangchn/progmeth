@@ -10,7 +10,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		StartWindow startwindow = new StartWindow(primaryStage);
-		startwindow.drawStartWindow();
+		startwindow.startAnimation();
 		primaryStage.show();
 		
 	}

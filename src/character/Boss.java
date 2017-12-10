@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import graphic.GameWinner;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import sharedObject.IRenderable;
 
-public class Boss extends Hero implements IRenderable {
+public class Boss extends Hero {
 	private List<Image> front = new ArrayList<>();
 	
 	private double x = 400;
@@ -20,12 +18,13 @@ public class Boss extends Hero implements IRenderable {
 	private int countframe = 0;
 	private boolean isVisible = true;
 	private boolean isCoolDown = false;
-	private Random rand;
+	private Random rand = new Random();
 	public Image bosspic;
 	public Boss() {
-		super.setX(x);
-		super.setY(y);
-		super.setBoss(true);
+		super();
+		this.setX(x);
+		this.setY(y);
+		this.setBoss(true);
 		for (int i=1; i<5; i++) {
 			front.add(new Image("bossfront"+i+".png",40,58,false,false));
 		}
@@ -38,7 +37,7 @@ public class Boss extends Hero implements IRenderable {
 		gc.setLineWidth(3);
 		gc.strokeRect(150, 400, 480, 10);
 		gc.fillRect(150, 400, 480*life/20, 10);
-		
+		System.out.println(time);
 		if (!isCoolDown) {
 			if(time%5==0) {
 				attack('a');
@@ -52,13 +51,18 @@ public class Boss extends Hero implements IRenderable {
 		if (time==100) {
 			System.out.println("coooldown");
 			isCoolDown = true;
+			System.out.println("random");
 		}
 		if (time==150) {
-			Random rand = new Random();
-			double earth = rand.nextDouble()*640;
+			double earth = rand.nextDouble()*680;
+			for(int i=0;i<100;i++) {
+				System.out.println(earth);
+			}
+			
 			this.setX(earth);
 			this.isCoolDown=false;
 			time =0;
+			
 		}
 		
 		time++;

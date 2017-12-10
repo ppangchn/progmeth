@@ -2,43 +2,25 @@ package character;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import sharedObject.IRenderable;
 
-public class Bullet implements IRenderable {
+public class Bullet extends Entity{
 	private boolean isFromBoss = false;
-	private double x;
-	private double y;
 	private char direction;
 	private boolean isVisible = true;
 	public Image bulletpic;
-	
 	public Bullet(double x,double y,char direction) {
-		this.x = x;
-		this.y = y;
+		super(x,y);
 		this.direction = direction;
 		setBullet();
 	}
 	public void setBullet() {
-		bulletpic = new Image("bullet.png");
+		if (isFromBoss) bulletpic = new Image("bossbullet.png");
+		else bulletpic = new Image("bullet.png");
 	}
-	public double getX() {
-		return x;
-	}
-
-	public double getY() {
-		return y;
+	public void draw(GraphicsContext gc) {
+		gc.drawImage(bulletpic, x, y);
 	}
 	
-	public void draw(GraphicsContext gc) {
-		// TODO Auto-generated method stub
-		gc.drawImage(bulletpic, x, y);
-		//System.out.println("BOMP");
-	}
-
-
-	public void setIsvisible(boolean isVisible) {
-		this.isVisible = isVisible;
-	}
 	public void updatePos() {
 		// TODO Auto-generated method stub
 			if (direction=='a') x-=10;
@@ -69,12 +51,13 @@ public class Bullet implements IRenderable {
 		// TODO Auto-generated method stub
 		return isVisible;
 	}
+	public void setIsvisible(boolean isVisible) {
+		this.isVisible = isVisible;
+	}
 	public boolean isFromBoss() {
 		return isFromBoss;
 	}
 	public void setFromBoss(boolean isFromBoss) {
 		this.isFromBoss = isFromBoss;
 	}
-	
-
 }

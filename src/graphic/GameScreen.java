@@ -12,8 +12,6 @@ public class GameScreen implements IRenderable {
 	private int maxexp;
 	private int life;
 	private Image bggame;
-	private int BCount;
-	private int CoolDown ;
 	private Image skillbullet;
 	private Image skillulti;
 	private Image skillBaria;
@@ -69,15 +67,13 @@ public class GameScreen implements IRenderable {
 	}
 	
 	public void setSkillData(int BulletCount , int CoolDown) {
-		this.BCount = BulletCount ;
-		this.CoolDown = CoolDown/30;
 		
 	}
 	public void setCoolDown(int CoolDownFire , int CoolDownBarrier , int CoolDownUltimateSkill) {
-		 skillbullet = new Image("fuckingfireball1.png");
-		 skillulti = new Image("fuckingulti1.png");
-		 skillBaria = new Image("fuckingBaria1.png");
-		if(CoolDownFire != 0) skillbullet = new Image("fireballCoolDown.png");
+		 skillbullet = new Image("Fireball.png");
+		 skillulti = new Image("Ulti.png");
+		 skillBaria = new Image("Baria.png");
+		if(CoolDownFire != 0) skillbullet = new Image("FireballCoolDown.png");
 		if(CoolDownBarrier != 0)skillBaria = new Image("BariaCoolDown.png");
 		if(CoolDownUltimateSkill != 0) skillulti = new Image("UltiCoolDown.png");
 		

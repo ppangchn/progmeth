@@ -4,20 +4,14 @@ import java.util.Random;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.media.AudioClip;
-import sharedObject.IRenderable;
 
-public class Monster implements IRenderable {
-	private double x;
-	private double y;
+public class Monster extends Entity{
 	private int way;
 	private static double speed = 1 ;
 	private Random rand = new Random();
-	private int exp;
 	private boolean isVisible = true;
 	private Hero hero;
 	private int tick;
-	private boolean isCollide = false;
 	public Image monsterUp = new Image("monsterup.png");
 	public Image monsterDown = new Image("monsterdown.png");
 	public Image monsterDie = new Image("monsterDie.png");
@@ -43,8 +37,9 @@ public class Monster implements IRenderable {
 			y=370;
 		} 
 		setImage();
+		setX(x);
+		setY(y);
 		this.hero = hero; 
-		System.out.println(x+" , "+y);
 	}
 
 	@Override
@@ -73,25 +68,12 @@ public class Monster implements IRenderable {
 		}
 		return false;
 	}
-	public double getX() {
-		return x;
-	}
-	public void setX(double x) {
-		this.x = x;
-	}
-	public double getY() {
-		return y;
-	}
-	public void setY(double y) {
-		this.y = y;
-	}
 	public void updatePos() {
-
 		x+= getSpeed()*(calculateCos(hero.getX(),hero.getY()));
 		y+= getSpeed()*(calculateSin(hero.getX(),hero.getY()));
 		boolean IsHeroAttacked;
 		IsHeroAttacked = hero.isAttacked(x, y);
-		if(IsHeroAttacked) {isVisible = false; isCollide = true;}
+		if(IsHeroAttacked) {isVisible = false;}
 		
 	}
 	

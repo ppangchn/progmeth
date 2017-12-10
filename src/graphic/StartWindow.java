@@ -33,12 +33,9 @@ public class StartWindow{
 	private Random rand;
 	public Image background;
 	public AudioClip soundbg;
-	public AudioClip buttonsound = new AudioClip(ClassLoader.getSystemResource("fire.wav").toString());
+	public AudioClip buttonsound = new AudioClip(ClassLoader.getSystemResource("buttonsound.wav").toString());
 	public String[] soundURL = {"Hello.mp3","Coward.mp3","JustBeFriend.mp3","TellYourWorld.mp3"};
 	
-	
-	
-
 	public StartWindow(Stage primaryStage) {
 		rand = new Random();
 		int x = rand.nextInt(soundURL.length);
@@ -48,7 +45,7 @@ public class StartWindow{
 		soundbg = new AudioClip(ClassLoader.getSystemResource(soundURL[x]).toString());
 		soundbg.play();
 	}
-	public void drawStartWindow() {
+	public void draw(GraphicsContext gc) {
 		StackPane root = new StackPane();
 		root.setPrefSize(800, 450);
 		setBackground();
@@ -84,7 +81,6 @@ public class StartWindow{
 		};
 		soundanimation.start();
 	}
-	
 	public void setBackground() {
 		GraphicsContext gc = bg.getGraphicsContext2D();
 		gc.setFill(Color.WHITE);
@@ -96,7 +92,7 @@ public class StartWindow{
 		gc.fillText("PEWPEW\nPROGMETH", 400, 100);
 		Image wink = new Image("wink.png");
 		gc.drawImage(wink, 400, 80);
-		setRandomText();
+		setRandomMusicSentence();
 		
 	}
 	public void addAction() {
@@ -158,7 +154,7 @@ public class StartWindow{
 		gc.fillText("  Press Space to\nEnter the Main Menu", 440, 270); //508 270
 		
 	}
-	public void setRandomText() {
+	public void setRandomMusicSentence() {
 		gc.setFill(Color.DIMGREY);
 		gc.setFont(RANDOM_FONT);
 		gc.fillText("Press R to random the music", 500, 20); //508 270
@@ -196,6 +192,9 @@ public class StartWindow{
 		soundbg = new AudioClip(ClassLoader.getSystemResource(soundURL[x]).toString());
 		soundbg.play();
 	}
-	
+	public void startAnimation() {
+		draw(gc);
+		
+	}
 	
 }

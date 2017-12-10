@@ -3,23 +3,15 @@ package character;
 import java.util.Random;
 
 import javafx.scene.canvas.GraphicsContext;
-import sharedObject.IRenderable;
 
-public class Item implements IRenderable{
-	double x,y;
+public class Item extends Entity{
 	protected boolean isVisible = true;
 	private int frame = 0;
 	public int tick=200;
+	private static Random rand = new Random();
 	
 	public Item() {
-		this.randomAddress();
-
-	}
-	public void randomAddress() {
-		Random rand = new Random();
-		x = rand.nextInt(677)+35;
-		y = rand.nextInt(311)+60;
-		
+		super(rand.nextInt(677)+35,rand.nextInt(311)+60);
 	}
 	@Override
 	public void draw(GraphicsContext gc) {
@@ -36,17 +28,10 @@ public class Item implements IRenderable{
 		// TODO Auto-generated method stub
 		return this.isVisible;
 	}
-	public double getX() {
-		// TODO Auto-generated method stub
-		return this.x;
-	}
-	public double getY() {
-		return y;
-	}
 	public void effect(Hero hero) {
 		
 	}
-	public void update() {
+	public void updatePos() {
 		tick--;
 		if(tick <= 0) isVisible = false; 
 	}

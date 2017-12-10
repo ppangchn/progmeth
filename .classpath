@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="audio/|image/|font/|hero/|src/|audio/GameWindow/|audio/StartWindow/|monster/|image/Originals/|item/" kind="src" path=""/>
-	<classpathentry excluding="GameWindow/|StartWindow/" kind="src" path="audio"/>
-	<classpathentry excluding="Originals/" kind="src" path="image"/>
+	<classpathentry excluding="audio/|font/|hero/|src/|audio/GameWindow/|audio/StartWindow/|monster/|item/|bg/|skill/|audio/SoundEffect/" kind="src" path=""/>
+	<classpathentry excluding="GameWindow/|StartWindow/|SoundEffect/" kind="src" path="audio"/>
 	<classpathentry excluding="simoherold_avenuex/" kind="src" path="font"/>
 	<classpathentry kind="src" path="hero"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="audio/GameWindow"/>
 	<classpathentry kind="src" path="audio/StartWindow"/>
 	<classpathentry kind="src" path="monster"/>
-	<classpathentry kind="src" path="image/Originals"/>
 	<classpathentry kind="src" path="item"/>
+	<classpathentry kind="src" path="bg"/>
+	<classpathentry kind="src" path="skill"/>
+	<classpathentry kind="src" path="audio/SoundEffect"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>

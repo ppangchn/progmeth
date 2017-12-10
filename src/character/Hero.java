@@ -1,32 +1,34 @@
 package character;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
 
-public class Hero implements IRenderable {
+public class Hero extends Entity implements IRenderable {
 	private boolean lvthreebefore = false;
 	private boolean lvfourbefore = false;
 	private boolean lvfivebefore = false;
 	private boolean lvsixbefore = false;
 	private boolean lvsevenbefore = false;
-	private double x ;  //=center;
-	private double y; //=center;
+	private String control;
 	private int life = 10;
 	public Image heropic;
 	private int exp = 0;
 	private int lv = 1;
-	private int maxexp = 20;
+	private int maxexp = 50;
 	private int time = 0;
-	private String[] left = {"left.png","left2.png","left3.png"};
-	private String[] right = {"right.png","right2.png","right3.png"};
-	private String[] front = {"front.png","front2.png","front3.png"};
-	private String[] back = {"back.png","back2.png","back3.png"};
+	private List<Image> left = new ArrayList<>();
+	private List<Image> right = new ArrayList<>();
+	private List<Image> front = new ArrayList<>();
+	private List<Image> back = new ArrayList<>();
 	private boolean isBariaOn =  false;
 	private int BariaCount;
-	private Image barrier = new Image("baria1.png");
+	private Image barrier = new Image("BariaEffect.png");
 	private int speed = 4 ; 
 	private Image UltiEffect = new Image("UltiEffect.png");
 	private boolean  isBoss = false;
@@ -35,8 +37,13 @@ public class Hero implements IRenderable {
 	
 	
 	public Hero() {
-		this.x = 400;
-		this.y = 225;
+		super(400,225);
+		for (int i=1; i<4; i++) {
+			left.add(new Image("left"+i+".png"));
+			right.add(new Image("right"+i+".png"));
+			front.add(new Image("front"+i+".png"));
+			back.add(new Image("back"+i+".png"));
+		}
 		setHero();
 		
 	}
@@ -81,24 +88,8 @@ public class Hero implements IRenderable {
 		life--;
 		
 	}
-
-	public double getX() {
-		return x;
-	}
-
-	public void setX(double x) {
-		this.x = x;
-	}
-
-	public double getY() {
-		return y;
-	}
-
-	public void setY(double y) {
-		this.y = y;
-	}
 	public void setHero() {
-		heropic = new Image("front.png");
+		heropic = front.get(0);
 	}
 	@Override
 	public void draw(GraphicsContext gc) {
@@ -107,30 +98,30 @@ public class Hero implements IRenderable {
 		if(time>=30) time = 0; 
 		//System.out.println("earth");
 		if(isBariaOn) gc.drawImage(barrier, x-8, y+15);
-		if(isUltiOn()) gc.drawImage(UltiEffect, x-8, y+15);
+		if(isUltiOn()) gc.drawImage(UltiEffect, x-12, y+15);
 		gc.drawImage(heropic, x, y);
 		
 		
 	}
-	public void updatePos(String control) {
+	public void updatePos() {
 		if (!isBoss) {
 			if (control.contains("a")) if(x>=35) {
 				x-=speed;
-				heropic = new Image(left[time/10]);
+				heropic = left.get(time/10);
 			}
 			if (control.contains("d")) if (x+90<=800) {
 				x+=speed; 
-				heropic = new Image(right[time/10]);
+				heropic = right.get(time/10);
 				
 			}
 			if (control.contains("w")) if (y-60>=0) {
 				y-=speed;
-				heropic = new Image(back[time/10]);
+				heropic = back.get(time/10);
 				
 			}
 			if (control.contains("s")) if (y+90<=460) {
 				y+=speed;
-				heropic = new Image(front[time/10]);
+				heropic = front.get(time/10);
 			}
 		}
 		
@@ -226,6 +217,7 @@ public class Hero implements IRenderable {
 	public void setUltiOn(boolean isUltiOn) {
 		this.isUltiOn = isUltiOn;
 	}
-	
-	
+	public void setControl(String control) {
+		this.control =control;
+	}
 }

@@ -25,10 +25,11 @@ public class RenderableHolder {
 	public void add(IRenderable i) {
 		object.add(i);
 	}
-	public void update(String control) {
+	public void updatePos(String control) {
 		for (IRenderable i : object) {
 			if ( i instanceof Hero) {
-				((Hero)i).updatePos(control);
+				((Hero)i).setControl(control);
+				((Hero)i).updatePos();
 			}
 			if (i instanceof Bullet) {
 				((Bullet)i).updatePos();
@@ -37,7 +38,7 @@ public class RenderableHolder {
 				((Monster)i).updatePos();
 			}
 			if(i instanceof Item) {
-				((Item)i).update();
+				((Item)i).updatePos();
 			}
 		}
 	}
@@ -84,12 +85,10 @@ public class RenderableHolder {
 			}
 			if (i instanceof Bullet) {
 				if (getDist(hero.getX(),((Bullet)i).getX(),hero.getY(),((Bullet)i).getY()) <= 20 && ((Bullet)i).isFromBoss()) {
-//					System.out.println("nedd to dai");
 					hero.decreaseLife();
 				}
 				if (hero.isBoss()) {
 					if (getDist(((Boss)hero).getX(),((Bullet)i).getX(),((Boss)hero).getY(),((Bullet)i).getY()) <= 20 && !((Bullet)i).isFromBoss()) {
-//						System.out.println("BANGBANGABGANGN");
 						((Boss)hero).setLife(((Boss)hero).getLife()-1);
 						((Bullet) i).setIsvisible(false);
 					}

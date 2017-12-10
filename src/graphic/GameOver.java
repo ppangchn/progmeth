@@ -13,55 +13,45 @@ public class GameOver {
 	public static final Font GAMEOVER_FONT = new Font("Digital Tech",80);
 	public static final Font CONTENT_FONT = new Font("Digital Tech",40);
 	public static final Font MAIN_FONT = new Font("Courier New",20);
-//	protected static final boolean isAnimationRunning = false;
 	public static Image gameover;
 	public static AudioClip gameoversound = new AudioClip(ClassLoader.getSystemResource("GameOver.wav").toString());
 	private static int framebg = 0;
 	private static int framepress =0;
-	private static int count;
+	private static int count = 0;
 	private static AnimationTimer gameoveranimation;
-	public GameOver() {
-		
-	}
+	private static boolean isAnimationRunning = false;
+	private static boolean isFinished =false;
 	public static void draw(GraphicsContext gc) {
 		setImage();
-		count =0;
 		playSong();
 		Thread t = new Thread(new Runnable() {
 			public void run() {
-//				do{
-					updateAnimation(gc);
+				do{
+					setGameOver(gc);
 					try {
-						Thread.sleep(10000);
+						Thread.sleep(100000);
+						
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 
-//					}
-//				while(isAnimationRunning!=false);
+					}
+				while(isAnimationRunning!=false);
 				}
 		});	
 		t.setDaemon(true);
 		t.start();
+		isFinished =true;
 		gameoveranimation = new AnimationTimer() {
 			@Override
 			public void handle(long now) {
 				if (count!=3) {
 					if (framebg==50 && count!=3) {
-						gc.setFill(Color.BLACK);
-						gc.fillRect(0, 0, 800, 450);
-						gc.drawImage(gameover, 0, 0);
+						setBackground(gc);
 					}
 					if (framepress==110 && count!=3) {
-						gc.setFill(Color.ORANGERED);
-						gc.setFont(GAMEOVER_FONT);
-						gc.fillText("GAME OVER", 370, 150);
-						gc.setFont(CONTENT_FONT);
-						gc.fillText("putang ina mo", 420, 250);
-						gc.setFill(Color.WHITE);
-						gc.setFont(MAIN_FONT);
-						gc.fillText("Press Enter to go to Main Menu", 370, 380);
+						setSentence(gc);
 						framebg=0;
 						framepress=0;
 						count++;
@@ -70,24 +60,15 @@ public class GameOver {
 					framepress++;
 				}
 				else {
-					gc.setFill(Color.BLACK);
-					gc.fillRect(0, 0, 800, 450);
-					gc.drawImage(gameover, 0, 0);
-					gc.setFill(Color.ORANGERED);
-					gc.setFont(GAMEOVER_FONT);
-					gc.fillText("GAME OVER", 370, 150);
-					gc.setFont(CONTENT_FONT);
-					gc.fillText("putang ina mo", 420, 250);
-					gc.setFill(Color.WHITE);
-					gc.setFont(MAIN_FONT);
-					gc.fillText("Press Enter to go to Main Menu", 370, 380);
+					setBackground(gc);
+					setSentence(gc);
 				}
-				
 			}
 			
 		};
+		gameoveranimation.start();
 	}
-	protected static void updateAnimation(GraphicsContext gc) {
+	public static void setGameOver(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		gc.setFont(GAMEOVER_FONT);
 		gc.setFill(Color.ORANGERED);
@@ -97,6 +78,21 @@ public class GameOver {
 		gc.strokeText("GAME OVER", 220, 250);
 		
 	}
+	public static void setBackground(GraphicsContext gc) {
+		gc.setFill(Color.BLACK);
+		gc.fillRect(0, 0, 800, 450);
+		gc.drawImage(gameover, 0, 0);
+	}
+	public static void setSentence(GraphicsContext gc) {
+		gc.setFill(Color.ORANGERED);
+		gc.setFont(GAMEOVER_FONT);
+		gc.fillText("GAME OVER", 370, 150);
+		gc.setFont(CONTENT_FONT);
+		gc.fillText("putang ina mo", 420, 250);
+		gc.setFill(Color.WHITE);
+		gc.setFont(MAIN_FONT);
+		gc.fillText("Press Enter to go to Main Menu", 370, 380);
+	}
 	public static void setImage() {
 		gameover = new Image("gameover.jpg");
 		
@@ -104,11 +100,14 @@ public class GameOver {
 	public static void playSong() {
 		gameoversound.play();
 	}
-	public static void startAnimationTimer() {
-		gameoveranimation.start();
+	public static void startAnimation(GraphicsContext gc) {
+		draw(gc);
 	}
-	public static void stopAnimationTimer() {
+	public static void stopAnimation() {
 		gameoveranimation.stop();
 	}
-	
+	public static boolean isFinished() {
+		return isFinished;
+	}
+
 }

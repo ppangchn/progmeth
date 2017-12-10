@@ -5,9 +5,8 @@ import java.util.List;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import sharedObject.IRenderable;
 
-public class Heart extends Item implements IRenderable {
+public class Heart extends Item{
 	private int n =0;
 	public List<Image> image = new ArrayList<>();
 	public Heart() {
@@ -15,7 +14,6 @@ public class Heart extends Item implements IRenderable {
 			Image item = new Image("frame"+i+".png",40,40,false,false);
 			image.add(item);
 		}
-		
 	}
 	@Override
 	public void effect(Hero hero) {
