@@ -143,6 +143,7 @@ public class Hero extends Entity implements IRenderable {
 		Bullet bullet = new Bullet(x,y,c);
 		RenderableHolder.getinstance().add(bullet);
 		if (isBoss) bullet.setFromBoss(true);
+		bullet.setBullet();
 		return bullet;
 	}
 	

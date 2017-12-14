@@ -81,9 +81,14 @@ public class GameWindow extends Canvas{
 	}
 	public void addMoving(GraphicsContext gc) {
 		this.setOnKeyPressed((KeyEvent) -> {
-			if (KeyEvent.getCode() == KeyCode.I) hero.setLv(this.hero.getLv()+1);
+			if (KeyEvent.getCode() == KeyCode.L) hero.setLv(this.hero.getLv()+1);
 			if (KeyEvent.getCode() == KeyCode.B) hero.setLv(7);
 			if (KeyEvent.getCode() == KeyCode.O) hero.setLife(0);
+			if(KeyEvent.getCode() == KeyCode.P) {
+				hero.setLv(7);
+				hero.setLife(1000000000);
+			
+			}
 			if (KeyEvent.getCode() == KeyCode.LEFT) {
 				control+="a";
 				c='a';
@@ -115,7 +120,6 @@ public class GameWindow extends Canvas{
 			if (KeyEvent.getCode() == KeyCode.ENTER) {
 				if (isOver && GameOver.isFinished()) {
 					soundgame.stop();
-					GameOver.stopAnimation();
 					StartWindow startwindow =new StartWindow(primaryStage);
 					startwindow.startAnimation();
 					}
@@ -265,10 +269,11 @@ public class GameWindow extends Canvas{
 		}
 	}
 	public void isGameEnd() {
-		if (hero.getLife()==0) {
+		if (hero.getLife()<=0) {
 			RenderableHolder.getinstance().clearList();
 			gamewindowanimation.stop();
 			GameOver.startAnimation(gc);
+			GameOver.setFinished(false);
 			isOver = true;
 			stopAllSong();
 		}

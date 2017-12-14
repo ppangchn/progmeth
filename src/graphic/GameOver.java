@@ -2,7 +2,6 @@ package graphic;
 
 
 
-import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
@@ -15,58 +14,62 @@ public class GameOver {
 	public static final Font MAIN_FONT = new Font("Courier New",20);
 	public static Image gameover;
 	public static AudioClip gameoversound = new AudioClip(ClassLoader.getSystemResource("GameOver.wav").toString());
-	private static int framebg = 0;
-	private static int framepress =0;
-	private static int count = 0;
-	private static AnimationTimer gameoveranimation;
-	private static boolean isAnimationRunning = false;
-	private static boolean isFinished =false;
+	private static boolean isFinished;
+	private static Thread t;
+	public GameOver() {
+		
+	}
 	public static void draw(GraphicsContext gc) {
 		setImage();
 		playSong();
-		Thread t = new Thread(new Runnable() {
+		
+		t = new Thread(new Runnable() {
 			public void run() {
-				do{
+				int framebg = 0;
+				int framepress = 0;
+				int count = 0;
 					setGameOver(gc);
 					try {
-						Thread.sleep(100000);
+						Thread.sleep(800);
+						System.out.println("FINISH");
 						
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-
+					
+					while (count!=3) {
+						System.out.println("COUNT :" +count);
+						if (framebg==60 && count!=3) {
+							setBackground(gc);
+						}
+						if (framepress==120 && count!=3) {
+							setSentence(gc);
+							framebg=0;
+							framepress=0;
+							count++;
+						}
+						framebg++;
+						framepress++;
+						System.out.println(framebg+" "+framepress);
+						try {
+							Thread.sleep(10);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						if (count==3) {
+							setBackground(gc);
+							setSentence(gc);
+							setFinished(true);
+							
+						}
 					}
-				while(isAnimationRunning!=false);
 				}
 		});	
 		t.setDaemon(true);
 		t.start();
-		isFinished =true;
-		gameoveranimation = new AnimationTimer() {
-			@Override
-			public void handle(long now) {
-				if (count!=3) {
-					if (framebg==50 && count!=3) {
-						setBackground(gc);
-					}
-					if (framepress==110 && count!=3) {
-						setSentence(gc);
-						framebg=0;
-						framepress=0;
-						count++;
-					}
-					framebg++;
-					framepress++;
-				}
-				else {
-					setBackground(gc);
-					setSentence(gc);
-				}
-			}
-			
-		};
-		gameoveranimation.start();
+		
 	}
 	public static void setGameOver(GraphicsContext gc) {
 		// TODO Auto-generated method stub
@@ -103,11 +106,12 @@ public class GameOver {
 	public static void startAnimation(GraphicsContext gc) {
 		draw(gc);
 	}
-	public static void stopAnimation() {
-		gameoveranimation.stop();
-	}
 	public static boolean isFinished() {
 		return isFinished;
 	}
+	public static void setFinished(boolean isFinished) {
+		GameOver.isFinished = isFinished;
+	}
+	
 
 }
