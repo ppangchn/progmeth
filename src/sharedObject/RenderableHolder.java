@@ -2,18 +2,14 @@ package sharedObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-
 import character.Boss;
 import character.Bullet;
 import character.Hero;
 import character.Item;
 import character.Monster;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.media.AudioClip;
 
 public class RenderableHolder {
-	Scanner keyboard = new Scanner(System.in);
 	private static final RenderableHolder r = new RenderableHolder();
 	private List<IRenderable> object;
 	public RenderableHolder() {
@@ -100,7 +96,6 @@ public class RenderableHolder {
 		double ans = Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
 		return ans;
 	}
-	
 	public int UltimateSkill() {
 		int n =0;
 		for(IRenderable i : object) {

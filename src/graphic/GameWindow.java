@@ -269,7 +269,7 @@ public class GameWindow extends Canvas{
 		}
 	}
 	public void isGameEnd() {
-		if (hero.getLife()<=0) {
+		if (hero.getLife()<0) {
 			RenderableHolder.getinstance().clearList();
 			gamewindowanimation.stop();
 			GameOver.startAnimation(gc);

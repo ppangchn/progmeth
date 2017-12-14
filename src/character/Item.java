@@ -6,7 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class Item extends Entity{
 	protected boolean isVisible = true;
-	public int tick=200;
+	private int tick=200;
 	private static Random rand = new Random();
 	
 	public Item() {

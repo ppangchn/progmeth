@@ -10,7 +10,6 @@ import javafx.scene.paint.Color;
 
 public class Boss extends Hero {
 	private List<Image> front = new ArrayList<>();
-	
 	private double x = 400;
 	private double y = 100;
 	private int life = 20;

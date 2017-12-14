@@ -11,6 +11,8 @@ import javafx.scene.text.Font;
 
 public class StageWindow {
 	private static AnimationTimer stageanimation;
+	private static int count = 0;
+	private static String sentence = "" ;
 	public static String[][] stagedialog = {{"Y","o","u"," ","s","o"," ","n","o","o","b"," ","l","a","~"," ","C","a","t","c","h"," ","m","e"," ","i","f"," ","y","o","u"," ","c","a","n"," ",":","P"}
 									,{"I","s"," ","t","h","i","s"," ","t","h","e"," ","b","e","s","t"," ","y","o","u"," ","c","a","n"," ","d","o","?"}
 									,{"T","i","m","e"," ","t","o"," ","h","a","v","e"," ","f","u","n","~"}
@@ -21,15 +23,7 @@ public class StageWindow {
 	public static List<Image> boss = new ArrayList<>();
 	public static final Font font = Font.loadFont(ClassLoader.getSystemResourceAsStream("CourierNew.ttf"),18);
 	public static final Font enter = Font.loadFont(ClassLoader.getSystemResourceAsStream("CourierNew.ttf"),12);
-	private static int count = 0;
 	public GraphicsContext gc;
-	private static boolean isVisible = true;
-	public int time = 90;
-	private static String sentence = "" ;
-	
-	
-	public StageWindow() {
-	}
 	public static void draw(int stage,int numboss,GraphicsContext gc) {
 		sentence = "";
 		count =0;
@@ -38,7 +32,6 @@ public class StageWindow {
 			@Override
 			public void handle(long now) {
 				// TODO Auto-generated method stub
-				if (isVisible) {
 					Image dialog = new Image("DialogBox.png");
 					gc.drawImage(boss.get(numboss), 30, 150);
 					gc.drawImage(dialog, 190, 350);
@@ -49,10 +42,6 @@ public class StageWindow {
 					if (count<=stagedialog[stage].length-1) count++;
 					gc.setFont(enter);
 				    gc.fillText("Press Enter", 700, 420);
-				
-					
-					
-				}
 				
 			}
 		};

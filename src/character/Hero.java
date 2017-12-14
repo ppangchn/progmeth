@@ -28,12 +28,12 @@ public class Hero extends Entity implements IRenderable {
 	private List<Image> back = new ArrayList<>();
 	private boolean isBarrierOn =  false;
 	private int barrierCount;
-	private Image barrier = new Image("BariaEffect.png");
+	public Image barrier = new Image("BariaEffect.png");
 	private int speed = 4 ; 
-	private Image UltiEffect = new Image("UltiEffect.png");
+	public Image UltiEffect = new Image("UltiEffect.png");
 	private boolean  isBoss = false;
 	private boolean isUltiOn = false;
-	private AudioClip collidesound = new AudioClip(ClassLoader.getSystemResource("animesound.wav").toString());
+	public AudioClip collidesound = new AudioClip(ClassLoader.getSystemResource("animesound.wav").toString());
 	
 	
 	public Hero() {
