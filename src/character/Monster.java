@@ -14,7 +14,6 @@ public class Monster extends Entity{
 	private int tick;
 	public Image monsterUp = new Image("monsterup.png");
 	public Image monsterDown = new Image("monsterdown.png");
-	public Image monsterDie = new Image("monsterDie.png");
 	public Image monsterPic;
 	
 	public Monster(Hero hero) {
