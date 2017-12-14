@@ -11,10 +11,10 @@ public class GameScreen implements IRenderable {
 	private int exp;
 	private int maxexp;
 	private int life;
-	private Image bggame;
-	private Image skillbullet;
-	private Image skillulti;
-	private Image skillBaria;
+	public Image bggame;
+	public Image skillbullet;
+	public Image skillulti;
+	public Image skillBaria;
 	public GameScreen() {
 		setImage();
 	}
