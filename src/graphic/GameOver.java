@@ -30,7 +30,7 @@ public class GameOver {
 				int count = 0;
 					setGameOver(gc);
 					try {
-						Thread.sleep(800);
+						Thread.sleep(100);
 						System.out.println("FINISH");
 						
 					} catch (InterruptedException e) {

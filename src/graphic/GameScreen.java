@@ -14,19 +14,14 @@ public class GameScreen implements IRenderable {
 	public Image bggame;
 	public Image skillbullet;
 	public Image skillulti;
-	public Image skillBaria;
+	public Image skillBarrier;
 	public GameScreen() {
 		setImage();
 	}
-
-
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		//bggame = new Image("bggame.png");
 		gc.drawImage(bggame, 0, 0);
-		//gc.setFill(Color.PINK);
-		//gc.fillRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 		String image_path = "heart.png";
 		Image heart = new Image(image_path);
 		Font font = new Font("Monospace", 18);
@@ -37,10 +32,7 @@ public class GameScreen implements IRenderable {
 		gc.fillText("Lv: "+lv, 440, 20);
 		gc.fillText("Exp : "+exp+"/"+maxexp,500, 20);
 		gc.setFill(Color.WHITE);
-		//Image skill = new Image("skillinven.png");
-		//gc.drawImage(skill,346,386);
-		//System.out.println("bg");
-		gc.drawImage(skillBaria, 220,5);
+		gc.drawImage(skillBarrier, 220,5);
 		gc.fillText("S",231 , 55);
 		gc.drawImage(skillbullet, 260, 5);
 		gc.fillText("D",271,55);
@@ -65,16 +57,12 @@ public class GameScreen implements IRenderable {
 		this.maxexp = maxexp;
 		this.life = life;
 	}
-	
-	public void setSkillData(int BulletCount , int CoolDown) {
-		
-	}
 	public void setCoolDown(int CoolDownFire , int CoolDownBarrier , int CoolDownUltimateSkill) {
 		 skillbullet = new Image("Fireball.png");
 		 skillulti = new Image("Ulti.png");
-		 skillBaria = new Image("Baria.png");
+		 skillBarrier = new Image("Baria.png");
 		if(CoolDownFire != 0) skillbullet = new Image("FireballCoolDown.png");
-		if(CoolDownBarrier != 0)skillBaria = new Image("BariaCoolDown.png");
+		if(CoolDownBarrier != 0)skillBarrier = new Image("BariaCoolDown.png");
 		if(CoolDownUltimateSkill != 0) skillulti = new Image("UltiCoolDown.png");
 		
 	}

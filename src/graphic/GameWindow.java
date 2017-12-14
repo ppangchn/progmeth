@@ -22,6 +22,7 @@ public class GameWindow extends Canvas{
 	private Hero hero;
 	private GameScreen gamescreen;
 	private Monster monster;
+	private Boss boss;
 	private Random rand = new Random();
 	private boolean stageON = false ;
 	private boolean isOver = false;
@@ -33,21 +34,20 @@ public class GameWindow extends Canvas{
 	private int CoolDownFire;
 	private int CoolDownBarrier;
 	private int CoolDownSpeed;
-	private Boss boss;
+	private String control = "";
+	private GraphicsContext gc;
+	private Scene scene;
+	private Stage primaryStage;
+	private char c = 'a';
+	private int frame = 0;
+	private int monsteramount = 1;
+	private int InitialSpeed;
 	public AudioClip soundgame;
 	public AudioClip fire = new AudioClip(ClassLoader.getSystemResource("Laser.mp3").toString());
 	public AudioClip bosssound = new AudioClip(ClassLoader.getSystemResource("BossSound130.wav").toString());
 	public AudioClip winnersound = new AudioClip(ClassLoader.getSystemResource("win.wav").toString());
-	public String control = "";
-	public GraphicsContext gc;
-	public Scene scene;
-	public Stage primaryStage;
-	public char c = 'a';
-	public boolean hasBullet = false;
-	public int frame = 0;
 	public String[] soundgameURL = {"Caramelldansen.mp3","PonPonPon.mp3","Senbonzakura.mp3","Melancholic.mp3","LevanPolkka.mp3"};
-	private int monsteramount = 1;
-	private int InitialSpeed;
+	
 
 	public GameWindow(Stage primaryStage) {
 		setWidth(800);
