@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="character.Bullet" project="2110215_Project_2017_Pewpew_Progmeth" 
     file="/2110215_Project_2017_Pewpew_Progmeth/src/character/Bullet.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="914" y="964"/>    
+    <position height="-1" width="-1" x="1484" y="956"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="character.Hero" project="2110215_Project_2017_Pewpew_Progmeth" 
     file="/2110215_Project_2017_Pewpew_Progmeth/src/character/Hero.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="604" y="269"/>    
+    <position height="-1" width="-1" x="610" y="613"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </class>  
   <interface id="10" language="java" name="sharedObject.IRenderable" project="2110215_Project_2017_Pewpew_Progmeth" 
     file="/2110215_Project_2017_Pewpew_Progmeth/src/sharedObject/IRenderable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="926" y="676"/>    
+    <position height="-1" width="-1" x="544" y="1386"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -103,7 +103,7 @@
   </class>  
   <class id="12" language="java" name="character.Boss" project="2110215_Project_2017_Pewpew_Progmeth" 
     file="/2110215_Project_2017_Pewpew_Progmeth/src/character/Boss.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1150" y="406"/>    
+    <position height="-1" width="-1" x="860" y="370"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -112,7 +112,7 @@
   </class>  
   <class id="13" language="java" name="character.Heart" project="2110215_Project_2017_Pewpew_Progmeth" 
     file="/2110215_Project_2017_Pewpew_Progmeth/src/character/Heart.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1210" y="780"/>    
+    <position height="-1" width="-1" x="1164" y="1406"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -137,22 +137,51 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="16">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="14"/>  
-  </generalization>  
-  <generalization id="17">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <realization id="18">    
+  <class id="16" language="java" name="character.Entity" project="2110215_Project_2017_Pewpew_Progmeth" 
+    file="/2110215_Project_2017_Pewpew_Progmeth/src/character/Entity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1140" y="776"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <realization id="17">    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="10"/>  
   </realization>  
-  <realization id="19">    
+  <realization id="18">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="10"/>  
   </realization>  
+  <generalization id="19">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <realization id="20">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <generalization id="21">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="14"/>  
+  </generalization>  
+  <generalization id="22">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <generalization id="23">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <generalization id="24">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <generalization id="25">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

@@ -14,7 +14,7 @@ public class Monster extends Entity{
 	private int tick;
 	public Image monsterUp = new Image("monsterup.png");
 	public Image monsterDown = new Image("monsterdown.png");
-	public Image monsterPic;
+s	public Image monsterPic;
 	
 	public Monster(Hero hero) {
 		way = rand.nextInt(4)+1;
