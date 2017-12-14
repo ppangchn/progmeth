@@ -16,11 +16,11 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class StartWindow{
-	private final Font TITLE_FONT = new Font("AvenueX", 70);
-	private final Font CHAT_FONT = new Font("Digital tech", 40);
-	private final Font MENU_FONT = new Font("Courier New", 40);
-	private final Font SPACE_FONT = new Font("Courier New", 25);
-	private final Font RANDOM_FONT = new Font("Courier New",18);
+	private final Font TITLE_FONT = Font.loadFont(ClassLoader.getSystemResourceAsStream("AvenueX-Regular.otf"), 70);
+	private final Font CHAT_FONT = Font.loadFont(ClassLoader.getSystemResourceAsStream("Digital_tech.otf"), 40);
+	private final Font MENU_FONT = Font.loadFont(ClassLoader.getSystemResourceAsStream("CourierNew.ttf"), 40);
+	private final Font SPACE_FONT = Font.loadFont(ClassLoader.getSystemResourceAsStream("CourierNew.ttf"), 25);
+	private final Font RANDOM_FONT = Font.loadFont(ClassLoader.getSystemResourceAsStream("CourierNew.ttf"),18);
 	private Stage primaryStage;
 	private Canvas bg;
 	private GraphicsContext gc;

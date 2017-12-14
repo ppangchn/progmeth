@@ -19,8 +19,8 @@ public class StageWindow {
 									," ","y","o","u","."," ","C","o","m","e"," ","a","n","d"," ","g","e","t"," ","m","e","!","\n","H","i","n","t"," ",":"
 									," ","O","n","l","y"," ","H","E","A","D","S","H","O","T"," ","c","a","n"," ","k","i","l","l"," ","t","h","e"," ","b","o","s","s"}};
 	public static List<Image> boss = new ArrayList<>();
-	public static final Font font = new Font("Courier New",18);
-	public static final Font enter = new Font("Courier New",12);
+	public static final Font font = Font.loadFont(ClassLoader.getSystemResourceAsStream("CourierNew.ttf"),18);
+	public static final Font enter = Font.loadFont(ClassLoader.getSystemResourceAsStream("CourierNew.ttf"),12);
 	private static int count = 0;
 	public GraphicsContext gc;
 	private static boolean isVisible = true;

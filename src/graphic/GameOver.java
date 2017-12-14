@@ -9,9 +9,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class GameOver {
-	public static final Font GAMEOVER_FONT = new Font("Digital Tech",80);
-	public static final Font CONTENT_FONT = new Font("Digital Tech",40);
-	public static final Font MAIN_FONT = new Font("Courier New",20);
+	public static final Font GAMEOVER_FONT = Font.loadFont(ClassLoader.getSystemResourceAsStream("Digital_tech.otf"),80);
+	public static final Font CONTENT_FONT = Font.loadFont(ClassLoader.getSystemResourceAsStream("Digital_tech.otf"),40);
+	public static final Font MAIN_FONT = Font.loadFont(ClassLoader.getSystemResourceAsStream("CourierNew.ttf"),20);
 	public static Image gameover;
 	public static AudioClip gameoversound = new AudioClip(ClassLoader.getSystemResource("GameOver.wav").toString());
 	private static boolean isFinished;

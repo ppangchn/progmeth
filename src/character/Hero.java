@@ -21,13 +21,13 @@ public class Hero extends Entity implements IRenderable {
 	private int exp = 0;
 	private int lv = 1;
 	private int maxexp = 50;
-	private int time = 0;
+	private int timeOfPics = 0;
 	private List<Image> left = new ArrayList<>();
 	private List<Image> right = new ArrayList<>();
 	private List<Image> front = new ArrayList<>();
 	private List<Image> back = new ArrayList<>();
-	private boolean isBariaOn =  false;
-	private int BariaCount;
+	private boolean isBarrierOn =  false;
+	private int barrierCount;
 	private Image barrier = new Image("BariaEffect.png");
 	private int speed = 4 ; 
 	private Image UltiEffect = new Image("UltiEffect.png");
@@ -94,10 +94,10 @@ public class Hero extends Entity implements IRenderable {
 	@Override
 	public void draw(GraphicsContext gc) {
 		//System.out.println("hero");
-		time++;
-		if(time>=30) time = 0; 
+		timeOfPics++;
+		if(timeOfPics>=30) timeOfPics = 0; 
 		//System.out.println("earth");
-		if(isBariaOn) gc.drawImage(barrier, x-8, y+15);
+		if(isBarrierOn) gc.drawImage(barrier, x-8, y+15);
 		if(isUltiOn()) gc.drawImage(UltiEffect, x-12, y+15);
 		gc.drawImage(heropic, x, y);
 		
@@ -107,21 +107,21 @@ public class Hero extends Entity implements IRenderable {
 		if (!isBoss) {
 			if (control.contains("a")) if(x>=35) {
 				x-=speed;
-				heropic = left.get(time/10);
+				heropic = left.get(timeOfPics/10);
 			}
 			if (control.contains("d")) if (x+90<=800) {
 				x+=speed; 
-				heropic = right.get(time/10);
+				heropic = right.get(timeOfPics/10);
 				
 			}
 			if (control.contains("w")) if (y-60>=0) {
 				y-=speed;
-				heropic = back.get(time/10);
+				heropic = back.get(timeOfPics/10);
 				
 			}
 			if (control.contains("s")) if (y+90<=460) {
 				y+=speed;
-				heropic = front.get(time/10);
+				heropic = front.get(timeOfPics/10);
 			}
 		}
 		
@@ -179,9 +179,9 @@ public class Hero extends Entity implements IRenderable {
 	public boolean isAttacked(double x, double y) {
 		
 		if(Math.abs(this.x-x)<=25 && Math.abs(this.y-y)<=25 ) {
-			if(isBariaOn) {
-				BariaCount --;
-				if(BariaCount == 0) isBariaOn = false;
+			if(isBarrierOn) {
+				barrierCount --;
+				if(barrierCount == 0) isBarrierOn = false;
 			}
 			
 			else {
@@ -193,11 +193,11 @@ public class Hero extends Entity implements IRenderable {
 		return false;
 	}
 	public void barrier() {
-		isBariaOn = true;
-		BariaCount = 3;
+		isBarrierOn = true;
+		barrierCount = 3;
 	}
 	public int getBariaCount() {
-		return BariaCount;
+		return barrierCount;
 	}
 	
 	public int getSpeed() {

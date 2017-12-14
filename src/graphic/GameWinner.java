@@ -7,8 +7,8 @@ import javafx.scene.text.Font;
 
 public class GameWinner {
 	public static Image winimage = new Image("win.jpg",800,450,false,false);
-	public static final Font CLEAR_FONT = new Font("Digital tech",90);
-	public static final Font MAIN_FONT = new Font("Digital tech",30);
+	public static final Font CLEAR_FONT = Font.loadFont(ClassLoader.getSystemResourceAsStream("Digital_tech.otf"),90);
+	public static final Font MAIN_FONT = Font.loadFont(ClassLoader.getSystemResourceAsStream("Digital_tech.otf"),30);
 	public static String[] quote = {"G","A","M","E"," ","C","L","E","A","R"};
 	public static boolean isFinished = false;
 
